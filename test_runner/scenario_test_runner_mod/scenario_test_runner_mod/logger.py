@@ -24,6 +24,7 @@ from argparse import ArgumentParser
 from rclpy.node import Node
 from pathlib import Path
 from rclpy.executors import MultiThreadedExecutor
+from std_srvs.srv import SetBool
 from std_msgs.msg import String, UInt8, Bool
 from nav_msgs.msg import Odometry
 from autoware_planning_msgs.msg import Trajectory
@@ -45,18 +46,21 @@ log_qos = QoSProfile(
     depth=1
 )
 
-class VLoggingNode(Node):
+class Logger(Node):
     def __init__(self, output_directory):
         super().__init__('v_logging_node', enable_rosout=False)
         self.get_logger().set_level(rclpy.logging.LoggingSeverity.INFO)
 
-        # Setting log files.
-        self.get_logger().info(f"preparing: {os.path.join(output_directory, VL_FILENAME)}")
-        self.vlf = open(os.path.join(output_directory, VL_FILENAME), 'w')
+        self.cnt = 0
+        self.output_directory = output_directory
+        self.vlf = None
+        self.plf = None
 
-        self.get_logger().info(f"preparing: {os.path.join(output_directory, PL_FILENAME)}")
-        self.plf = open(os.path.join(output_directory, PL_FILENAME), 'w')
+        # Setting a reset service.
+        self.srv = self.create_service(SetBool, 'reset_logger', self.reset_cb)
+        self.get_logger().info(f"service server for reset_logger ready")
 
+        # Setting subscriptions.
         self.sub_vehicle_log = self.create_subscription(
             Odometry, '/localization/kinematic_state', 
             self.vehicle_log_cb, log_qos)
@@ -71,7 +75,44 @@ class VLoggingNode(Node):
         self.plf.close()
         self.get_logger().info('done')
 
+    def reset_cb(self, request, response):
+        response.success = True
+        if request.data:
+            if (self.vlf and not self.vlf.closed) or (self.plf and not self.plf.closed):
+                response.success = False
+                response.message = 'file handles are not closed properly'
+            else:
+                self.cnt += 1
+                out_dir = os.path.join(self.output_directory, str(self.cnt))
+                if not os.path.exists(out_dir):
+                    os.mkdir(out_dir)
+
+                # Setting log files.
+                fn = os.path.join(out_dir, VL_FILENAME)
+                self.get_logger().info(f"preparing: {fn}")
+                self.vlf = open(fn, 'w')
+
+                fn = os.path.join(out_dir, PL_FILENAME)
+                self.get_logger().info(f"preparing: {fn}")
+                self.plf = open(fn, 'w')
+
+                response.message = 'file handles are prepared'
+        else:
+            # 
+            if self.vlf and not self.vlf.closed:
+                self.vlf.flush() 
+                self.vlf.close() 
+            if self.plf and not self.plf.closed:
+                self.plf.flush() 
+                self.plf.close() 
+
+            response.message = 'file handles are closed'
+
+        return response
+
     def vehicle_log_cb(self, msg):
+        if not self.vlf or self.vlf.closed:
+            return 
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
         ori = msg.pose.pose.orientation
@@ -80,6 +121,8 @@ class VLoggingNode(Node):
         csv.writer(self.vlf).writerow([ts, x, y, yaw])
 
     def planning_log_cb(self, msg):
+        if not self.vlf or self.plf.closed:
+            return 
         ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         writer = csv.writer(self.plf)
         for pt in msg.points:
@@ -89,35 +132,6 @@ class VLoggingNode(Node):
             yaw = quaternion_to_yaw(ori.x, ori.y, ori.z, ori.w)
             v = pt.longitudinal_velocity_mps
             writer.writerow([ts, x, y, yaw, v])
-
-#class PLoggingNode(Node):
-#    def __init__(self, output_directory):
-#        super().__init__('p_logging_node', enable_rosout=False)
-#        self.get_logger().set_level(rclpy.logging.LoggingSeverity.INFO)
-#
-#        # Setting log files.
-#        self.get_logger().info(f"preparing: {os.path.join(output_directory, PL_FILENAME)}")
-#        self.plf = open(os.path.join(output_directory, PL_FILENAME), 'w')
-#
-#        self.sub_planning_log = self.create_subscription(
-#            Trajectory, '/planning/scenario_planning/trajectory', 
-#            self.planning_log_cb, log_qos)
-#
-#    def __del__(self):
-#        self.get_logger().info('dying...')
-#        self.plf.close()
-#        self.get_logger().info('done')
-#
-#    def planning_log_cb(self, msg):
-#        ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-#        writer = csv.writer(self.plf)
-#        for pt in msg.points:
-#            x = pt.pose.position.x
-#            y = pt.pose.position.y
-#            ori = pt.pose.orientation
-#            yaw = quaternion_to_yaw(ori.x, ori.y, ori.z, ori.w)
-#            v = pt.longitudinal_velocity_mps
-#            writer.writerow([ts, x, y, yaw, v])
 
 #
 
@@ -139,17 +153,12 @@ def main(args=None):
     if not os.path.exists(log_dir):
         os.mkdir(log_dir)
 
-    v_log_node = VLoggingNode(log_dir)
-    #p_log_node = PLoggingNode(log_dir)
+    logger = Logger(log_dir)
 
-    #executor = MultiThreadedExecutor()
-    #executor.add_node(v_log_node)
-    #executor.add_node(p_log_node)
     try:
-        rclpy.spin(v_log_node)
+        rclpy.spin(logger)
     finally:
-        v_log_node.destroy_node()
-        #p_log_node.destroy_node()
+        logger.destroy_node()
         rclpy.shutdown()
 
 if __name__ == "__main__":

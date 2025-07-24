@@ -82,7 +82,7 @@ def launch_setup(context, *args, **kwargs):
     parameter_file_path                 = LaunchConfiguration("parameter_file_path",                    default=Path(get_package_share_directory("scenario_test_runner")) / "config/parameters.yaml")
     port                                = LaunchConfiguration("port",                                   default=5555)
     publish_empty_context               = LaunchConfiguration("publish_empty_context",                  default=False)
-    record                              = LaunchConfiguration("record",                                 default=True)
+    record                              = LaunchConfiguration("record",                                 default=False)
     record_storage_id                   = LaunchConfiguration("record_storage_id",                      default="")
     rviz_config                         = LaunchConfiguration("rviz_config",                            default=default_rviz_config_file())
     scenario                            = LaunchConfiguration("scenario",                               default=Path("/dev/null"))

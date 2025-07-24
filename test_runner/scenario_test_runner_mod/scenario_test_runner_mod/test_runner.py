@@ -22,8 +22,6 @@ import rclpy
 import time
 import json
 
-from argparse import ArgumentParser
-from glob import glob
 from openscenario_preprocessor_msgs.srv import CheckDerivativeRemained
 from openscenario_preprocessor_msgs.srv import Derive
 from openscenario_preprocessor_msgs.srv import Load
@@ -32,6 +30,9 @@ from openscenario_utility.conversion import convert
 from scenario_test_runner.lifecycle_controller import LifecycleController
 from scenario_test_runner.scenario import Scenario
 from scenario_test_runner.scenario import substitute_ros_package
+from std_srvs.srv import SetBool
+from argparse import ArgumentParser
+from glob import glob
 from pathlib import Path
 from rclpy.executors import ExternalShutdownException
 from shutil import rmtree
@@ -218,6 +219,11 @@ class ScenarioTestRunner(LifecycleController):
 
             for index, each in enumerate(scenarios):
 
+                logger = self.create_client(SetBool, 'reset_logger')
+                while not logger.wait_for_service(timeout_sec=1.0):
+                    self.get_logger().info('waiting for the reset_logger service...')
+                self.toggle_logger(logger, True)
+
                 self.get_logger().info(
                     "Run "
                     + str(each.path.name)
@@ -240,6 +246,8 @@ class ScenarioTestRunner(LifecycleController):
 
                 else:
                     self.spin()
+
+                self.toggle_logger(logger, False)
 
                 self.cleanup_node()
 
@@ -285,6 +293,16 @@ class ScenarioTestRunner(LifecycleController):
             self.print_debug('Exception while calling service /simulation/openscenario_preprocessor/check: '
                              + str(future.exception()))
             exit(1)
+
+    def toggle_logger(self, logger, enable: bool):
+        request = SetBool.Request()
+        request.data = enable
+        future = logger.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+        if future.result() is not None:
+            self.get_logger().info(f"{future.result().message}")
+        else:
+            self.get_logger().error('reset_logger failed: {future.result().message}')
 
     def print_debug(self, message: str):
         self.get_logger().info(message)
