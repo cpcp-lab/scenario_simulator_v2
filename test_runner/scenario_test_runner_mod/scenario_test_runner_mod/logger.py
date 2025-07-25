@@ -19,16 +19,17 @@ import rclpy
 import time
 import math, csv
 import os
-from datetime import datetime
-from argparse import ArgumentParser
-from rclpy.node import Node
-from pathlib import Path
-from rclpy.executors import MultiThreadedExecutor
 from std_srvs.srv import SetBool
 from std_msgs.msg import String, UInt8, Bool
 from nav_msgs.msg import Odometry
 from autoware_planning_msgs.msg import Trajectory
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
+from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from argparse import ArgumentParser
+from pathlib import Path
+from datetime import datetime
+
 
 VL_FILENAME = "vehicle_position_log.csv"
 PL_FILENAME = "planning_log.csv"
@@ -141,19 +142,27 @@ def main(args=None):
 
     parser = ArgumentParser()
     parser.add_argument("--output-directory", default=Path("/tmp"), type=Path)
+    parser.add_argument("--output-subdir-name", default="test_runner", type=str)
     parser.add_argument("--ros-args", nargs="*")  # XXX DIRTY HACK
     parser.add_argument("-r", nargs="*")  # XXX DIRTY HACK
     args = parser.parse_args()
 
     # Prepare a log dir.
-    now = datetime.now()
-    datetime_str = now.strftime('%Y-%m-%d-%H-%M-%S')
-    dirname = f"mod-{datetime_str}"
-    log_dir = os.path.join(args.output_directory, dirname)
-    if not os.path.exists(log_dir):
-        os.mkdir(log_dir)
+    #now = datetime.now()
+    #datetime_str = now.strftime('%Y-%m-%d-%H-%M-%S')
+    #dirname = f"mod-{datetime_str}"
+    #log_dir = os.path.join(args.output_directory, dirname)
+    #if not os.path.exists(log_dir):
+    #    os.mkdir(log_dir)
 
-    logger = Logger(log_dir)
+    output = args.output_directory / args.output_subdir_name
+    if output.exists():
+        for each in output.iterdir():
+            each.resolve().unlink()
+    else:
+        output.mkdir(parents=True, exist_ok=True)
+
+    logger = Logger(output)
 
     try:
         rclpy.spin(logger)

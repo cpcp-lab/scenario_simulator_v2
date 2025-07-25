@@ -23,8 +23,9 @@ from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node, LifecycleNode
-from pathlib import Path
 from scenario_test_runner.shutdown_once import ShutdownOnce
+from pathlib import Path
+from datetime import datetime
 
 
 def architecture_types():
@@ -78,6 +79,14 @@ def launch_setup(context, *args, **kwargs):
     launch_rviz                         = LaunchConfiguration("launch_rviz",                            default=False)
     launch_simple_sensor_simulator      = LaunchConfiguration("launch_simple_sensor_simulator",         default=True)
     output_directory                    = LaunchConfiguration("output_directory",                       default=Path("/tmp"))
+
+    # Prepare a subdir name.
+    now = datetime.now()
+    datetime_str = now.strftime('%Y-%m-%d-%H-%M-%S')
+    output_subdir_name = f"test_runner-{datetime_str}"
+
+    output_subdir_name                  = LaunchConfiguration("output_subdir_name",                     default=output_subdir_name)
+
     override_parameters                 = LaunchConfiguration("override_parameters",                    default="")
     parameter_file_path                 = LaunchConfiguration("parameter_file_path",                    default=Path(get_package_share_directory("scenario_test_runner")) / "config/parameters.yaml")
     port                                = LaunchConfiguration("port",                                   default=5555)
@@ -107,6 +116,7 @@ def launch_setup(context, *args, **kwargs):
     print(f"launch_autoware                     := {launch_autoware.perform(context)}")
     print(f"launch_rviz                         := {launch_rviz.perform(context)}")
     print(f"output_directory                    := {output_directory.perform(context)}")
+    print(f"output_subdir_name                  := {output_subdir_name.perform(context)}")
     print(f"override_parameters                 := {override_parameters.perform(context)}")
     print(f"parameter_file_path                 := {parameter_file_path.perform(context)}")
     print(f"port                                := {port.perform(context)}")
@@ -194,6 +204,7 @@ def launch_setup(context, *args, **kwargs):
         DeclareLaunchArgument("launch_autoware",                     default_value=launch_autoware                    ),
         DeclareLaunchArgument("launch_rviz",                         default_value=launch_rviz                        ),
         DeclareLaunchArgument("output_directory",                    default_value=output_directory                   ),
+        DeclareLaunchArgument("output_subdir_name",                  default_value=output_subdir_name                 ),
         DeclareLaunchArgument("parameter_file_path",                 default_value=parameter_file_path                ),
         DeclareLaunchArgument("publish_empty_context",               default_value=publish_empty_context              ),
         DeclareLaunchArgument("rviz_config",                         default_value=rviz_config                        ),
@@ -218,6 +229,7 @@ def launch_setup(context, *args, **kwargs):
                 "--global-real-time-factor", global_real_time_factor,
                 "--global-timeout",          global_timeout,
                 "--output-directory",        output_directory,
+                "--output-subdir-name",      output_subdir_name,
                 "--override-parameters",     override_parameters,
                 "--scenario",                scenario,
                 # fmt: on
@@ -230,7 +242,12 @@ def launch_setup(context, *args, **kwargs):
             name="str_logger",
             output="screen",
             on_exit=ShutdownOnce(),
-            arguments=["--output-directory", output_directory],
+            arguments=[
+                # fmt: off
+                "--output-directory", output_directory,
+                "--output-subdir-name", output_subdir_name,
+                # fmt: on
+            ],
         ),
         Node(
             package="simple_sensor_simulator",

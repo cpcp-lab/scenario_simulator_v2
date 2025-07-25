@@ -26,7 +26,7 @@ from openscenario_preprocessor_msgs.srv import CheckDerivativeRemained
 from openscenario_preprocessor_msgs.srv import Derive
 from openscenario_preprocessor_msgs.srv import Load
 from openscenario_preprocessor_msgs.srv import SetParameter
-from openscenario_utility.conversion import convert
+#from openscenario_utility.conversion import convert
 from scenario_test_runner.lifecycle_controller import LifecycleController
 from scenario_test_runner.scenario import Scenario
 from scenario_test_runner.scenario import substitute_ros_package
@@ -39,6 +39,8 @@ from shutil import rmtree
 from sys import exit
 from typing import List
 
+from scenario_conversion import convert
+
 
 def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
 
@@ -50,7 +52,7 @@ def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path)
             result.append(each)
 
         else:  # == '.yaml' or == '.yml'
-            for path in convert(each.path, output_directory / each.path.stem, False):
+            for path in convert(each.path, output_directory / each.path.stem, True):
                 result.append(Scenario(path, each.frame_rate))
 
     return result
@@ -316,6 +318,8 @@ def main(args=None):
 
     parser.add_argument("--output-directory", default=Path("/tmp"), type=Path)
 
+    parser.add_argument("--output-subdir-name", default="test_runner", type=str)
+
     parser.add_argument("--override-parameters", default=None, type=str)
 
     parser.add_argument("--global-frame-rate", default=30, type=float)
@@ -331,11 +335,13 @@ def main(args=None):
 
     args = parser.parse_args()
 
+    output_directory = args.output_directory / args.output_subdir_name
+
     test_runner = ScenarioTestRunner(
         global_frame_rate=args.global_frame_rate,
         global_real_time_factor=args.global_real_time_factor,
         global_timeout=args.global_timeout,
-        output_directory=args.output_directory / "scenario_test_runner",
+        output_directory=output_directory,
         override_parameters=args.override_parameters,
     )
 
