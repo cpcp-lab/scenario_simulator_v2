@@ -39,23 +39,23 @@ from shutil import rmtree
 from sys import exit
 from typing import List
 
-from scenario_conversion import convert
+from scenario_conversion import convert_scenarios_to_xosc
 
 
-def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
-
-    result = []
-
-    for each in scenarios:
-
-        if each.path.suffix == ".xosc":
-            result.append(each)
-
-        else:  # == '.yaml' or == '.yml'
-            for path in convert(each.path, output_directory / each.path.stem, True):
-                result.append(Scenario(path, each.frame_rate))
-
-    return result
+#def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
+#
+#    result = []
+#
+#    for each in scenarios:
+#
+#        if each.path.suffix == ".xosc":
+#            result.append(each)
+#
+#        else:  # == '.yaml' or == '.yml'
+#            for path in convert(each.path, output_directory / each.path.stem, True):
+#                result.append(Scenario(path, each.frame_rate))
+#
+#    return result
 
 
 class ScenarioTestRunner(LifecycleController):
