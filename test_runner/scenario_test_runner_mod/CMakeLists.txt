@@ -12,8 +12,7 @@ install(
   DESTINATION lib/${PROJECT_NAME})
 
 install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/config
-            ${CMAKE_CURRENT_SOURCE_DIR}/launch
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/launch
   DESTINATION share/${PROJECT_NAME})
 
 ament_package()

@@ -16,6 +16,8 @@
   <depend>openscenario_utility</depend>
   <depend>openscenario_visualization</depend>
   <depend>scenario_test_runner</depend>
+  <depend>autoware_lanelet2_extension_python</depend>
+  <depend>lanelet2</depend>
   <depend>python-yamale-pip</depend>
   <depend>python3-pytest</depend>
   <depend>python3-xmlschema</depend>
