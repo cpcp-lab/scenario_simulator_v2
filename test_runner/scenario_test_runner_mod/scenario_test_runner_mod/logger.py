@@ -15,20 +15,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import rclpy
 import time
 import math, csv
 import os
+from argparse import ArgumentParser
+from pathlib import Path
+from datetime import datetime
+
+import rclpy
+from rclpy.node import Node
+#from rclpy.executors import MultiThreadedExecutor
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from std_srvs.srv import SetBool
 from std_msgs.msg import String, UInt8, Bool
 from nav_msgs.msg import Odometry
 from autoware_planning_msgs.msg import Trajectory
-from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
-from rclpy.node import Node
-from rclpy.executors import MultiThreadedExecutor
-from argparse import ArgumentParser
-from pathlib import Path
-from datetime import datetime
+
 
 
 VL_FILENAME = "vehicle_position_log.csv"

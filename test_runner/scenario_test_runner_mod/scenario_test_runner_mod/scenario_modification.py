@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import copy
+import random
 from abc import ABC, abstractmethod
 
 import lanelet2
@@ -37,7 +39,8 @@ class ScenarioModAction(ABC):
 class ListAction(ScenarioModAction):
     def __init__(self, name, lst):
         self.name = name
-        self.queue = lst
+        self.queue = lst.copy()
+        print(f"LA init {lst}")
 
     def get_value(self, ctx):
         return self.queue.pop(0) if self.queue else None
@@ -50,7 +53,7 @@ class IotaAction(ScenarioModAction):
         self.stop = stop
 
     def get_value(self, ctx):
-        return iota(self.start, self.step, self.stop)
+        yield from iota(self.start, self.step, self.stop)
 
 class AllLaneIds(ScenarioModAction):
     def __init__(self, name, llts):
@@ -69,11 +72,25 @@ class RandomLaneId(ScenarioModAction):
         return random.choice(this.llts).id if init else None
 
 class ReachableLaneIds(ScenarioModAction):
-    def __init__(self, name, ref_nm, param, llts, graph):
+    def __init__(self, name, ref_nm, param, llt_map, llts):
         self.name = name
         self.ref_nm = ref_nm
+        self.llt_map = llt_map
         self.llts = llts
-        self.graph = graph
+
+        # Prepare a routing graph.
+        rules_map = {"vehicle": lanelet2.traffic_rules.Participants.Vehicle,
+                     "bicycle": lanelet2.traffic_rules.Participants.Bicycle,
+                     "pedestrian": lanelet2.traffic_rules.Participants.Pedestrian,
+                     "train": lanelet2.traffic_rules.Participants.Train}
+        traffic_rules = lanelet2.traffic_rules.create(
+                lanelet2.traffic_rules.Locations.Germany,
+                rules_map["vehicle"])
+        # Cost for lane changes
+        #routing_cost = lanelet2.routing.RoutingCostDistance(0.)
+        routing_cost = lanelet2.routing.RoutingCostDistance(10.)
+        self.graph = lanelet2.routing.RoutingGraph(
+                self.llt_map, traffic_rules, [routing_cost])
 
         if isinstance(param, list):
             if len(param) == 1:
@@ -108,46 +125,39 @@ class ReachableLaneIds(ScenarioModAction):
 # 
 
 class ScenarioModActionFactory:
-    def __init__(self, lanelet_map, verbose = False):
+    def __init__(self, lanelet_map, mod_entry, verbose = False):
+        self.lanelet_map = lanelet_map
         self.lanelets = list(lanelet_map.laneletLayer)
-
-        # Prepare a routing graph.
-        rules_map = {"vehicle": lanelet2.traffic_rules.Participants.Vehicle,
-                     "bicycle": lanelet2.traffic_rules.Participants.Bicycle,
-                     "pedestrian": lanelet2.traffic_rules.Participants.Pedestrian,
-                     "train": lanelet2.traffic_rules.Participants.Train}
-        traffic_rules = lanelet2.traffic_rules.create(lanelet2.traffic_rules.Locations.Germany,
-                                                      rules_map["vehicle"])
-        #routing_cost = lanelet2.routing.RoutingCostDistance(0.)  # zero cost for lane changes
-        routing_cost = lanelet2.routing.RoutingCostDistance(10.)
-        self.routing_graph = lanelet2.routing.RoutingGraph(lanelet_map, traffic_rules, [routing_cost])
-
+        self.mod_entry = mod_entry
         self.verbose = verbose
 
-    def create(self, mod_entry):
-        name = mod_entry['name']
+    def create(self):
+        entry = self.mod_entry
+        name = entry['name']
     
-        if 'list' in mod_entry:
-            return ListAction(name, mod_entry['list'])
+        if 'list' in entry:
+            return ListAction(name, entry['list'])
     
-        elif 'method' in mod_entry:
-            if mod_entry['method'] == 'allLaneIds':
+        elif 'method' in entry:
+            if entry['method'] == 'allLaneIds':
                 if self.verbose:
                     print(f"Setting LaneIds from {self.lanelets[0:2]}...")
                 return AllLaneIds(name, self.lanelets)
-            elif mod_entry['method'] == 'randomLaneId':
+
+            elif entry['method'] == 'randomLaneId':
                 return RandomLaneId(name, self.lanelets)
-            elif mod_entry['method'] == 'reachableLaneIds':
-                if not 'ref' in mod_entry or not 'param' in mod_entry:
+
+            elif entry['method'] == 'reachableLaneIds':
+                if not 'ref' in entry or not 'param' in entry:
                     raise Exception('Parameters are missing')
     
-                return ReachableLaneIds(name, mod_entry['ref'], mod_entry['param'],
-                                        self.lanelets, self.routing_graph)
+                return ReachableLaneIds(name, entry['ref'], entry['param'], 
+                                        self.lanelet_map, self.lanelets)
                  
             else:
-                raise Exception(f"Unknown method: {mod_entry['method']}")
+                raise Exception(f"Unknown method: {entry['method']}")
     
         else:
-            return IotaAction(name, mod_entry["start"], mod_entry["step"], mod_entry["stop"])
+            return IotaAction(name, entry["start"], entry["step"], entry["stop"])
 
 # eof

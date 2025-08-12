@@ -78,77 +78,24 @@ class MacroExpander:
 
         self.schema = schema
 
-        #self.lanelets = list(lanelet_map.laneletLayer)
-
-        ## Prepare a routing graph.
-        #rules_map = {"vehicle": lanelet2.traffic_rules.Participants.Vehicle,
-        #             "bicycle": lanelet2.traffic_rules.Participants.Bicycle,
-        #             "pedestrian": lanelet2.traffic_rules.Participants.Pedestrian,
-        #             "train": lanelet2.traffic_rules.Participants.Train}
-        #traffic_rules = lanelet2.traffic_rules.create(lanelet2.traffic_rules.Locations.Germany,
-        #                                              rules_map["vehicle"])
-        ##routing_cost = lanelet2.routing.RoutingCostDistance(0.)  # zero cost for lane changes
-        #routing_cost = lanelet2.routing.RoutingCostDistance(10.)
-        #self.routing_graph = lanelet2.routing.RoutingGraph(lanelet_map, traffic_rules, [routing_cost])
-
         self.verbose = verbose
 
         self.specs = []
 
-        action_factory = ScenarioModActionFactory(lanelet_map, verbose)
+        #action_factory = ScenarioModActionFactory(lanelet_map, verbose)
 
         if rules is not None:
             # Analyze the ScenarioModifier section.
             for each in rules['ScenarioModifier']:
-                self.specs.append(action_factory.create(each))
-
-                #name = each['name']
-                #if 'list' in each:
-                #    #queue = each['list']
-                #    #self.specs.append((name, lambda: queue.pop(0) if queue else None))
-                #    self.specs.append(ListSpec(name, each['list']))
-
-                #elif 'method' in each:
-                #    if each['method'] == 'allLaneIds':
-                #        if self.verbose:
-                #            print(f"Setting LaneIds from {self.lanelets[0:2]}...")
-                #        #queue = map(lambda x: x.id, lanelets)
-                #        #self.specs.append(
-                #        #    (name, lambda: queue.pop(0) if queue else None)
-                #        #)
-                #        self.specs.append(AllLaneIds(name, self.lanelets))
-                #    elif each['method'] == 'randomLaneId':
-                #        #self.specs.append(
-                #        #    #(name, lambda: [random.choice(self.lanelets).id])
-                #        #    (name, lambda: random.choice(self.lanelets).id)
-                #        #)
-                #        self.specs.append(RandomLaneId(name, self.lanelets))
-                #    elif each['method'] == 'reachableLaneIds':
-                #        if not 'ref' in each or not 'param' in each:
-                #            raise Exception('Parameters are missing')
-
-                #        self.specs.append(ReachableLaneIds(name, each['ref'], each['param'],
-                #                                           self.lanelets, self.routing_graph))
-                #         
-                #    else:
-                #        print(f"Unknown method: {each['method']}")
-                #        self.specs.append((name, lambda: None))
-
-                #else:
-                #    self.specs.append(
-                #        (name, lambda: iota(each["start"], each["step"], each["stop"]))
-                #    )
-
-    #def substitute(self, name, x, target):
-    #    if x and target:
-    #        return sub(str(name), str(x), target)
-    #    else:
-    #        return
+                self.specs.append(
+                    #action_factory.create(each)
+                    ScenarioModActionFactory(lanelet_map, each, verbose)
+                    )
 
     def substitute_and_save(self, ctx, target, path):
         for nm in ctx:
             if self.verbose:
-                print(f"Substitute: {nm} ==> {ctx[nm]}")
+                print(f"Substitute {nm} with {ctx[nm]}")
             target = sub(str(nm), str(ctx[nm]), target)
 
         if self.verbose:
@@ -176,9 +123,10 @@ class MacroExpander:
         else:
             spec = specs[0]
             rest = specs[1:]
-            ctx_mod = deepcopy(ctx)
+            action = spec.create()
             while True:
-                if spec(ctx_mod):
+                ctx_mod = deepcopy(ctx)
+                if action(ctx_mod):
                     yield from self.product_spec(rest, ctx_mod, cont)
                 else:
                     return
@@ -189,45 +137,6 @@ class MacroExpander:
 
         yield from self.product_spec(self.specs, {}, 
                                      lambda ctx: self.substitute_and_save(ctx, target, path))
-
-    #def __call__(self, xosc: str, output: Path, basename: str, verbose: bool = True):
-    #    target = deepcopy(xosc)
-
-
-    #    # Apply every spec rewritings.
-    #    if self.verbose:
-    #        print(f"Specs: {self.specs}", flush=True) 
-    #    ctx = {}
-    #    target = reduce(
-    #        lambda tgt, it: 
-    #        self.substitute(it.name, it(ctx, True), tgt),
-    #        self.specs,
-    #        target
-    #    )
-
-    #    # If one of the rewritings finishes, it will be None.
-    #    if target:
-    #        if self.verbose:
-    #            print('====')
-    #            print(target, flush=True)
-    #            print('====')
-
-    #        #self.substitute_and_save(t_p_pair, '', None)
-
-    #        path = output.joinpath(basename + ".xosc")
-    #        with path.open(mode="w") as file:
-    #            file.write(target)
-
-    #        try:
-    #            self.schema.validate(target)
-
-    #        except xmlschema.XMLSchemaValidationError as exception:
-    #            print("File: " + str(path), file=stderr)
-    #            print("", file=stderr)
-    #            print("Error: " + str(exception), file=stderr)
-    #            exit()
-
-    #        return path
 
 
 def convert_mod(input: Path, output: Path, verbose: bool = True):
@@ -273,22 +182,6 @@ def convert_mod(input: Path, output: Path, verbose: bool = True):
         exit()
 
     else:
-        #while True:
-        #    #t_p_pairs = macroexpand(
-        #    path = macroexpand(
-        #        xmlschema.XMLResource(xosc)
-        #        .tostring()
-        #        .replace("True", "true")
-        #        .replace("False", "false"),
-        #        output,
-        #        input.stem,
-        #    )
-
-        #    if path:
-        #        yield path
-        #    else:
-        #        break
-
         yield from macroexpand(
             xmlschema.XMLResource(xosc)
             .tostring()
