@@ -42,7 +42,7 @@ from openscenario_utility.conversion import iota, load_yaml, from_yaml
 #from openscenario_utility.conversion import convert, MacroExpander
 from scenario_test_runner.scenario import Scenario
 
-from scenario_modification import ScenarioModActionFactory
+from scenario_mod_action import ScenarioModActionFactory
 
 def get_from_dict(path, dictio):
     if not isinstance(path, list) or not path or not isinstance(dictio, dict):
@@ -92,7 +92,23 @@ class MacroExpander:
                     ScenarioModActionFactory(lanelet_map, each, verbose)
                     )
 
-    def substitute_and_save(self, ctx, target, path):
+    def product_spec(self, specs, ctx, cont):
+        if not specs:
+            ctx["index"] = ctx["index"] + 1
+            yield cont(ctx)
+        else:
+            spec = specs[0]
+            rest = specs[1:]
+            action = spec.create()
+            while True:
+                ctx_mod = deepcopy(ctx)
+                if action(ctx_mod):
+                    yield from self.product_spec(rest, ctx_mod, cont)
+                    ctx["index"] = ctx_mod["index"]
+                else:
+                    return
+
+    def substitute_and_save(self, ctx, target, basename, output):
         for nm in ctx:
             if self.verbose:
                 print(f"Substitute {nm} with {ctx[nm]}")
@@ -103,7 +119,22 @@ class MacroExpander:
             print(target, flush=True)
             print('====')
 
-        with path.open(mode="w") as file:
+        # Create a subdir named as the index number
+        output = output / str(ctx["index"])
+        #if output.exists():
+        #    for each in output.iterdir():
+        #        each.resolve().unlink()
+        if not output.exists():
+            output.mkdir(parents=True, exist_ok=True)
+
+        # Output the context data
+        path = output / 'context.yaml'
+        with path.open(mode='w') as file:
+            yaml.dump(ctx, file, allow_unicode=True)
+
+        # Output the expanded scenario
+        path = output.joinpath(basename + '.xosc')
+        with path.open(mode='w') as file:
             file.write(target)
 
         try:
@@ -115,37 +146,16 @@ class MacroExpander:
             print("Error: " + str(exception), file=stderr)
             exit()
 
-        return path
+        return (ctx["index"], path)
 
-    def product_spec(self, specs, ctx, cont):
-        if not specs:
-            yield cont(ctx)
-        else:
-            spec = specs[0]
-            rest = specs[1:]
-            action = spec.create()
-            while True:
-                ctx_mod = deepcopy(ctx)
-                if action(ctx_mod):
-                    yield from self.product_spec(rest, ctx_mod, cont)
-                else:
-                    return
-
-    def __call__(self, xosc: str, output: Path, basename: str, verbose: bool = True):
+    def __call__(self, index: int, xosc: str, output: Path, basename: str, verbose: bool = True):
         target = deepcopy(xosc)
-        path = output.joinpath(basename + ".xosc")
 
-        yield from self.product_spec(self.specs, {}, 
-                                     lambda ctx: self.substitute_and_save(ctx, target, path))
+        yield from self.product_spec(self.specs, {"index":index}, 
+            lambda ctx: self.substitute_and_save(ctx, target, basename, output))
 
 
-def convert_mod(input: Path, output: Path, verbose: bool = True):
-
-    if output.exists():
-        for each in output.iterdir():
-            each.resolve().unlink()
-    else:
-        output.mkdir(parents=True, exist_ok=True)
+def convert_mod(index, input: Path, output: Path, verbose: bool = True):
 
     #xsd = resource_string(__name__, "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
     xsd = resource_string("openscenario_utility", "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
@@ -153,6 +163,7 @@ def convert_mod(input: Path, output: Path, verbose: bool = True):
 
     yaml = load_yaml(input)
 
+    # Process the map file
     map_filepath = get_from_dict(['OpenSCENARIO','RoadNetwork','LogicFile','filepath'], yaml)
     if not map_filepath:
         print("Error: map_filepath not found")
@@ -183,6 +194,7 @@ def convert_mod(input: Path, output: Path, verbose: bool = True):
 
     else:
         yield from macroexpand(
+            index,
             xmlschema.XMLResource(xosc)
             .tostring()
             .replace("True", "true")
@@ -194,13 +206,15 @@ def convert_mod(input: Path, output: Path, verbose: bool = True):
 
 def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
 
+    index = 0
+
     for each in scenarios:
         if each.path.suffix == ".xosc":
-            yield each
+            index = index + 1
+            yield (index, each)
 
         else:  # == '.yaml' or == '.yml'
-            for path in convert_mod(each.path, output_directory / each.path.stem, True):
-                yield Scenario(path, each.frame_rate)
-
+            for index, path in convert_mod(index, each.path, output_directory, True):
+                yield (index, Scenario(path, each.frame_rate))
 
 # eof

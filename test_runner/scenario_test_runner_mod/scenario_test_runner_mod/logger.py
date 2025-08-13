@@ -25,12 +25,14 @@ from datetime import datetime
 import rclpy
 from rclpy.node import Node
 #from rclpy.executors import MultiThreadedExecutor
+from rclpy.executors import ExternalShutdownException
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
-from std_srvs.srv import SetBool
+#from std_srvs.srv import SetBool
 from std_msgs.msg import String, UInt8, Bool
 from nav_msgs.msg import Odometry
 from autoware_planning_msgs.msg import Trajectory
 
+from scenario_test_runner_msgs.srv import TriggerLogging
 
 
 VL_FILENAME = "vehicle_position_log.csv"
@@ -54,14 +56,14 @@ class Logger(Node):
         super().__init__('v_logging_node', enable_rosout=False)
         self.get_logger().set_level(rclpy.logging.LoggingSeverity.INFO)
 
-        self.cnt = 0
+        #self.cnt = 0
         self.output_directory = output_directory
         self.vlf = None
         self.plf = None
 
-        # Setting a reset service.
-        self.srv = self.create_service(SetBool, 'reset_logger', self.reset_cb)
-        self.get_logger().info(f"service server for reset_logger ready")
+        # Setting a trigger service.
+        self.srv = self.create_service(TriggerLogging, 'trigger_logger', self.trigger_cb)
+        self.get_logger().info(f"service server for trigger_logger ready")
 
         # Setting subscriptions.
         self.sub_vehicle_log = self.create_subscription(
@@ -78,15 +80,16 @@ class Logger(Node):
         self.plf.close()
         self.get_logger().info('done')
 
-    def reset_cb(self, request, response):
+    def trigger_cb(self, request, response):
         response.success = True
-        if request.data:
+        if request.message:
             if (self.vlf and not self.vlf.closed) or (self.plf and not self.plf.closed):
                 response.success = False
                 response.message = 'file handles are not closed properly'
             else:
-                self.cnt += 1
-                out_dir = os.path.join(self.output_directory, str(self.cnt))
+                #self.cnt += 1
+                #out_dir = os.path.join(self.output_directory, str(self.cnt))
+                out_dir = self.output_directory / request.message
                 if not os.path.exists(out_dir):
                     os.mkdir(out_dir)
 
@@ -168,9 +171,12 @@ def main(args=None):
 
     try:
         rclpy.spin(logger)
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
     finally:
         logger.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 if __name__ == "__main__":
     """Entrypoint."""

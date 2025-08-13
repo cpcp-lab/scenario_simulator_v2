@@ -40,7 +40,7 @@ class ListAction(ScenarioModAction):
     def __init__(self, name, lst):
         self.name = name
         self.queue = lst.copy()
-        print(f"LA init {lst}")
+        #print(f"LA init {lst}")
 
     def get_value(self, ctx):
         return self.queue.pop(0) if self.queue else None

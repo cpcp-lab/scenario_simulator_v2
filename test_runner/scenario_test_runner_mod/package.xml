@@ -10,20 +10,26 @@
   <buildtool_depend>ament_cmake_python</buildtool_depend>
   <depend>ament_copyright</depend>
   <depend>ament_pep257</depend>
+  <depend>python-yamale-pip</depend>
+  <depend>python3-pytest</depend>
+  <depend>python3-xmlschema</depend>
+  <depend>rclpy</depend>
+  <depend>lanelet2</depend>
+  <depend>autoware_lanelet2_extension_python</depend>
   <depend>openscenario_interpreter</depend>
   <depend>openscenario_preprocessor</depend>
   <depend>openscenario_preprocessor_msgs</depend>
   <depend>openscenario_utility</depend>
   <depend>openscenario_visualization</depend>
-  <depend>scenario_test_runner</depend>
-  <depend>autoware_lanelet2_extension_python</depend>
-  <depend>lanelet2</depend>
-  <depend>python-yamale-pip</depend>
-  <depend>python3-pytest</depend>
-  <depend>python3-xmlschema</depend>
-  <depend>rclpy</depend>
   <depend>simple_sensor_simulator</depend>
+  <depend>scenario_test_runner</depend>
+  <depend>scenario_test_runner_msgs</depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>
+
+  <!-- <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group> 
+  -->
 </package>

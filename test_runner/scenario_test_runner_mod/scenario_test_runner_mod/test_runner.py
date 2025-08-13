@@ -30,7 +30,7 @@ from openscenario_preprocessor_msgs.srv import SetParameter
 from scenario_test_runner.lifecycle_controller import LifecycleController
 from scenario_test_runner.scenario import Scenario
 from scenario_test_runner.scenario import substitute_ros_package
-from std_srvs.srv import SetBool
+#from std_srvs.srv import SetBool
 from argparse import ArgumentParser
 from glob import glob
 from pathlib import Path
@@ -39,23 +39,8 @@ from shutil import rmtree
 from sys import exit
 from typing import List
 
+from scenario_test_runner_msgs.srv import TriggerLogging
 from scenario_conversion import convert_scenarios_to_xosc
-
-
-#def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
-#
-#    result = []
-#
-#    for each in scenarios:
-#
-#        if each.path.suffix == ".xosc":
-#            result.append(each)
-#
-#        else:  # == '.yaml' or == '.yml'
-#            for path in convert(each.path, output_directory / each.path.stem, True):
-#                result.append(Scenario(path, each.frame_rate))
-#
-#    return result
 
 
 class ScenarioTestRunner(LifecycleController):
@@ -170,10 +155,10 @@ class ScenarioTestRunner(LifecycleController):
     def run_scenarios(self, scenarios: List[Scenario]):
 
         # convert t4v2/xosc to xosc
-        xosc_scenarios = convert_scenarios_to_xosc(scenarios, self.output_directory)
+        indices_xoscs = convert_scenarios_to_xosc(scenarios, self.output_directory)
 
         # post to preprocessor
-        for xosc_scenario in xosc_scenarios:
+        for index, xosc_scenario in indices_xoscs:
             if self.post_scenario_to_preprocessor(xosc_scenario):
                 preprocessed_scenarios = []
                 while self.derivative_remained_on_preprocessor():
@@ -195,7 +180,7 @@ class ScenarioTestRunner(LifecycleController):
                 for preprocessed_scenario in preprocessed_scenarios:
                     self.print_debug(str(preprocessed_scenario.path))
 
-                self.run_preprocessed_scenarios(preprocessed_scenarios)
+                self.run_preprocessed_scenarios(index, preprocessed_scenarios)
                 self.print_debug('finish execution')
             else:
                 exit(1)
@@ -203,7 +188,7 @@ class ScenarioTestRunner(LifecycleController):
         self.shutdown()
         self.destroy_node()
 
-    def run_preprocessed_scenarios(self, scenarios: List[Scenario]):
+    def run_preprocessed_scenarios(self, index_base: int, scenarios: List[Scenario]):
         """
         Run all given scenarios.
 
@@ -219,18 +204,24 @@ class ScenarioTestRunner(LifecycleController):
         try:
             length = len(scenarios)
 
-            for index, each in enumerate(scenarios):
+            for ind, each in enumerate(scenarios):
 
-                logger = self.create_client(SetBool, 'reset_logger')
+                if ind == 0:
+                    str_ind = str(index_base)
+                else:
+                    str_ind = f"{index_base}_{ind}"
+
+                logger = self.create_client(TriggerLogging, 'trigger_logger')
                 while not logger.wait_for_service(timeout_sec=1.0):
-                    self.get_logger().info('waiting for the reset_logger service...')
-                self.toggle_logger(logger, True)
+                    self.get_logger().info('waiting for the trigger_logger service...')
+                self.trigger_logging(logger, str_ind)
 
                 self.get_logger().info(
                     "Run "
                     + str(each.path.name)
                     + " ("
-                    + str(index + 1)
+                    #+ str_(index + 1)
+                    + str_ind
                     + " of "
                     + str(length)
                     + ")"
@@ -249,7 +240,7 @@ class ScenarioTestRunner(LifecycleController):
                 else:
                     self.spin()
 
-                self.toggle_logger(logger, False)
+                self.trigger_logging(logger, '')
 
                 self.cleanup_node()
 
@@ -296,15 +287,16 @@ class ScenarioTestRunner(LifecycleController):
                              + str(future.exception()))
             exit(1)
 
-    def toggle_logger(self, logger, enable: bool):
-        request = SetBool.Request()
-        request.data = enable
+    def trigger_logging(self, logger, str_ind):
+        request = TriggerLogging.Request()
+        #request.id = ...
+        request.message = str_ind
         future = logger.call_async(request)
         rclpy.spin_until_future_complete(self, future)
         if future.result() is not None:
             self.get_logger().info(f"{future.result().message}")
         else:
-            self.get_logger().error('reset_logger failed: {future.result().message}')
+            self.get_logger().error('trigger_logger failed: {future.result().message}')
 
     def print_debug(self, message: str):
         self.get_logger().info(message)
