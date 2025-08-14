@@ -101,8 +101,8 @@ class MacroExpander:
             rest = specs[1:]
             action = spec.create()
             while True:
-                ctx_mod = deepcopy(ctx)
-                if action(ctx_mod):
+                if action(ctx):
+                    ctx_mod = deepcopy(ctx)
                     yield from self.product_spec(rest, ctx_mod, cont)
                     ctx["index"] = ctx_mod["index"]
                 else:
