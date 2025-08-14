@@ -95,6 +95,7 @@ def launch_setup(context, *args, **kwargs):
     record_storage_id                   = LaunchConfiguration("record_storage_id",                      default="")
     rviz_config                         = LaunchConfiguration("rviz_config",                            default=default_rviz_config_file())
     scenario                            = LaunchConfiguration("scenario",                               default=Path("/dev/null"))
+    n_scenarios_skip                    = LaunchConfiguration("n_scenarios_skip",                       default=0)
     sensor_model                        = LaunchConfiguration("sensor_model",                           default="")
     sigterm_timeout                     = LaunchConfiguration("sigterm_timeout",                        default=8)
     simulate_localization               = LaunchConfiguration("simulate_localization",                  default=True)
@@ -125,6 +126,7 @@ def launch_setup(context, *args, **kwargs):
     print(f"record_storage_id                   := {record_storage_id.perform(context)}")
     print(f"rviz_config                         := {rviz_config.perform(context)}")
     print(f"scenario                            := {scenario.perform(context)}")
+    print(f"n_scenarios_skip                    := {n_scenarios_skip.perform(context)}")
     print(f"sensor_model                        := {sensor_model.perform(context)}")
     print(f"sigterm_timeout                     := {sigterm_timeout.perform(context)}")
     print(f"simulate_localization               := {simulate_localization.perform(context)}")
@@ -209,6 +211,7 @@ def launch_setup(context, *args, **kwargs):
         DeclareLaunchArgument("publish_empty_context",               default_value=publish_empty_context              ),
         DeclareLaunchArgument("rviz_config",                         default_value=rviz_config                        ),
         DeclareLaunchArgument("scenario",                            default_value=scenario                           ),
+        DeclareLaunchArgument("n_scenarios_skip",                    default_value=n_scenarios_skip                   ),
         DeclareLaunchArgument("sensor_model",                        default_value=sensor_model                       ),
         DeclareLaunchArgument("sigterm_timeout",                     default_value=sigterm_timeout                    ),
         DeclareLaunchArgument("simulate_localization",               default_value=simulate_localization              ),
@@ -232,6 +235,7 @@ def launch_setup(context, *args, **kwargs):
                 "--output-subdir-name",      output_subdir_name,
                 "--override-parameters",     override_parameters,
                 "--scenario",                scenario,
+                "--n-scenarios-skip",        n_scenarios_skip,
                 # fmt: on
             ],
         ),

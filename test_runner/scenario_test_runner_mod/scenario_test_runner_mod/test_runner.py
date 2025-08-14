@@ -152,10 +152,11 @@ class ScenarioTestRunner(LifecycleController):
                 else:
                     time.sleep(self.SLEEP_RATE)
 
-    def run_scenarios(self, scenarios: List[Scenario]):
+    def run_scenarios(self, scenarios: List[Scenario], n_to_skip = 0):
 
         # convert t4v2/xosc to xosc
-        indices_xoscs = convert_scenarios_to_xosc(scenarios, self.output_directory)
+        indices_xoscs = convert_scenarios_to_xosc(scenarios, n_to_skip, self.output_directory,
+                                                  self.global_timeout)
 
         # post to preprocessor
         for index, xosc_scenario in indices_xoscs:
@@ -321,6 +322,7 @@ def main(args=None):
     parser.add_argument("-t", "--global-timeout", default=180, type=float)
 
     parser.add_argument("-s", "--scenario", default="/dev/null", type=Path)
+    parser.add_argument("--n-scenarios-skip", default=0, type=int)
 
     parser.add_argument("--ros-args", nargs="*")  # XXX DIRTY HACK
     parser.add_argument("-r", nargs="*")  # XXX DIRTY HACK
@@ -342,7 +344,8 @@ def main(args=None):
             [Scenario(
                 substitute_ros_package(args.scenario).resolve(),
                 args.global_frame_rate,
-            )]
+            )],
+            args.n_scenarios_skip
         )
     else:
         print("No scenario is specified. Specify one.")

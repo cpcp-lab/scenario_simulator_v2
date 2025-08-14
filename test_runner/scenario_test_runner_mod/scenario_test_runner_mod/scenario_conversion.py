@@ -72,11 +72,13 @@ def test_io(map_path, projection):
 #
 
 class MacroExpander:
-    def __init__(self, rules, schema, lanelet_map, verbose = False):
+    def __init__(self, rules, schema, lanelet_map, timeout = 180, verbose = False):
 
         self.rules = rules
 
         self.schema = schema
+
+        self.timeout = timeout
 
         self.verbose = verbose
 
@@ -94,7 +96,7 @@ class MacroExpander:
 
     def product_spec(self, specs, ctx, cont):
         if not specs:
-            ctx["index"] = ctx["index"] + 1
+            ctx['INDEX'] = ctx['INDEX'] + 1
             yield cont(ctx)
         else:
             spec = specs[0]
@@ -104,7 +106,7 @@ class MacroExpander:
                 if action(ctx):
                     ctx_mod = deepcopy(ctx)
                     yield from self.product_spec(rest, ctx_mod, cont)
-                    ctx["index"] = ctx_mod["index"]
+                    ctx['INDEX'] = ctx_mod['INDEX']
                 else:
                     return
 
@@ -120,7 +122,7 @@ class MacroExpander:
             print('====')
 
         # Create a subdir named as the index number
-        output = output / str(ctx["index"])
+        output = output / str(ctx['INDEX'])
         #if output.exists():
         #    for each in output.iterdir():
         #        each.resolve().unlink()
@@ -146,16 +148,19 @@ class MacroExpander:
             print("Error: " + str(exception), file=stderr)
             exit()
 
-        return (ctx["index"], path)
+        return (ctx['INDEX'], path)
 
     def __call__(self, index: int, xosc: str, output: Path, basename: str, verbose: bool = True):
         target = deepcopy(xosc)
 
-        yield from self.product_spec(self.specs, {"index":index}, 
-            lambda ctx: self.substitute_and_save(ctx, target, basename, output))
+        yield from self.product_spec(
+                self.specs, 
+                {'INDEX':index, 'MAX_TIME':self.timeout}, 
+                lambda ctx: self.substitute_and_save(ctx, target, basename, output)
+            )
 
 
-def convert_mod(index, input: Path, output: Path, verbose: bool = True):
+def convert_mod(index, input: Path, output: Path, timeout = 180, verbose: bool = True):
 
     #xsd = resource_string(__name__, "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
     xsd = resource_string("openscenario_utility", "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
@@ -176,7 +181,8 @@ def convert_mod(index, input: Path, output: Path, verbose: bool = True):
 
     lanelet_map = test_io(str(map_osm_f), test_projection())
 
-    macroexpand = MacroExpander(yaml.pop("ScenarioModifiers", None), schema, lanelet_map, verbose)
+    macroexpand = MacroExpander(
+        yaml.pop("ScenarioModifiers", None), schema, lanelet_map, timeout, verbose)
 
     xosc, errors = schema.encode(
         from_yaml("OpenSCENARIO", yaml),
@@ -204,17 +210,20 @@ def convert_mod(index, input: Path, output: Path, verbose: bool = True):
         )
 
 
-def convert_scenarios_to_xosc(scenarios: List[Scenario], output_directory: Path):
+def convert_scenarios_to_xosc(scenarios: List[Scenario], n_to_skip, output_directory: Path, 
+                              timeout = 180):
 
     index = 0
 
     for each in scenarios:
         if each.path.suffix == ".xosc":
             index = index + 1
-            yield (index, each)
+            if index > n_to_skip:
+                yield (index, each)
 
         else:  # == '.yaml' or == '.yml'
-            for index, path in convert_mod(index, each.path, output_directory, True):
-                yield (index, Scenario(path, each.frame_rate))
+            for index, path in convert_mod(index, each.path, output_directory, timeout, True):
+                if index > n_to_skip:
+                    yield (index, Scenario(path, each.frame_rate))
 
 # eof
