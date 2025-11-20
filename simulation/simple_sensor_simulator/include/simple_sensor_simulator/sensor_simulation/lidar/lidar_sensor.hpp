@@ -15,10 +15,9 @@
 #ifndef SIMPLE_SENSOR_SIMULATOR__SENSOR_SIMULATION__LIDAR__LIDAR_SENSOR_HPP_
 #define SIMPLE_SENSOR_SIMULATOR__SENSOR_SIMULATION__LIDAR__LIDAR_SENSOR_HPP_
 
-#include <simulation_api_schema.pb.h>
+#include <simulation_interface/simulation_api_schema.pb.h>
 
-#include <geometry/quaternion/get_rotation_matrix.hpp>
-#include <memory>
+#include <agnocast_wrapper/agnocast_wrapper.hpp>
 #include <queue>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
@@ -36,7 +35,7 @@ protected:
   simulation_api_schema::LidarConfiguration configuration_;
 
   Raycaster raycaster_;
-  std::vector<std::string> detected_objects_;
+  std::set<std::string> detected_objects_;
 
   explicit LidarSensorBase(
     const double current_simulation_time,
@@ -52,13 +51,13 @@ public:
     const double current_simulation_time, const std::vector<traffic_simulator_msgs::EntityStatus> &,
     const rclcpp::Time & current_ros_time) -> void = 0;
 
-  auto getDetectedObjects() const -> const std::vector<std::string> & { return detected_objects_; }
+  auto getDetectedObjects() const -> const std::set<std::string> & { return detected_objects_; }
 };
 
 template <typename T>
 class LidarSensor : public LidarSensorBase
 {
-  const typename rclcpp::Publisher<T>::SharedPtr publisher_ptr_;
+  const agnocast_wrapper::PublisherPtr<T> publisher_ptr_;
 
   std::queue<std::pair<sensor_msgs::msg::PointCloud2, double>> queue_pointcloud_;
 
@@ -69,7 +68,7 @@ public:
   explicit LidarSensor(
     const double current_simulation_time,
     const simulation_api_schema::LidarConfiguration & configuration,
-    const typename rclcpp::Publisher<T>::SharedPtr & publisher_ptr)
+    const agnocast_wrapper::PublisherPtr<T> & publisher_ptr)
   : LidarSensorBase(current_simulation_time, configuration), publisher_ptr_(publisher_ptr)
   {
     raycaster_.setDirection(configuration);
@@ -94,9 +93,10 @@ public:
       not queue_pointcloud_.empty() and
       current_simulation_time - queue_pointcloud_.front().second >=
         configuration_.lidar_sensor_delay()) {
-      const auto pointcloud = queue_pointcloud_.front().first;
+      auto pointcloud = agnocast_wrapper::create_message(publisher_ptr_);
+      *pointcloud = queue_pointcloud_.front().first;
       queue_pointcloud_.pop();
-      publisher_ptr_->publish(pointcloud);
+      publisher_ptr_->publish(std::move(pointcloud));
     }
   }
 
