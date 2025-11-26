@@ -17,6 +17,9 @@ external/*
 !external/embree_vendor
 !external/zmqpp_vendor
 
+# local install directory
+install/*
+
 # auto-generated files
 html
 latex
