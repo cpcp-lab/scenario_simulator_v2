@@ -162,9 +162,10 @@ class MacroExpander:
 
 def convert_mod(index, input: Path, output: Path, timeout = 180, verbose: bool = True):
 
-    #xsd = resource_string(__name__, "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
-    xsd = resource_string("openscenario_utility", "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
-    schema = xmlschema.XMLSchema(xsd)
+    schema = xmlschema.XMLSchema(
+        #resource_string(__name__, "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
+        resource_string("openscenario_utility", "resources/OpenSCENARIO-1.2.xsd").decode("utf-8")
+    )
 
     yaml = load_yaml(input)
 
