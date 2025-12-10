@@ -15,7 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import time
 import math, csv
 import os
 from argparse import ArgumentParser
@@ -23,20 +22,26 @@ from pathlib import Path
 from datetime import datetime
 
 import rclpy
+from rclpy.time import Time
 from rclpy.node import Node
 #from rclpy.executors import MultiThreadedExecutor
 from rclpy.executors import ExternalShutdownException
 from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 #from std_srvs.srv import SetBool
-from std_msgs.msg import String, UInt8, Bool
+#from std_msgs.msg import String, UInt8, Bool
 from nav_msgs.msg import Odometry
 from autoware_planning_msgs.msg import Trajectory
+from autoware_control_msgs.msg import Control
+from visualization_msgs.msg import MarkerArray
+from autoware_internal_debug_msgs.msg import Float32MultiArrayStamped
 
 from scenario_test_runner_msgs.srv import TriggerLogging
 
 
 VL_FILENAME = "vehicle_position_log.csv"
 PL_FILENAME = "planning_log.csv"
+CL_FILENAME = "control_log.csv"
+ML_FILENAME = "marker_log.csv"
 
 def quaternion_to_yaw(x, y, z, w): 
     siny_cosp = 2 * (w * z + x * y)
@@ -60,6 +65,14 @@ class Logger(Node):
         self.output_directory = output_directory
         self.vlf = None
         self.plf = None
+        self.clf = None
+        self.mlf = None
+
+        self.v_msg = None
+        self.p_msg = None
+        self.c_msg = None
+        self.m_msg = None
+        self.m_msg_prev = None
 
         # Setting a trigger service.
         self.srv = self.create_service(TriggerLogging, 'trigger_logger', self.trigger_cb)
@@ -74,11 +87,28 @@ class Logger(Node):
             Trajectory, '/planning/scenario_planning/trajectory', 
             self.planning_log_cb, log_qos)
 
+        self.sub_control_log = self.create_subscription(
+            Control, '/control/command/control_cmd', 
+            self.control_log_cb, log_qos)
+
+        self.sub_marker_log = self.create_subscription(
+            #MarkerArray, 
+            Float32MultiArrayStamped,
+            #'/control/trajectory_follower/controller_node_exe/debug/markers', 
+            '/control/trajectory_follower/controller_node_exe/debug/ld_outputs', 
+            self.marker_log_cb, log_qos)
+
+        self.timer = self.create_timer(0.1, self.timer_cb)
+
     def __del__(self):
         self.get_logger().info('dying...')
         self.vlf.close()
         self.plf.close()
+        self.clf.close()
+        self.mlf.close()
         self.get_logger().info('done')
+
+    #
 
     def trigger_cb(self, request, response):
         response.success = True
@@ -102,6 +132,14 @@ class Logger(Node):
                 self.get_logger().info(f"preparing: {fn}")
                 self.plf = open(fn, 'w')
 
+                fn = os.path.join(out_dir, CL_FILENAME)
+                self.get_logger().info(f"preparing: {fn}")
+                self.clf = open(fn, 'w')
+
+                fn = os.path.join(out_dir, ML_FILENAME)
+                self.get_logger().info(f"preparing: {fn}")
+                self.mlf = open(fn, 'w')
+
                 response.message = 'file handles are prepared'
         else:
             # 
@@ -111,25 +149,44 @@ class Logger(Node):
             if self.plf and not self.plf.closed:
                 self.plf.flush() 
                 self.plf.close() 
+            if self.clf and not self.clf.closed:
+                self.clf.flush() 
+                self.clf.close() 
+            if self.mlf and not self.mlf.closed:
+                self.mlf.flush() 
+                self.mlf.close() 
 
             response.message = 'file handles are closed'
 
         return response
 
-    def vehicle_log_cb(self, msg):
-        if not self.vlf or self.vlf.closed:
-            return 
+    #
+
+    def log_v_msg(self, msg):
+        t = Time.from_msg(msg.header.stamp)
+        dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
+        ts = dt.strftime('%Y-%m-%d %H:%M:%S')
         x = msg.pose.pose.position.x
         y = msg.pose.pose.position.y
         ori = msg.pose.pose.orientation
         yaw = quaternion_to_yaw(ori.x, ori.y, ori.z, ori.w)
-        ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         csv.writer(self.vlf).writerow([ts, x, y, yaw])
 
-    def planning_log_cb(self, msg):
-        if not self.vlf or self.plf.closed:
+    def vehicle_log_cb(self, msg):
+        if not self.vlf or self.vlf.closed:
             return 
-        ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.v_msg = msg
+        #self.log_v_msg(msg)
+
+    #
+
+    plc_count = 0
+
+    def log_p_msg(self, msg):
+        self.plc_count += 1
+        t = Time.from_msg(msg.header.stamp)
+        dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
+        ts = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
         writer = csv.writer(self.plf)
         for pt in msg.points:
             x = pt.pose.position.x
@@ -137,7 +194,95 @@ class Logger(Node):
             ori = pt.pose.orientation
             yaw = quaternion_to_yaw(ori.x, ori.y, ori.z, ori.w)
             v = pt.longitudinal_velocity_mps
-            writer.writerow([ts, x, y, yaw, v])
+            writer.writerow([self.plc_count, ts, x, y, yaw, v])
+
+    def planning_log_cb(self, msg):
+        if not self.plf or self.plf.closed:
+            return 
+        self.p_msg = msg
+
+    #
+
+    def log_c_msg(self, msg):
+        lat = msg.lateral
+        t = Time.from_msg(lat.stamp)
+        dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
+        ts = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
+        sta = lat.steering_tire_angle
+        lon = msg.longitudinal
+        vel = lon.velocity
+        acc = lon.acceleration
+        csv.writer(self.clf).writerow([ts, sta, vel, acc])
+
+    def control_log_cb(self, msg):
+        if not self.clf or self.clf.closed:
+            return 
+        #self.c_msg = msg
+        self.log_c_msg(msg)
+
+    #
+
+    mlc_count = 0
+
+    def log_m_msg(self, msg, msg_prev):
+        #self.mlc_count += 1
+        #tgt = msg.markers[0]
+        #t = Time.from_msg(tgt.header.stamp)
+        #dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
+        #ts = dt.strftime('%Y-%m-%d %H:%M:%S')
+        ##x = tgt.pose.position.x
+        ##y = tgt.pose.position.y
+        ##csv.writer(self.mlf).writerow([ts, x, y])
+        #writer = csv.writer(self.mlf)
+        #for mk in msg.markers:
+        #    x = mk.pose.position.x
+        #    y = mk.pose.position.y
+        #    writer.writerow([self.mlc_count, ts, x, y])
+
+        # ld_outputs
+        t = Time.from_msg(msg.stamp)
+        dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
+        ts = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
+        posX1 = msg_prev.data[7]
+        posY1 = msg_prev.data[8]
+        posYaw1 = msg_prev.data[9]
+        tgtX1 = msg_prev.data[10]
+        tgtY1 = msg_prev.data[11]
+        posX2 = msg.data[7]
+        posY2 = msg.data[8]
+        posYaw2 = msg.data[9]
+        csv.writer(self.mlf).writerow([ts, posX1, posY1, posYaw1, tgtX1, tgtY1, posX2, posY2, posYaw2])
+
+    def marker_log_cb(self, msg):
+        if not self.mlf or self.mlf.closed:
+            return 
+        if self.m_msg == msg:
+            return
+        self.m_msg_prev = self.m_msg
+        self.m_msg = msg
+
+    #
+
+    def timer_cb(self):
+        if self.v_msg is None or self.p_msg is None or self.m_msg is None or self.m_msg_prev is None:
+            return
+
+        # Vehicle
+        self.log_v_msg(self.v_msg)
+        self.v_msg = None
+
+        # Planning
+        self.log_p_msg(self.p_msg)
+        self.p_msg = None
+
+        ## Control
+        #self.log_c_msg(self.c_msg)
+        #self.c_msg = None
+
+        # Markers
+        self.log_m_msg(self.m_msg, self.m_msg_prev)
+        self.m_msg_prev = self.m_msg
+        self.m_msg = None
 
 #
 
