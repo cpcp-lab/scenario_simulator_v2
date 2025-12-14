@@ -9,20 +9,22 @@
       
       
       
+        <link rel="prev" href="../RealtimeFactor/">
       
-        <link rel="next" href="release/ReleaseNotes/">
+      
+        <link rel="next" href="../../random_test_runner/QuickStart/">
       
       
-      <link rel="icon" href="image/icon.png">
+      <link rel="icon" href="../../../image/icon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
     
     
       
-        <title>Scenario testing framework for Autoware</title>
+        <title>Tips about writing scenarios - Scenario testing framework for Autoware</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
       
       
 
@@ -43,13 +45,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="stylesheet/tierivcolor.css">
+      <link rel="stylesheet" href="../../../stylesheet/tierivcolor.css">
     
-      <link rel="stylesheet" href="stylesheet/extra.css">
+      <link rel="stylesheet" href="../../../stylesheet/extra.css">
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scenario-simulator-v2" class="md-skip">
+        <a href="#tips-about-writing-scenarios" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -104,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Tips about writing scenarios
             
           </span>
         </div>
@@ -191,7 +193,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -218,30 +220,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -250,53 +232,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      What can we do with this framework
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why this framework is v2?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to contribute
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -364,7 +299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release/ReleaseNotes/" class="md-nav__link">
+      <a href="../../../release/ReleaseNotes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -389,17 +324,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -413,7 +350,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -427,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/QuickStart/" class="md-nav__link">
+      <a href="../../QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -448,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/BuildInstructions/" class="md-nav__link">
+      <a href="../../BuildInstructions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/RunWithDocker/" class="md-nav__link">
+      <a href="../../RunWithDocker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/ScenarioTips/" class="md-nav__link">
+      <a href="../../ScenarioTips/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+      <a href="../../scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -572,17 +509,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
         
           
           <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
@@ -596,7 +535,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
             Scenario Test Runner
@@ -610,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+      <a href="../ScenarioTestRunner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -631,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+      <a href="../ScenarioFormatConversion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+      <a href="../RealtimeFactor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -670,10 +609,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tips about writing scenarios
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -682,6 +641,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required-scenario-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Scenario Tags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-none-value-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      For None Value Expression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For None Value Expression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      OK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -737,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+      <a href="../../random_test_runner/QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -758,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Usage/" class="md-nav__link">
+      <a href="../../random_test_runner/Usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -779,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Design/" class="md-nav__link">
+      <a href="../../random_test_runner/Design/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -850,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/About/" class="md-nav__link">
+      <a href="../../../developer_guide/About/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -871,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/AutowareAPI/" class="md-nav__link">
+      <a href="../../../developer_guide/AutowareAPI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -892,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/BehaviorPlugin/" class="md-nav__link">
+      <a href="../../../developer_guide/BehaviorPlugin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -913,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/CONTRIBUTING/" class="md-nav__link">
+      <a href="../../../developer_guide/CONTRIBUTING/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ContextGammaPlanner/" class="md-nav__link">
+      <a href="../../../developer_guide/ContextGammaPlanner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -955,7 +976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Communication/" class="md-nav__link">
+      <a href="../../../developer_guide/Communication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -976,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
+      <a href="../../../developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -997,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
+      <a href="../../../developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/DistanceCalculation/" class="md-nav__link">
+      <a href="../../../developer_guide/DistanceCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1074,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1095,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1116,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1166,7 +1187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+      <a href="../../../developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1187,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/NPCBehavior/" class="md-nav__link">
+      <a href="../../../developer_guide/NPCBehavior/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1208,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
+      <a href="../../../developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1229,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Parameters/" class="md-nav__link">
+      <a href="../../../developer_guide/Parameters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1250,7 +1271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimpleSensorSimulator/" class="md-nav__link">
+      <a href="../../../developer_guide/SimpleSensorSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1271,7 +1292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimulationResultFormat/" class="md-nav__link">
+      <a href="../../../developer_guide/SimulationResultFormat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1292,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SystemArchitecture/" class="md-nav__link">
+      <a href="../../../developer_guide/SystemArchitecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1313,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
+      <a href="../../../developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1334,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TrafficSimulator/" class="md-nav__link">
+      <a href="../../../developer_guide/TrafficSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1355,7 +1376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/VehicleDynamics/" class="md-nav__link">
+      <a href="../../../developer_guide/VehicleDynamics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1376,7 +1397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ZeroMQ/" class="md-nav__link">
+      <a href="../../../developer_guide/ZeroMQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,29 +1445,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
+  <a href="#required-scenario-tags" class="md-nav__link">
     <span class="md-ellipsis">
-      What can we do with this framework
+      Required Scenario Tags
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
+  <a href="#for-none-value-expression" class="md-nav__link">
     <span class="md-ellipsis">
-      Why this framework is v2?
+      For None Value Expression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For None Value Expression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      OK
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#bad" class="md-nav__link">
     <span class="md-ellipsis">
-      How to contribute
+      Bad
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1468,24 +1504,33 @@
   
 
 
-<h1 id="scenario-simulator-v2">Scenario simulator v2<a class="headerlink" href="#scenario-simulator-v2" title="Permanent link">#</a></h1>
-<p><a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml"><img alt="Documentation" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml"><img alt="BuildAndRun" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml"><img alt="SpellCheck" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml/badge.svg" /></a></p>
-<p>Scenario simulator v2 is a scenario testing framework for Autoware.</p>
-<p><img alt="Scenario Testing Framework" src="image/what_is_scenario_testing_framework.png" title="what is scenario testing framework" /></p>
-<p>It enables Autoware developers to write a scenario at once and run in various kinds of simulator.</p>
-<h2 id="what-can-we-do-with-this-framework">What can we do with this framework<a class="headerlink" href="#what-can-we-do-with-this-framework" title="Permanent link">#</a></h2>
-<p>Currently, various kinds of simulators and scenario formats are developed all over the world.
-We need an open-source framework for integrating those testing tools with Autoware easily and quickly.
-So, we are developing this package.
-<font color="#065479E"><strong>This package is designed to easily accommodate multiple simulators and scenario description formats.</strong></font></p>
-<p>This package is licensed under the Apache License, Version 2.0.
-See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LICENSE">LICENSE</a>.</p>
-<h2 id="why-this-framework-is-v2">Why this framework is v2?<a class="headerlink" href="#why-this-framework-is-v2" title="Permanent link">#</a></h2>
-<p>This package re-designs the <a href="https://github.com/tier4/scenario_runner.iv.universe">scenario runner</a> developed by <a href="https://tier4.jp/en/">TIER IV, Inc.</a>, so we named this framework as "scenario_simulator_v2"</p>
-<h2 id="how-to-contribute">How to contribute<a class="headerlink" href="#how-to-contribute" title="Permanent link">#</a></h2>
-<p>Please refer to the <a href="developer_guide/CONTRIBUTING/">contributor guidelines</a>.</p>
+<h1 id="tips-about-writing-scenarios">Tips about writing scenarios<a class="headerlink" href="#tips-about-writing-scenarios" title="Permanent link">#</a></h1>
+<h3 id="required-scenario-tags">Required Scenario Tags<a class="headerlink" href="#required-scenario-tags" title="Permanent link">#</a></h3>
+<p>CatalogLocations inside OpenSCENARIO is defined structure below.
+CatalogLocations in OpenSCENARIO specification must exist.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nt">CatalogLocations</span><span class="p">:</span>
+</code></pre></div>
+or
+<div class="highlight"><pre><span></span><code><span class="nt">CatalogLocations</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</code></pre></div></p>
+<h3 id="for-none-value-expression">For None Value Expression<a class="headerlink" href="#for-none-value-expression" title="Permanent link">#</a></h3>
+<h4 id="ok">OK<a class="headerlink" href="#ok" title="Permanent link">#</a></h4>
+<p>You can write the scenario as below if ScenarioModifiers is empty.
+<div class="highlight"><pre><span></span><code>ScenarioModifiers:
+or
+ScenarioModifiers: {}
+</code></pre></div></p>
+<h4 id="bad">Bad<a class="headerlink" href="#bad" title="Permanent link">#</a></h4>
+<p>You cannot write the scenario as below, because there is no necessary key
+and <code>ScenarioModifier: []</code> is invalid syntax.
+<div class="highlight"><pre><span></span><code>ScenarioModifiers:
+  ScenarioModifier:
+    - name: &lt;String&gt;
+or
+
+ScenarioModifiers:
+  ScenarioModifier: []
+</code></pre></div></p>
 
 
 
@@ -1583,10 +1628,10 @@ See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LIC
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
       
         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
