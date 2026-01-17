@@ -1,0 +1,28 @@
+digraph "openscenario/openscenario_interpreter/include/openscenario_interpreter/syntax/traffic_signals.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="openscenario/openscenario\l_interpreter/include/openscenario\l_interpreter/syntax/traffic_signals.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="openscenario/openscenario\l_interpreter/include/openscenario\l_interpreter/syntax/road_network.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$road__network_8hpp.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="openscenario/openscenario\l_interpreter/include/openscenario\l_interpreter/syntax/scenario\l_definition.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scenario__definition_8hpp.html",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="openscenario/openscenario\l_interpreter/include/openscenario\l_interpreter/openscenario_interpreter.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$openscenario__interpreter_8hpp.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="openscenario/openscenario\l_interpreter/src/openscenario\l_interpreter.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$openscenario__interpreter_8cpp.html",tooltip=" "];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="openscenario/openscenario\l_interpreter/src/openscenario\l_interpreter_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$openscenario__interpreter__node_8cpp.html",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="openscenario/openscenario\l_interpreter/src/syntax\l/open_scenario.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$open__scenario_8cpp.html",tooltip=" "];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="openscenario/openscenario\l_interpreter/src/syntax\l/open_scenario_category.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$open__scenario__category_8cpp.html",tooltip=" "];
+  Node3 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="openscenario/openscenario\l_interpreter/src/syntax\l/scenario_definition.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$scenario__definition_8cpp.html",tooltip=" "];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="openscenario/openscenario\l_interpreter/src/syntax\l/road_network.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$road__network_8cpp.html",tooltip=" "];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="openscenario/openscenario\l_interpreter/src/syntax\l/traffic_signals.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$traffic__signals_8cpp.html",tooltip=" "];
+}
