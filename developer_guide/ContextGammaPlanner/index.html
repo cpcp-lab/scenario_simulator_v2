@@ -9,20 +9,22 @@
       
       
       
+        <link rel="prev" href="../CONTRIBUTING/">
       
-        <link rel="next" href="release/ReleaseNotes/">
+      
+        <link rel="next" href="../Communication/">
       
       
-      <link rel="icon" href="image/icon.png">
+      <link rel="icon" href="../../image/icon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
     
     
       
-        <title>Scenario testing framework for Autoware</title>
+        <title>Context Gamma Planner (Experimental) - Scenario testing framework for Autoware</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
       
 
@@ -43,13 +45,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="stylesheet/tierivcolor.css">
+      <link rel="stylesheet" href="../../stylesheet/tierivcolor.css">
     
-      <link rel="stylesheet" href="stylesheet/extra.css">
+      <link rel="stylesheet" href="../../stylesheet/extra.css">
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scenario-simulator-v2" class="md-skip">
+        <a href="#context-gamma-planner-experimental" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -104,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Context Gamma Planner (Experimental)
             
           </span>
         </div>
@@ -191,7 +193,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -218,30 +220,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -250,53 +232,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      What can we do with this framework
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why this framework is v2?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to contribute
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -364,7 +299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release/ReleaseNotes/" class="md-nav__link">
+      <a href="../../release/ReleaseNotes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -427,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/QuickStart/" class="md-nav__link">
+      <a href="../../user_guide/QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -448,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/BuildInstructions/" class="md-nav__link">
+      <a href="../../user_guide/BuildInstructions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/RunWithDocker/" class="md-nav__link">
+      <a href="../../user_guide/RunWithDocker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/ScenarioTips/" class="md-nav__link">
+      <a href="../../user_guide/ScenarioTips/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+      <a href="../../user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+      <a href="../../user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -631,7 +566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+      <a href="../../user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+      <a href="../../user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -673,7 +608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+      <a href="../../user_guide/scenario_test_runner/Tips/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -737,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+      <a href="../../user_guide/random_test_runner/QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -758,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Usage/" class="md-nav__link">
+      <a href="../../user_guide/random_test_runner/Usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -779,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Design/" class="md-nav__link">
+      <a href="../../user_guide/random_test_runner/Design/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -812,17 +747,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -836,7 +773,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Developer Guide
@@ -850,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/About/" class="md-nav__link">
+      <a href="../About/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -871,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/AutowareAPI/" class="md-nav__link">
+      <a href="../AutowareAPI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -892,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/BehaviorPlugin/" class="md-nav__link">
+      <a href="../BehaviorPlugin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -913,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/CONTRIBUTING/" class="md-nav__link">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -931,10 +868,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="developer_guide/ContextGammaPlanner/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Context Gamma Planner (Experimental)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -943,6 +900,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-the-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Run the Sample
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-customize-a-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Customize a Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-context-gamma-planner-with-openscenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Context Gamma Planner with OpenSCENARIO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Limitations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -955,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Communication/" class="md-nav__link">
+      <a href="../Communication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -976,7 +998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
+      <a href="../ConfiguringLocalizationTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -997,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
+      <a href="../ConfiguringPerceptionTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/DistanceCalculation/" class="md-nav__link">
+      <a href="../DistanceCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1074,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+      <a href="../lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1095,7 +1117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
+      <a href="../lane_pose_calculation/Spawn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1116,7 +1138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+      <a href="../lane_pose_calculation/UpdateFrame/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,7 +1159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+      <a href="../lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1166,7 +1188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+      <a href="../ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1187,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/NPCBehavior/" class="md-nav__link">
+      <a href="../NPCBehavior/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1208,7 +1230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
+      <a href="../OpenSCENARIOSupport/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1229,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Parameters/" class="md-nav__link">
+      <a href="../Parameters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1250,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimpleSensorSimulator/" class="md-nav__link">
+      <a href="../SimpleSensorSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1271,7 +1293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimulationResultFormat/" class="md-nav__link">
+      <a href="../SimulationResultFormat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1292,7 +1314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SystemArchitecture/" class="md-nav__link">
+      <a href="../SystemArchitecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1313,7 +1335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
+      <a href="../TIERIVScenarioFormatVersion2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1334,7 +1356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TrafficSimulator/" class="md-nav__link">
+      <a href="../TrafficSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1355,7 +1377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/VehicleDynamics/" class="md-nav__link">
+      <a href="../VehicleDynamics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1376,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ZeroMQ/" class="md-nav__link">
+      <a href="../ZeroMQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,27 +1446,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      What can we do with this framework
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
+  <a href="#how-to-run-the-sample" class="md-nav__link">
     <span class="md-ellipsis">
-      Why this framework is v2?
+      How to Run the Sample
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
+  <a href="#how-to-customize-a-scenario" class="md-nav__link">
     <span class="md-ellipsis">
-      How to contribute
+      How to Customize a Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-context-gamma-planner-with-openscenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Context Gamma Planner with OpenSCENARIO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Known Limitations
     </span>
   </a>
   
@@ -1468,24 +1508,61 @@
   
 
 
-<h1 id="scenario-simulator-v2">Scenario simulator v2<a class="headerlink" href="#scenario-simulator-v2" title="Permanent link">#</a></h1>
-<p><a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml"><img alt="Documentation" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml"><img alt="BuildAndRun" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml"><img alt="SpellCheck" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml/badge.svg" /></a></p>
-<p>Scenario simulator v2 is a scenario testing framework for Autoware.</p>
-<p><img alt="Scenario Testing Framework" src="image/what_is_scenario_testing_framework.png" title="what is scenario testing framework" /></p>
-<p>It enables Autoware developers to write a scenario at once and run in various kinds of simulator.</p>
-<h2 id="what-can-we-do-with-this-framework">What can we do with this framework<a class="headerlink" href="#what-can-we-do-with-this-framework" title="Permanent link">#</a></h2>
-<p>Currently, various kinds of simulators and scenario formats are developed all over the world.
-We need an open-source framework for integrating those testing tools with Autoware easily and quickly.
-So, we are developing this package.
-<font color="#065479E"><strong>This package is designed to easily accommodate multiple simulators and scenario description formats.</strong></font></p>
-<p>This package is licensed under the Apache License, Version 2.0.
-See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LICENSE">LICENSE</a>.</p>
-<h2 id="why-this-framework-is-v2">Why this framework is v2?<a class="headerlink" href="#why-this-framework-is-v2" title="Permanent link">#</a></h2>
-<p>This package re-designs the <a href="https://github.com/tier4/scenario_runner.iv.universe">scenario runner</a> developed by <a href="https://tier4.jp/en/">TIER IV, Inc.</a>, so we named this framework as "scenario_simulator_v2"</p>
-<h2 id="how-to-contribute">How to contribute<a class="headerlink" href="#how-to-contribute" title="Permanent link">#</a></h2>
-<p>Please refer to the <a href="developer_guide/CONTRIBUTING/">contributor guidelines</a>.</p>
+<h1 id="context-gamma-planner-experimental">Context Gamma Planner (Experimental)<a class="headerlink" href="#context-gamma-planner-experimental" title="Permanent link">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Context Gamma Planner is currently <strong>experimental</strong>. The interface and behavior may change without notice. For production use, we recommend using a mature, existing planner.</p>
+</div>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h2>
+<p>In the current scenario simulator, NPCs cannot proactively avoid dynamic objects around them. For example, a pedestrian NPC cannot continue moving by avoiding a vehicle even if it detects one ahead.
+<strong>Context Gamma Planner</strong> integrates the ORCA (Optimal Reciprocal Collision Avoidance) algorithm into NPC locomotion logic to enable dynamic obstacle avoidance.</p>
+<h2 id="how-to-run-the-sample">How to Run the Sample<a class="headerlink" href="#how-to-run-the-sample" title="Permanent link">#</a></h2>
+<p>The sample scenario <code>parked_at_crosswalk</code> covers a pedestrian crossing a crosswalk. It lets you quickly compare the behavior of the conventional planner with that of Context Gamma.</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>cpp_mock_scenarios<span class="w"> </span>mock_test.launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>scenario:<span class="o">=</span>parked_at_crosswalk<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>launch_rviz:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>timeout:<span class="o">=</span><span class="m">120</span>.0
+</code></pre></div>
+<h2 id="how-to-customize-a-scenario">How to Customize a Scenario<a class="headerlink" href="#how-to-customize-a-scenario" title="Permanent link">#</a></h2>
+<p>To enable the Context Gamma Planner in a C++ scenario, simply pass <code>traffic_simulator::PedestrianBehavior::contextGamma()</code> as the <strong>4th argument</strong> to the NPC creation function <code>api_.spawn()</code>. Support for OpenSCENARIO scenarios is described below.</p>
+<p>Example from the <code>parked_at_crosswalk</code> scenario:</p>
+<div class="highlight"><pre><span></span><code><span class="n">api_</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;bob_gamma&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">traffic_simulator</span><span class="o">::</span><span class="n">helper</span><span class="o">::</span><span class="n">constructCanonicalizedLaneletPose</span><span class="p">(</span><span class="mi">34378</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">),</span>
+<span class="w">  </span><span class="n">getPedestrianParameters</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">traffic_simulator</span><span class="o">::</span><span class="n">PedestrianBehavior</span><span class="o">::</span><span class="n">contextGamma</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>There may be cases where you don’t want a specific NPC to be affected by “consideration” (reciprocal avoidance). In that case, <strong>add</strong> <code>__CONTEXT_GAMMA_IGNORE__</code> <strong>to the NPC’s name</strong>.</p>
+<p>Example from the <code>parked_at_crosswalk</code> scenario:</p>
+<div class="highlight"><pre><span></span><code><span class="n">api_</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;__CONTEXT_GAMMA_IGNORE__bob_normal&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">traffic_simulator</span><span class="o">::</span><span class="n">helper</span><span class="o">::</span><span class="n">constructCanonicalizedLaneletPose</span><span class="p">(</span><span class="mi">34378</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">),</span>
+<span class="w">  </span><span class="n">getPedestrianParameters</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="using-context-gamma-planner-with-openscenario">Using Context Gamma Planner with OpenSCENARIO<a class="headerlink" href="#using-context-gamma-planner-with-openscenario" title="Permanent link">#</a></h2>
+<p>When authoring an OpenSCENARIO scenario, assign the <code>context_gamma_planner/PedestrianPlugin</code> controller to the pedestrian entity so it uses the Context Gamma Planner:</p>
+<div class="highlight"><pre><span></span><code><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npc</span>
+<span class="w">        </span><span class="nt">Pedestrian</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
+<span class="w">          </span><span class="nt">mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">          </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">          </span><span class="nt">pedestrianCategory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pedestrian</span>
+<span class="w">          </span><span class="nt">BoundingBox</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">Center</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> x</span><span class="p">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> y</span><span class="p">:</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="nt"> z</span><span class="p">:</span><span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">            </span><span class="nt">Dimensions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> width</span><span class="p">:</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="nt"> length</span><span class="p">:</span><span class="w"> </span><span class="nv">0.8</span><span class="p p-Indicator">,</span><span class="nt"> height</span><span class="p">:</span><span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">          </span><span class="nt">Properties</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">Property</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">        </span><span class="nt">ObjectController</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">Controller</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;context_gamma_planner/PedestrianPlugin&#39;</span>
+<span class="w">            </span><span class="nt">Properties</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">Property</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</code></pre></div>
+<h2 id="known-limitations">Known Limitations<a class="headerlink" href="#known-limitations" title="Permanent link">#</a></h2>
+<ul>
+<li>Currently supports <strong>pedestrians only</strong>.</li>
+</ul>
 
 
 
@@ -1583,10 +1660,10 @@ See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LIC
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
       
         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
