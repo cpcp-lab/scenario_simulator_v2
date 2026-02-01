@@ -1,0 +1,5493 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../NPCBehavior/">
+      
+      
+        <link rel="next" href="../Parameters/">
+      
+      
+      <link rel="icon" href="../../image/icon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>OpenSCENARIO Support - Scenario testing framework for Autoware</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheet/tierivcolor.css">
+    
+      <link rel="stylesheet" href="../../stylesheet/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#openscenario-support" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scenario testing framework for Autoware
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenSCENARIO Support
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tier4/scenario_simulator.auto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
+
+    </a>
+    Scenario testing framework for Autoware
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tier4/scenario_simulator.auto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release Note
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Release Note
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/tier4/scenario_simulator_v2/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Since version 1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release/ReleaseNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prior to version 1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/QuickStart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/BuildInstructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/RunWithDocker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run on Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/ScenarioTips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scenario Writing Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scenario Editor
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Scenario Editor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scenario Test Runner
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Scenario Test Runner
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scenario Format Conversion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use realtime factor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tips about writing scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Random Test Runner
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Random Test Runner
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/Usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/Design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AutowareAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoware API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BehaviorPlugin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behavior Plugin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to contribute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ContextGammaPlanner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Context Gamma Planner (Experimental)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Communication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Communication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ConfiguringLocalizationTopics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Localization Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ConfiguringPerceptionTopics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Perception Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DistanceCalculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance Calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lane Pose Calculation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Lane Pose Calculation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timing of lane pose calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/Spawn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when spawning entity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when updating frame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when getting longitudinal distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual Override Simulation with FollowTrajectoryAction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NPCBehavior/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NPC Behavior
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OpenSCENARIO Support
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OpenSCENARIO Support
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dialects-and-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dialects and Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dialects and Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#substitution-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Substitution Syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Substitution Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-pkg-prefix-package-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(find-pkg-prefix &lt;package-name&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var-parameter-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(var &lt;parameter-name&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dirname" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(dirname)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scoping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionevent-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction(&lt;EVENT-NAME&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionv1event-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction@v1(&lt;EVENT-NAME&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionv2error-level-event-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction@v2(&lt;ERROR-LEVEL&gt;, &lt;EVENT-NAME&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudotrafficsignaldetectorconfidencesetactionv1lanelet-id-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      PseudoTrafficSignalDetectorConfidenceSetAction@v1(&lt;LANELET-ID&gt;, &lt;CONFIDENCE&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requesttocooperatecommandactionv1module-name-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      RequestToCooperateCommandAction@v1(&lt;MODULE-NAME&gt;, &lt;COMMAND&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v2itrafficsignalstateactionlanelet-id-state-publish-rateoptional" class="md-nav__link">
+    <span class="md-ellipsis">
+      V2ITrafficSignalStateAction(&lt;LANELET-ID&gt;, &lt;STATE&gt;, &lt;PUBLISH-RATE(optional)&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#walkstraightactionentity-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      WalkStraightAction(&lt;ENTITY-REF&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exitfailure" class="md-nav__link">
+    <span class="md-ellipsis">
+      exitFailure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exitsuccess" class="md-nav__link">
+    <span class="md-ellipsis">
+      exitSuccess
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      : (do nothing)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoware-related-built-in-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoware-related Built-in Conditions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autoware-related Built-in Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentminimumriskmaneuverstatebehavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentminimumriskmaneuverstatestate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentemergencystate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentEmergencyState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentturnindicatorsstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentTurnIndicatorsState
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-built-in-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Built-in Conditions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Built-in Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relativeheadingconditionentity-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeHeadingCondition(&lt;ENTITY-REF&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativeheadingconditionentity-ref-lane-id-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeHeadingCondition(&lt;ENTITY-REF&gt;, &lt;LANE-ID&gt;, &lt;S&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-topic-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 Topic Condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Termination
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standards-supported-by-scenario_simulator_v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standards Supported by scenario_simulator_v2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standards Supported by scenario_simulator_v2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acquirepositionaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      AcquirePositionAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assigncontrolleraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      AssignControllerAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Axles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byvaluecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ByValueCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Catalog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collisioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      CollisionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditionedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConditionEdge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlleraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ControllerAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coordinatesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DistanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributionrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      DistributionRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamicsshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      DynamicsShape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitycondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntityCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entityobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntityObject
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#followtrajectoryaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      FollowTrajectoryAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globalaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      GlobalAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lanechangeaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LaneChangeAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lateralaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LateralAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longitudinalaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LongitudinalAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscobjectcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      MiscObjectCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifyrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModifyRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objectcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      ObjectController
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openscenariocategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenScenarioCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameteraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameteraddvaluerule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterAddValueRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametermodifyaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterModifyAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametermultiplybyvaluerule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterMultiplyByValueRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametersetaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterSetAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametertype" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedestrian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedestrian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedestriancategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      PedestrianCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position" class="md-nav__link">
+    <span class="md-ellipsis">
+      Position
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precipitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precipitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privateaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      PrivateAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reachpositioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReachPositionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencecontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceContext
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativeclearancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeClearanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativedistancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDistanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativedistancetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDistanceType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadnetwork" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoadNetwork
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routestrategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      RouteStrategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routingaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoutingAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenariodefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScenarioDefinition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speedaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpeedAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speedcondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpeedCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stochasticdistributiontype" class="md-nav__link">
+    <span class="md-ellipsis">
+      StochasticDistributionType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storyboardelementstatecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      StoryboardElementStateCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sun
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleportaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      TeleportAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeheadwaycondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeHeadwayCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timetocollisioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeToCollisionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transitiondynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      TransitionDynamics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeringentitiesrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      TriggeringEntitiesRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vehicle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimpleSensorSimulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple sensor simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulationResultFormat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulation Result Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SystemArchitecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TIERIVScenarioFormatVersion2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TIER IV Scenario Format version 2.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TrafficSimulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Traffic simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VehicleDynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vehicle Dynamics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZeroMQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Communication with simulator and interpreter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dialects-and-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dialects and Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dialects and Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#substitution-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Substitution Syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Substitution Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Syntax
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-pkg-prefix-package-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(find-pkg-prefix &lt;package-name&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var-parameter-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(var &lt;parameter-name&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dirname" class="md-nav__link">
+    <span class="md-ellipsis">
+      $(dirname)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scoping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scoping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Built-in Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionevent-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction(&lt;EVENT-NAME&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionv1event-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction@v1(&lt;EVENT-NAME&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faultinjectionactionv2error-level-event-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      FaultInjectionAction@v2(&lt;ERROR-LEVEL&gt;, &lt;EVENT-NAME&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudotrafficsignaldetectorconfidencesetactionv1lanelet-id-confidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      PseudoTrafficSignalDetectorConfidenceSetAction@v1(&lt;LANELET-ID&gt;, &lt;CONFIDENCE&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requesttocooperatecommandactionv1module-name-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      RequestToCooperateCommandAction@v1(&lt;MODULE-NAME&gt;, &lt;COMMAND&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v2itrafficsignalstateactionlanelet-id-state-publish-rateoptional" class="md-nav__link">
+    <span class="md-ellipsis">
+      V2ITrafficSignalStateAction(&lt;LANELET-ID&gt;, &lt;STATE&gt;, &lt;PUBLISH-RATE(optional)&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#walkstraightactionentity-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      WalkStraightAction(&lt;ENTITY-REF&gt;, ...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exitfailure" class="md-nav__link">
+    <span class="md-ellipsis">
+      exitFailure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exitsuccess" class="md-nav__link">
+    <span class="md-ellipsis">
+      exitSuccess
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-nothing" class="md-nav__link">
+    <span class="md-ellipsis">
+      : (do nothing)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autoware-related-built-in-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoware-related Built-in Conditions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autoware-related Built-in Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentminimumriskmaneuverstatebehavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentminimumriskmaneuverstatestate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.state
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentemergencystate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentEmergencyState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-refcurrentturnindicatorsstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      &lt;ENTITY-REF&gt;.currentTurnIndicatorsState
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-built-in-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Built-in Conditions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Built-in Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relativeheadingconditionentity-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeHeadingCondition(&lt;ENTITY-REF&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativeheadingconditionentity-ref-lane-id-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeHeadingCondition(&lt;ENTITY-REF&gt;, &lt;LANE-ID&gt;, &lt;S&gt;)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-topic-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 Topic Condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Termination
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standards-supported-by-scenario_simulator_v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standards Supported by scenario_simulator_v2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standards Supported by scenario_simulator_v2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acquirepositionaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      AcquirePositionAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assigncontrolleraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      AssignControllerAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Axles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#byvaluecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ByValueCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Catalog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collisioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      CollisionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditionedge" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConditionEdge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlleraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ControllerAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coordinatesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DistanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributionrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      DistributionRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamicsshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      DynamicsShape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entitycondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntityCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entityobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      EntityObject
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#followtrajectoryaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      FollowTrajectoryAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#globalaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      GlobalAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lanechangeaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LaneChangeAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lateralaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LateralAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longitudinalaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      LongitudinalAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miscobjectcategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      MiscObjectCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifyrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModifyRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objectcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      ObjectController
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openscenariocategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenScenarioCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameteraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameteraddvaluerule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterAddValueRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametermodifyaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterModifyAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametermultiplybyvaluerule" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterMultiplyByValueRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametersetaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterSetAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametertype" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParameterType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedestrian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedestrian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedestriancategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      PedestrianCategory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position" class="md-nav__link">
+    <span class="md-ellipsis">
+      Position
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precipitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precipitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Priority
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privateaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      PrivateAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reachpositioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReachPositionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencecontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceContext
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativeclearancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeClearanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativedistancecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDistanceCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relativedistancetype" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDistanceType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadnetwork" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoadNetwork
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routestrategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      RouteStrategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routingaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoutingAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenariodefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScenarioDefinition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speedaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpeedAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speedcondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpeedCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stochasticdistributiontype" class="md-nav__link">
+    <span class="md-ellipsis">
+      StochasticDistributionType
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storyboardelementstatecondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      StoryboardElementStateCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sun
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleportaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      TeleportAction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeheadwaycondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeHeadwayCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timetocollisioncondition" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeToCollisionCondition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transitiondynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      TransitionDynamics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggeringentitiesrule" class="md-nav__link">
+    <span class="md-ellipsis">
+      TriggeringEntitiesRule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vehicle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vehicle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="openscenario-support">OpenSCENARIO Support<a class="headerlink" href="#openscenario-support" title="Permanent link">#</a></h1>
+<p>The ROS 2 package <code>openscenario_interpreter</code> provides scenario-based simulation on <a href="https://www.asam.net/standards/detail/openscenario-xml/">ASAM OpenSCENARIO 1.2</a>.
+This section describes the differences between our OpenSCENARIO Interpreter and the OpenSCENARIO standard set by ASAM, and the OpenSCENARIO implementation by other companies and organizations.
+If you want to know about OpenSCENARIO, refer to the link below.</p>
+<ul>
+<li><a href="https://releases.asam.net/OpenSCENARIO/1.0.0/ASAM_OpenSCENARIO_BS-1-2_User-Guide_V1-0-0.html">ASAM OpenSCENARIO: User Guide</a></li>
+<li><a href="https://releases.asam.net/OpenSCENARIO/1.0.0/Model-Documentation/index.html">OpenSCENARIO 1.0.0 XSD documentation</a></li>
+</ul>
+<h2 id="dialects-and-extensions">Dialects and Extensions<a class="headerlink" href="#dialects-and-extensions" title="Permanent link">#</a></h2>
+<h3 id="substitution-syntax">Substitution Syntax<a class="headerlink" href="#substitution-syntax" title="Permanent link">#</a></h3>
+<p>The interpreter supports some substitution syntax of <a href="https://design.ros2.org/articles/roslaunch_xml.html#dynamic-configuration">the ROS 2 Launch system</a> (a.k.a. string-interpolation). The substitution syntax works with any attribute string in OpenSCENARIO XML.</p>
+<p>Substitution syntaxes can be nested and the substitution is performed from the innermost to the outermost in order.</p>
+<blockquote>
+<p>[!IMPORTANT]
+This substitution is performed only once during the reading of the attribute, so changes in parameters that occur during the simulation, such as those from <code>ParameterModifyAction</code>, do not affect the substitution.</p>
+</blockquote>
+<h4 id="available-syntax">Available Syntax<a class="headerlink" href="#available-syntax" title="Permanent link">#</a></h4>
+<h5 id="find-pkg-prefix-package-name"><code>$(find-pkg-prefix &lt;package-name&gt;)</code><a class="headerlink" href="#find-pkg-prefix-package-name" title="Permanent link">#</a></h5>
+<p>Substituted with the install prefix path of the given package. Forward and backwards slashes will be resolved to the local filesystem convention. Substitution will fail if the specified name is not ROS 2 package.</p>
+<h5 id="var-parameter-name"><code>$(var &lt;parameter-name&gt;)</code><a class="headerlink" href="#var-parameter-name" title="Permanent link">#</a></h5>
+<p>Substituted with an external representation of the value of the specified OpenSCENARIO parameter. The parameters you specify must be declared by <code>ParameterDeclarations</code> before <code>$ (var ...)</code> is written.</p>
+<h5 id="dirname"><code>$(dirname)</code><a class="headerlink" href="#dirname" title="Permanent link">#</a></h5>
+<p>Substituted with the path to the directory where the running scenario script is located.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>ParameterDeclarations:
+  ParameterDeclaration:
+    - name: map_name
+      parameterType: string
+      value: kashiwanoha
+RoadNetwork:
+  LogicFile:
+    filepath: $(find-pkg-share $(var map_name)_map)/map/lanelet2_map.osm
+</code></pre></div>
+<h3 id="scoping">Scoping<a class="headerlink" href="#scoping" title="Permanent link">#</a></h3>
+<p>The OpenSCENARIO XML standard <a href="https://releases.asam.net/OpenSCENARIO/1.0.0/ASAM_OpenSCENARIO_BS-1-2_User-Guide_V1-0-0.html#:~:text=If%20a%20reference,lookup%20is%20undefined.">does not define</a> what to do if the name cannot be resolved. In the interpreter, the names of the Element and Parameter are lexically scoped.</p>
+<ul>
+<li>If you refer to an identifier that does not exist, the simulation will stop with an error.</li>
+<li>If multiple identifiers with the same name are defined, the identifier reference is chosen that is closest to the lexical position where the reference occurred.</li>
+<li>Defining a <code>StoryboardElement</code> with the same name at the same level is treated as a syntax error (In normal lexical scoping, this should be handled by shadowing, but in scenario languages it is likely a copy-and-paste mistake).</li>
+</ul>
+<h3 id="command">Command<a class="headerlink" href="#command" title="Permanent link">#</a></h3>
+<p>OpenSCENARIO XML standard states that <code>CustomCommandAction</code> can be used to either issue a command to the simulation environment or start an external script.</p>
+<p>For OpenSCENARIO interpreters implemented in scripting languages such as Python, this action is often implemented as a call to an external script file written in the same language as the host language. However, <code>scenario_simulator_v2</code> is implemented in C++ and we cannot simply implement such a feature. Therefore, <code>scenario_simulator_v2</code> treats the string given in <code>CustomCommandAction.type</code> as a command and executes it on a subprocess, as <code>sh</code> does.</p>
+<blockquote>
+<p>[!NOTE]
+To make scenarios portable, the usage of <code>CustomCommandAction</code> should be avoided.</p>
+</blockquote>
+<h4 id="built-in-commands">Built-in Commands<a class="headerlink" href="#built-in-commands" title="Permanent link">#</a></h4>
+<h5 id="faultinjectionactionevent-name"><code>FaultInjectionAction(&lt;EVENT-NAME&gt;, ...)</code><a class="headerlink" href="#faultinjectionactionevent-name" title="Permanent link">#</a></h5>
+<p>Same as <code>FaultInjectionAction@v1</code>.</p>
+<h5 id="faultinjectionactionv1event-name"><code>FaultInjectionAction@v1(&lt;EVENT-NAME&gt;, ...)</code><a class="headerlink" href="#faultinjectionactionv1event-name" title="Permanent link">#</a></h5>
+<p>Forward any number of event names to Autoware as ERROR level event. Events are forwarded by publishing to the <code>tier4_simulation_msgs::msg::SimulationEvents</code> type topic <code>/simulation/events</code>. In order to perform fault injection using this <code>CustomCommandAction</code>, Autoware must have a node that receives the above message types. Note that <code>scenario_simulator_v2</code> has no knowledge of the contents of the event name. In other words, what happens to Autoware by this <code>CustomCommandAction</code> depends on Autoware implementation.</p>
+<h5 id="faultinjectionactionv2error-level-event-name"><code>FaultInjectionAction@v2(&lt;ERROR-LEVEL&gt;, &lt;EVENT-NAME&gt;)</code><a class="headerlink" href="#faultinjectionactionv2error-level-event-name" title="Permanent link">#</a></h5>
+<p>Forwards a single event to Autoware with the specified error level. Same as <code>FaultInjectionAction@v1</code> except that instead of specifying an error level, only one event can be specified at a time. Available error levels are <code>OK</code>, <code>WARN</code>, <code>ERROR</code> and <code>STALE</code>.</p>
+<h5 id="pseudotrafficsignaldetectorconfidencesetactionv1lanelet-id-confidence"><code>PseudoTrafficSignalDetectorConfidenceSetAction@v1(&lt;LANELET-ID&gt;, &lt;CONFIDENCE&gt;)</code><a class="headerlink" href="#pseudotrafficsignaldetectorconfidencesetactionv1lanelet-id-confidence" title="Permanent link">#</a></h5>
+<p>Set a confidence value for traffic light topic. This action sets the confidence value to all traffic light bulbs of specified traffic light. If you specify the traffic light by a regulatory element ID, this action sets the confidence value to all traffic lights the regulatory element refers to.</p>
+<h5 id="requesttocooperatecommandactionv1module-name-command"><code>RequestToCooperateCommandAction@v1(&lt;MODULE-NAME&gt;, &lt;COMMAND&gt;)</code><a class="headerlink" href="#requesttocooperatecommandactionv1module-name-command" title="Permanent link">#</a></h5>
+<p>Send an <code>ACTIVATE</code> / <code>DEACTIVATE</code> command to the module publishing a valid request to cooperate. If the send fails, throw an exception to fail the scenario.</p>
+<h5 id="v2itrafficsignalstateactionlanelet-id-state-publish-rateoptional"><code>V2ITrafficSignalStateAction(&lt;LANELET-ID&gt;, &lt;STATE&gt;, &lt;PUBLISH-RATE(optional)&gt;)</code><a class="headerlink" href="#v2itrafficsignalstateactionlanelet-id-state-publish-rateoptional" title="Permanent link">#</a></h5>
+<p><code>TrafficSignalStateAction</code> for V2I traffic signal. You can optionally specify the publish rate of the traffic signal topic, but otherwise the functionality is the same as <code>TrafficSignalStateAction</code>.</p>
+<h5 id="walkstraightactionentity-ref"><code>WalkStraightAction(&lt;ENTITY-REF&gt;, ...)</code><a class="headerlink" href="#walkstraightactionentity-ref" title="Permanent link">#</a></h5>
+<p>Make <strong>pedestrian</strong> entities walk straight without a target.</p>
+<h5 id="exitfailure"><code>exitFailure</code><a class="headerlink" href="#exitfailure" title="Permanent link">#</a></h5>
+<p>This command immediately terminates the simulation as a failure without transitioning the state of the <code>StoryboardElement</code>. See <a href="#termination">Termination</a> for more details.</p>
+<h5 id="exitsuccess"><code>exitSuccess</code><a class="headerlink" href="#exitsuccess" title="Permanent link">#</a></h5>
+<p>This command immediately terminates the simulation as a success without transitioning the state of the <code>StoryboardElement</code>. See <a href="#termination">Termination</a> for more details.</p>
+<h5 id="do-nothing"><code>:</code> (do nothing)<a class="headerlink" href="#do-nothing" title="Permanent link">#</a></h5>
+<p>Actually <code>:</code> is not a built-in command but executed as a shell command, it is worth mentioning here as it achieves 'doing nothing'. <code>:</code> is known as the null command in shell scripts, and can be used as a command that does nothing in the simulator as well.</p>
+<div class="highlight"><pre><span></span><code>UserDefinedAction:
+  CustomCommandAction:
+    type: &#39;:&#39;
+</code></pre></div>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">#</a></h4>
+<p>In YAML format, <code>echo</code> command can be written as follows:</p>
+<div class="highlight"><pre><span></span><code>UserDefinedAction:
+  CustomCommandAction:
+    type: &#39;echo Hello, world!&#39;
+</code></pre></div>
+<p>In XML format, the string given to attribute <code>type</code> of <code>CustomCommandAction</code> and the string given to its content are concatenated with whitespace and passed to the subprocess so following two examples have the same effect.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;UserDefinedAction&gt;</span>
+<span class="w">  </span><span class="nt">&lt;CustomCommandAction</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;echo&quot;</span><span class="nt">&gt;</span>Hello,<span class="w"> </span>world&quot;<span class="nt">&lt;/CustomCommandAction&gt;</span>
+<span class="nt">&lt;/UserDefinedAction&gt;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;UserDefinedAction&gt;</span>
+<span class="w">  </span><span class="nt">&lt;CustomCommandAction</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;echo Hello, world!&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/UserDefinedAction&gt;</span>
+</code></pre></div>
+<p>The effect of calling a command with <code>CustomCommandAction</code> is outside the control of the interpreter.
+Therefore, if you call a command that has a destructive effect on the system, there is no guarantee that the scenario execution can continue normally.</p>
+<h3 id="condition">Condition<a class="headerlink" href="#condition" title="Permanent link">#</a></h3>
+<p><code>UserDefinedValueCondition</code> enables simulators to import external values and compare them with a specific value. The boolean value of the comparison result can be used as a condition to control the scenario.</p>
+<h4 id="autoware-related-built-in-conditions">Autoware-related Built-in Conditions<a class="headerlink" href="#autoware-related-built-in-conditions" title="Permanent link">#</a></h4>
+<p><code>scenario_simulator_v2</code> uses <code>UserDefinedValueCondition</code> to control the progress of the scenario by Autoware's state.</p>
+<h5 id="entity-refcurrentstate"><code>&lt;ENTITY-REF&gt;.currentState</code><a class="headerlink" href="#entity-refcurrentstate" title="Permanent link">#</a></h5>
+<p>Returns Autoware's <a href="https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_system_msgs/msg/AutowareState.idl">state</a>. <code>&lt;ENTITY-REF&gt;</code> must be the name of Vehicle with ObjectController's property <code>isEgo</code> set to true.</p>
+<h5 id="entity-refcurrentminimumriskmaneuverstatebehavior"><code>&lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.behavior</code><a class="headerlink" href="#entity-refcurrentminimumriskmaneuverstatebehavior" title="Permanent link">#</a></h5>
+<p>Returns Autoware's <a href="https://github.com/autowarefoundation/autoware_adapi_msgs/blob/main/autoware_adapi_v1_msgs/system/msg/MrmState.msg">MRM behavior</a>. <code>&lt;ENTITY-REF&gt;</code> must be the name of Vehicle with ObjectController's property <code>isEgo</code> set to true.</p>
+<h5 id="entity-refcurrentminimumriskmaneuverstatestate"><code>&lt;ENTITY-REF&gt;.currentMinimumRiskManeuverState.state</code><a class="headerlink" href="#entity-refcurrentminimumriskmaneuverstatestate" title="Permanent link">#</a></h5>
+<p>Returns Autoware's <a href="https://github.com/autowarefoundation/autoware_adapi_msgs/blob/main/autoware_adapi_v1_msgs/system/msg/MrmState.msg">MRM state</a>. <code>&lt;ENTITY-REF&gt;</code> must be the name of Vehicle with ObjectController's property <code>isEgo</code> set to true.</p>
+<h5 id="entity-refcurrentemergencystate"><code>&lt;ENTITY-REF&gt;.currentEmergencyState</code><a class="headerlink" href="#entity-refcurrentemergencystate" title="Permanent link">#</a></h5>
+<p>Returns Autoware's <a href="https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_system_msgs/msg/EmergencyState.idl">emergency state</a>. <code>&lt;ENTITY-REF&gt;</code> must be the name of Vehicle with ObjectController's property <code>isEgo</code> set to true.</p>
+<h5 id="entity-refcurrentturnindicatorsstate"><code>&lt;ENTITY-REF&gt;.currentTurnIndicatorsState</code><a class="headerlink" href="#entity-refcurrentturnindicatorsstate" title="Permanent link">#</a></h5>
+<p>Returns Autoware's <a href="https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_vehicle_msgs/msg/TurnIndicatorsCommand.idl">turn indicators state</a>. <code>&lt;ENTITY-REF&gt;</code> must be the name of Vehicle with ObjectController's property <code>isEgo</code> set to true.</p>
+<h4 id="other-built-in-conditions">Other Built-in Conditions<a class="headerlink" href="#other-built-in-conditions" title="Permanent link">#</a></h4>
+<h5 id="relativeheadingconditionentity-ref"><code>RelativeHeadingCondition(&lt;ENTITY-REF&gt;)</code><a class="headerlink" href="#relativeheadingconditionentity-ref" title="Permanent link">#</a></h5>
+<p>Calculates the relative angle between the orientation of <code>&lt;ENTITY-REF&gt;</code> and the orientation of the lane on which <code>&lt;ENTITY-REF&gt;</code> is positioned.</p>
+<h5 id="relativeheadingconditionentity-ref-lane-id-s"><code>RelativeHeadingCondition(&lt;ENTITY-REF&gt;, &lt;LANE-ID&gt;, &lt;S&gt;)</code><a class="headerlink" href="#relativeheadingconditionentity-ref-lane-id-s" title="Permanent link">#</a></h5>
+<p>Calculates the relative angle between the orientation of <code>&lt;ENTITY-REF&gt;</code> and the direction at the position specified by <code>&lt;S&gt;</code> on <code>&lt;LANE-ID&gt;</code>.</p>
+<h4 id="ros-2-topic-condition">ROS 2 Topic Condition<a class="headerlink" href="#ros-2-topic-condition" title="Permanent link">#</a></h4>
+<p><code>scenario_simulator_v2</code> can read values from another ROS 2 node to a scenario through ROS 2 topics. <code>name</code> field should be filled with the name of the ROS 2 topic like below.</p>
+<div class="highlight"><pre><span></span><code>ByValueCondition:
+  UserDefinedValueCondition:
+    name: /count_up
+    rule: equalTo
+    value: &#39;500&#39;
+</code></pre></div>
+<p>The type of topic must be <code>tier4_simulation_msgs::msg::UserDefinedValue</code> type.
+<code>scenario_simulator_v2</code> can handle the following through this function.</p>
+<ul>
+<li>Boolean</li>
+<li>DateTime</li>
+<li>Double</li>
+<li>Integer</li>
+<li>String</li>
+<li>UnsignedInt</li>
+<li>UnsignedShort</li>
+</ul>
+<p>See <a href="https://github.com/tier4/tier4_autoware_msgs/tree/tier4/universe/tier4_simulation_msgs">Message Definitions</a> for more information.</p>
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>ByValueCondition:
+  UserDefinedValueCondition:
+    name: ego.currentState
+    rule: equalTo
+    value: ARRIVED_GOAL
+</code></pre></div>
+<h3 id="termination">Termination<a class="headerlink" href="#termination" title="Permanent link">#</a></h3>
+<p><code>scenario_simulator_v2</code> is being developed to be integrated into the CI/CD pipeline of autonomous driving systems, and it concludes simulations with a status of either <code>success</code>, <code>failure</code>, or <code>error</code>. <code>failure</code> and <code>error</code> are each caused by different factors. Specifically, <code>failure</code> is used when issues arise from the autonomous driving system itself, such as a vehicle accident occurring during the simulation. On the other hand, <code>error</code> is specifically attributed to problems on the simulator's side, such as syntax errors in the scenario file or internal errors within the simulator itself.</p>
+<p>Within the scenario, you can end the scenario simulation with a status of either <code>success</code> or <code>failure</code> by using <code>exitSuccess</code> and <code>exitFailure</code> from <code>CustomCommandAction</code>.</p>
+<blockquote>
+<p>[!IMPORTANT]
+<code>exitSuccess</code> and <code>exitFailure</code> terminate the simulation immediately without any state transitions in the lifecycle of a <code>StoryboardElement</code>. This means there is no way to detect simulations terminated by <code>exitSuccess</code> or <code>exitFailure</code> from within the scenario using conditions like <code>StoryboardElementStateCondition</code>.</p>
+</blockquote>
+<p>Currently, the only way to know the result of the simulation is by viewing the status string printed to standard output. However, this method may change in the future.</p>
+<h2 id="standards-supported-by-scenario_simulator_v2">Standards Supported by <code>scenario_simulator_v2</code><a class="headerlink" href="#standards-supported-by-scenario_simulator_v2" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">Supported Version</th>
+<th align="center">Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">AbsoluteSpeed</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AbsoluteTargetLane</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AbsoluteTargetLaneOffset</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AbsoluteTargetSpeed</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AccelerationCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AcquirePositionAction</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#AcquirePositionAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">Act</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Action</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ActivateControllerAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Actors</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AddEntityAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AngleCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AngleType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AnimationAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AnimationFile</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AnimationState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AnimationType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AppearanceAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AssignControllerAction</td>
+<td align="center">1.2 (partial)</td>
+<td align="center"><a href="#AssignControllerAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">AssignRouteAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AutomaticGear</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">AutomaticGearType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Axle</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Axles</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#Axles">detail</a></td>
+</tr>
+<tr>
+<td align="left">BoundingBox</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Brake</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">BrakeInput</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ByEntityCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ByObjectType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ByType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ByValueCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#ByValueCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">Catalog</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#Catalog">detail</a></td>
+</tr>
+<tr>
+<td align="left">CatalogDefinition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CatalogLocations</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CatalogReference</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Center</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CentralSwarmObject</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Clothoid</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ClothoidSpline</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ClothoidSplineSegment</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CloudState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CollisionCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#CollisionCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">Color</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ColorCmyk</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ColorRgb</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ColorType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ComponentAnimation</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Condition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ConditionEdge</td>
+<td align="center">1.3 (modified)</td>
+<td align="center"><a href="#ConditionEdge">detail</a></td>
+</tr>
+<tr>
+<td align="left">ConditionGroup</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ConnectTrailerAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ControlPoint</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Controller</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#Controller">detail</a></td>
+</tr>
+<tr>
+<td align="left">ControllerAction</td>
+<td align="center">1.0</td>
+<td align="center"><a href="#ControllerAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">ControllerCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ControllerDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ControllerDistributionEntry</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ControllerType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CoordinateSystem</td>
+<td align="center">1.2 (partial)</td>
+<td align="center"><a href="#CoordinateSystem">detail</a></td>
+</tr>
+<tr>
+<td align="left">CustomCommandAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">CustomContent</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeleteEntityAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Deterministic</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeterministicMultiParameterDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeterministicMultiParameterDistributionType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeterministicParameterDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeterministicSingleParameterDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DeterministicSingleParameterDistributionType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Dimensions</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DirectionOfTravelDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DirectionalDimension</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Directory</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DisconnectTrailerAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DistanceCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#DistanceCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">DistributionDefinition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DistributionRange</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#DistributionRange">detail</a></td>
+</tr>
+<tr>
+<td align="left">DistributionSet</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DistributionSetElement</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DomeImage</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DynamicConstraints</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DynamicsDimension</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">DynamicsShape</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#DynamicsShape">detail</a></td>
+</tr>
+<tr>
+<td align="left">EndOfRoadCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Entities</td>
+<td align="center">1.3.1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EntityAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EntityCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#EntityCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">EntityDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EntityDistributionEntry</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EntityObject</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#EntityObject">detail</a></td>
+</tr>
+<tr>
+<td align="left">EntityRef</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EntitySelection</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Environment</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EnvironmentAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">EnvironmentCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Event</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ExternalObjectReference</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">File</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">FileHeader</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">FinalSpeed</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Fog</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">FollowTrajectoryAction</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#FollowTrajectoryAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">FollowingMode</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">FractionalCloudCover</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Gear</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">GeoPosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">GlobalAction</td>
+<td align="center">1.1 (partial)</td>
+<td align="center"><a href="#GlobalAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">Histogram</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">HistogramBin</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">InRoutePosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">InfrastructureAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Init</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">InitActions</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Knot</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Lane</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LaneChangeAction</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#LaneChangeAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">LaneChangeTarget</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LaneOffsetAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LaneOffsetActionDynamics</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LaneOffsetTarget</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LanePosition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LateralAction</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#LateralAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">LateralDisplacement</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LateralDistanceAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">License</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LightMode</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LightState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LightStateAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LightType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LogNormalDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LongitudinalAction</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#LongitudinalAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">LongitudinalDisplacement</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">LongitudinalDistanceAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Maneuver</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ManeuverCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ManeuverGroup</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ManualGear</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">MiscObject</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">MiscObjectCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">MiscObjectCategory</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#MiscObjectCategory">detail</a></td>
+</tr>
+<tr>
+<td align="left">ModifyRule</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ModifyRule">detail</a></td>
+</tr>
+<tr>
+<td align="left">MonitorDeclaration</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">MonitorDeclarations</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">None</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">NormalDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Nurbs</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ObjectController</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#ObjectController">detail</a></td>
+</tr>
+<tr>
+<td align="left">ObjectType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OffroadCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OpenScenario</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OpenScenarioCategory</td>
+<td align="center">1.3 (modified)</td>
+<td align="center"><a href="#OpenScenarioCategory">detail</a></td>
+</tr>
+<tr>
+<td align="left">Orientation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideBrakeAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideClutchAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideControllerValueAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideGearAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideParkingBrakeAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideSteeringWheelAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">OverrideThrottleAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterAction</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ParameterAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterAddValueRule</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ParameterAddValueRule">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterAssignment</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterDeclaration</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterModifyAction</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ParameterModifyAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterMultiplyByValueRule</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ParameterMultiplyByValueRule">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterSetAction</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ParameterSetAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterType</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#ParameterType">detail</a></td>
+</tr>
+<tr>
+<td align="left">ParameterValueDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterValueDistributionDefinition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ParameterValueSet</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Pedestrian</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#Pedestrian">detail</a></td>
+</tr>
+<tr>
+<td align="left">PedestrianAnimation</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PedestrianCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PedestrianCategory</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#PedestrianCategory">detail</a></td>
+</tr>
+<tr>
+<td align="left">PedestrianGesture</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PedestrianGestureType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PedestrianMotionType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Performance</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Phase</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#Phase">detail</a></td>
+</tr>
+<tr>
+<td align="left">PoissonDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Polygon</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Polyline</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Position</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#Position">detail</a></td>
+</tr>
+<tr>
+<td align="left">PositionInLaneCoordinates</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PositionInRoadCoordinates</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PositionOfCurrentEntity</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Precipitation</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#Precipitation">detail</a></td>
+</tr>
+<tr>
+<td align="left">PrecipitationType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Priority</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#Priority">detail</a></td>
+</tr>
+<tr>
+<td align="left">Private</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">PrivateAction</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#PrivateAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">ProbabilityDistributionSet</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ProbabilityDistributionSetElement</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Properties</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#Properties">detail</a></td>
+</tr>
+<tr>
+<td align="left">Property</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RandomRouteAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Range</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ReachPositionCondition</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ReachPositionCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">ReferenceContext</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#ReferenceContext">detail</a></td>
+</tr>
+<tr>
+<td align="left">RelativeAngleCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeClearanceCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#RelativeClearanceCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">RelativeDistanceCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#RelativeDistanceCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">RelativeDistanceType</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#RelativeDistanceType">detail</a></td>
+</tr>
+<tr>
+<td align="left">RelativeLanePosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeLaneRange</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeObjectPosition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeRoadPosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeSpeedCondition</td>
+<td align="center">1.3.1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeSpeedToMaster</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeTargetLane</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeTargetLaneOffset</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeTargetSpeed</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RelativeWorldPosition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RoadCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RoadCursor</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RoadNetwork</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#RoadNetwork">detail</a></td>
+</tr>
+<tr>
+<td align="left">RoadPosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RoadRange</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Role</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Route</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RouteCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RoutePosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RouteRef</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">RouteStrategy</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#RouteStrategy">detail</a></td>
+</tr>
+<tr>
+<td align="left">RoutingAction</td>
+<td align="center">1.2</td>
+<td align="center"><a href="#RoutingAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">RoutingAlgorithm</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Rule</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ScenarioDefinition</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#ScenarioDefinition">detail</a></td>
+</tr>
+<tr>
+<td align="left">ScenarioObject</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ScenarioObjectTemplate</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SelectedEntities</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SensorReference</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SensorReferenceSet</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SetMonitorAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Shape</td>
+<td align="center">1.2</td>
+<td align="center"><a href="#Shape">detail</a></td>
+</tr>
+<tr>
+<td align="left">SimulationTimeCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SpeedAction</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#SpeedAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">SpeedActionTarget</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SpeedCondition</td>
+<td align="center">1.3 (partial)</td>
+<td align="center"><a href="#SpeedCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">SpeedProfileAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SpeedProfileEntry</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SpeedTargetValueType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">StandStillCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">SteadyState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Stochastic</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">StochasticDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">StochasticDistributionType</td>
+<td align="center">1.2</td>
+<td align="center"><a href="#StochasticDistributionType">detail</a></td>
+</tr>
+<tr>
+<td align="left">Story</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Storyboard</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">StoryboardElementState</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">StoryboardElementStateCondition</td>
+<td align="center">1.3 (modified)</td>
+<td align="center"><a href="#StoryboardElementStateCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">StoryboardElementType</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Sun</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#Sun">detail</a></td>
+</tr>
+<tr>
+<td align="left">SynchronizeAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TargetDistanceSteadyState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TargetTimeSteadyState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TeleportAction</td>
+<td align="center">1.3</td>
+<td align="center"><a href="#TeleportAction">detail</a></td>
+</tr>
+<tr>
+<td align="left">TimeHeadwayCondition</td>
+<td align="center">1.0</td>
+<td align="center"><a href="#TimeHeadwayCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">TimeOfDay</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TimeOfDayCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TimeReference</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TimeToCollisionCondition</td>
+<td align="center">1.3.1 (partial)</td>
+<td align="center"><a href="#TimeToCollisionCondition">detail</a></td>
+</tr>
+<tr>
+<td align="left">TimeToCollisionConditionTarget</td>
+<td align="center">1.3.1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficArea</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficAreaAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficDefinition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficDistributionEntry</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalController</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalControllerAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalControllerCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalGroupState</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalState</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSignalStateAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSinkAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSourceAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficStopAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrafficSwarmAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Trailer</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrailerAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrailerCoupler</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrailerHitch</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Trajectory</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrajectoryCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrajectoryFollowingMode</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrajectoryPosition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TrajectoryRef</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TransitionDynamics</td>
+<td align="center">1.1</td>
+<td align="center"><a href="#TransitionDynamics">detail</a></td>
+</tr>
+<tr>
+<td align="left">TraveledDistanceCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Trigger</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TriggeringEntities</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">TriggeringEntitiesRule</td>
+<td align="center">1.3 (modified)</td>
+<td align="center"><a href="#TriggeringEntitiesRule">detail</a></td>
+</tr>
+<tr>
+<td align="left">UniformDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UsedArea</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedAction</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedAnimation</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedComponent</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedLight</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">UserDefinedValueCondition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ValueConstraint</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ValueConstraintGroup</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">ValueSetDistribution</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableAddValueRule</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableCondition</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableDeclaration</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableDeclarations</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableModifyAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableModifyRule</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableMultiplyByValueRule</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VariableSetAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Vehicle</td>
+<td align="center">1.1 (partial)</td>
+<td align="center"><a href="#Vehicle">detail</a></td>
+</tr>
+<tr>
+<td align="left">VehicleCatalogLocation</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleCategory</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleCategoryDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleCategoryDistributionEntry</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleComponent</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleComponentType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleLight</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleLightType</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleRoleDistribution</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VehicleRoleDistributionEntry</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Vertex</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">VisibilityAction</td>
+<td align="center">unimplemented</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Waypoint</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Weather</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Wetness</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Wind</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">WorldPosition</td>
+<td align="center">1.3</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="details">Details<a class="headerlink" href="#details" title="Permanent link">#</a></h3>
+<h4 id="acquirepositionaction">AcquirePositionAction<a class="headerlink" href="#acquirepositionaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>Position</code> of types <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="assigncontrolleraction">AssignControllerAction<a class="headerlink" href="#assigncontrolleraction" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>activateAnimation</code>, <code>activateLateral</code>, <code>activateLighting</code>, and <code>activateLongitudinal</code> are ignored.</li>
+<li>The simulator behaves as if these properties are <code>false</code>.</li>
+<li>Property <code>ObjectController</code> created in version 1.3 is <strong>not</strong> supported.</li>
+<li>Properties <code>Controller</code> and <code>CatalogReference</code> deprecated in version 1.3 are supported.</li>
+</ul>
+<h4 id="axles">Axles<a class="headerlink" href="#axles" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>RearAxle</code> is made mandatory in version 1.3, but still can be omitted like specified in version 1.2.</li>
+</ul>
+<h4 id="byvaluecondition">ByValueCondition<a class="headerlink" href="#byvaluecondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>TimeOfDayCondition</code> and <code>VariableCondition</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="catalog">Catalog<a class="headerlink" href="#catalog" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>Trajectory</code> is ignored.</li>
+</ul>
+<h4 id="collisioncondition">CollisionCondition<a class="headerlink" href="#collisioncondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>ByType</code> is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="conditionedge">ConditionEdge<a class="headerlink" href="#conditionedge" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>sticky</code> is added as TIER IV extension.</li>
+</ul>
+<h4 id="controller">Controller<a class="headerlink" href="#controller" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>controllerType</code> created in version 1.2 is ignored.</li>
+</ul>
+<h4 id="controlleraction">ControllerAction<a class="headerlink" href="#controlleraction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>OverrideControllerValueAction</code> is ignored.</li>
+<li>Property <code>ActivateControllerAction</code> created in version 1.1 is ignored.</li>
+</ul>
+<h4 id="coordinatesystem">CoordinateSystem<a class="headerlink" href="#coordinatesystem" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literals <code>road</code> and <code>trajectory</code> are <strong>not</strong> supported.</li>
+<li>Enumeration literal <code>world</code> created in version 1.3 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="distancecondition">DistanceCondition<a class="headerlink" href="#distancecondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>alongRoute</code> deprecated in version 1.1 is <strong>not</strong> supported.</li>
+<li>Property <code>Position</code> of types <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+<li>Not all combinations of properties for distance calculation are supported. Supported combinations are listed below:
+  | coordinateSystem | relativeDistanceType | routingAlgorithm | freespace |
+  |:----------------:|:--------------------:|:----------------:|:---------:|
+  | entity           | euclidianDistance    | undefined        | false     |
+  | entity           | euclidianDistance    | undefined        | true      |
+  | entity           | lateral              | undefined        | false     |
+  | entity           | lateral              | undefined        | true      |
+  | entity           | longitudinal         | undefined        | false     |
+  | entity           | longitudinal         | undefined        | true      |
+  | lane             | lateral              | undefined        | false     |
+  | lane             | lateral              | undefined        | true      |
+  | lane             | longitudinal         | undefined        | false     |
+  | lane             | longitudinal         | undefined        | true      |
+  | lane             | lateral              | shortest         | false     |
+  | lane             | lateral              | shortest         | true      |
+  | lane             | longitudinal         | shortest         | false     |
+  | lane             | longitudinal         | shortest         | true      |</li>
+</ul>
+<h4 id="distributionrange">DistributionRange<a class="headerlink" href="#distributionrange" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>stepWidth</code> is ignored.</li>
+</ul>
+<h4 id="dynamicsshape">DynamicsShape<a class="headerlink" href="#dynamicsshape" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>sinusoidal</code> is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="entitycondition">EntityCondition<a class="headerlink" href="#entitycondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>EndOfRoadCondition</code>, <code>OffroadCondition</code>, <code>TimeToCollisionCondition</code>, <code>RelativeDistanceCondition</code>, <code>TraveledDistanceCondition</code>, <code>AngleCondition</code>, and <code>RelativeAngleCondition</code> are <strong>not</strong> supported.</li>
+<li>Property <code>ReachPositionCondition</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="entityobject">EntityObject<a class="headerlink" href="#entityobject" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>ExternalObjectReference</code> is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="followtrajectoryaction">FollowTrajectoryAction<a class="headerlink" href="#followtrajectoryaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>Trajectory</code> and <code>CatalogReference</code> deprecated in version 1.1 are ignored.</li>
+<li>Property <code>TrajectoryRef</code> of type <code>Clothoid</code> and <code>Nurbs</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="globalaction">GlobalAction<a class="headerlink" href="#globalaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>TrafficAction</code> and <code>VariableAction</code> are not supported.</li>
+<li>Property <code>ParameterAction</code> deprecated in version 1.2 is still supported.</li>
+<li>Property <code>SetMonitorAction</code> created in version 1.3 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="lanechangeaction">LaneChangeAction<a class="headerlink" href="#lanechangeaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Specifying <code>step</code> for <code>LaneChangeActionDynamics.dynamicsDimension</code> is <strong>not</strong> supported.</li>
+<li>Simulator may lead to an undefined behavior if <code>step</code> is specified.</li>
+</ul>
+<h4 id="lateralaction">LateralAction<a class="headerlink" href="#lateralaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>LaneOffsetAction</code> and <code>LateralDistanceAction</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="longitudinalaction">LongitudinalAction<a class="headerlink" href="#longitudinalaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>LongitudinalDistanceAction</code> is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="miscobjectcategory">MiscObjectCategory<a class="headerlink" href="#miscobjectcategory" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literals <code>barrier</code>, <code>building</code>, <code>crosswalk</code>, <code>gantry</code>, <code>none</code>, <code>parkingSpace</code>, <code>patch</code>, <code>pole</code>, <code>roadMark</code>, <code>soundBarrier</code>, <code>streetLamp</code>, <code>trafficIsland</code>, <code>tree</code>, and <code>vegetation</code> are <strong>not</strong> supported.</li>
+<li>Enumeration literal <code>wind</code> deprecated in version 1.1 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="modifyrule">ModifyRule<a class="headerlink" href="#modifyrule" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ModifyRule</code> deprecated in version 1.3 is still supported.</li>
+</ul>
+<h4 id="objectcontroller">ObjectController<a class="headerlink" href="#objectcontroller" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>name</code> is ignored.</li>
+</ul>
+<h4 id="openscenariocategory">OpenScenarioCategory<a class="headerlink" href="#openscenariocategory" title="Permanent link">#</a></h4>
+<ul>
+<li>The simulator reads <code>Storyboard</code> in XML as property <code>ScenarioDefinition</code></li>
+<li>The simulator reads <code>Catalog</code> in XML as property <code>CatalogDefinition</code></li>
+<li>The simulator reads <code>ParameterValueDistribution</code> in XML as property <code>ParameterValueDistributionDefinition</code></li>
+</ul>
+<h4 id="parameteraction">ParameterAction<a class="headerlink" href="#parameteraction" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ParameterAction</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="parameteraddvaluerule">ParameterAddValueRule<a class="headerlink" href="#parameteraddvaluerule" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ParameterAddValueRule</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="parametermodifyaction">ParameterModifyAction<a class="headerlink" href="#parametermodifyaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ParameterModifyAction</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="parametermultiplybyvaluerule">ParameterMultiplyByValueRule<a class="headerlink" href="#parametermultiplybyvaluerule" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ParameterMultiplyByValueRule</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="parametersetaction">ParameterSetAction<a class="headerlink" href="#parametersetaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ParameterSetAction</code> deprecated in version 1.2 is still supported.</li>
+<li>Class <code>ParameterSetAction</code> cannot handle parameters of type <code>DataTime</code>.</li>
+</ul>
+<h4 id="parametertype">ParameterType<a class="headerlink" href="#parametertype" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>integer</code> deprecated in version 1.2 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="pedestrian">Pedestrian<a class="headerlink" href="#pedestrian" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>role</code> is ignored.</li>
+<li>The simulator does not take into account <code>role</code>.</li>
+<li>Property <code>model</code> deprecated version 1.1 is ignored but mandatory.</li>
+<li>Maybe this is simulator bug and need to be fixed.</li>
+</ul>
+<h4 id="pedestriancategory">PedestrianCategory<a class="headerlink" href="#pedestriancategory" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literals <code>wheelchair</code> and <code>animal</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="phase">Phase<a class="headerlink" href="#phase" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>TrafficSignalGroupState</code> created in version 1.2 is ignored.</li>
+</ul>
+<h4 id="position">Position<a class="headerlink" href="#position" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="precipitation">Precipitation<a class="headerlink" href="#precipitation" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>intensity</code> deprecated in version 1.1 is still supported.</li>
+</ul>
+<h4 id="priority">Priority<a class="headerlink" href="#priority" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>override</code> created in version 1.2 is <strong>not</strong> supported.</li>
+<li>Enumeration literal <code>overwrite</code> deprecated in version 1.2 is supported.</li>
+</ul>
+<h4 id="privateaction">PrivateAction<a class="headerlink" href="#privateaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>VisibilityAction</code>, <code>SynchronizeAction</code> and <code>ActivateControllerAction</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>CustomContent</code> is ignored.</li>
+<li>The simulator does not take into account <code>CustomContent</code>.</li>
+</ul>
+<h4 id="reachpositioncondition">ReachPositionCondition<a class="headerlink" href="#reachpositioncondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Class <code>ReachPositionCondition</code> deprecated in version 1.2 is still supported.</li>
+<li>Property <code>Position</code> of types <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="referencecontext">ReferenceContext<a class="headerlink" href="#referencecontext" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>absolute</code> is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="relativeclearancecondition">RelativeClearanceCondition<a class="headerlink" href="#relativeclearancecondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>oppositeLanes</code> is ignored.</li>
+<li>The simulator behaves as if <code>oppositeLanes</code> is <code>false</code>.</li>
+</ul>
+<h4 id="relativedistancecondition">RelativeDistanceCondition<a class="headerlink" href="#relativedistancecondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>Position</code> of types <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+<li>Not all combinations of properties for distance calculation are supported. Supported combinations are listed below:
+  | coordinateSystem | relativeDistanceType | routingAlgorithm | freespace |
+  |:----------------:|:--------------------:|:----------------:|:---------:|
+  | entity           | euclidianDistance    | undefined        | false     |
+  | entity           | euclidianDistance    | undefined        | true      |
+  | entity           | lateral              | undefined        | false     |
+  | entity           | lateral              | undefined        | true      |
+  | entity           | longitudinal         | undefined        | false     |
+  | entity           | longitudinal         | undefined        | true      |
+  | lane             | lateral              | undefined        | false     |
+  | lane             | lateral              | undefined        | true      |
+  | lane             | longitudinal         | undefined        | false     |
+  | lane             | longitudinal         | undefined        | true      |
+  | lane             | lateral              | shortest         | false     |
+  | lane             | lateral              | shortest         | true      |
+  | lane             | longitudinal         | shortest         | false     |
+  | lane             | longitudinal         | shortest         | true      |</li>
+</ul>
+<h4 id="relativedistancetype">RelativeDistanceType<a class="headerlink" href="#relativedistancetype" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>cartesianDistance</code> deprecated in version 1.1 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="roadnetwork">RoadNetwork<a class="headerlink" href="#roadnetwork" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>UsedArea</code> is ignored.</li>
+</ul>
+<h4 id="routestrategy">RouteStrategy<a class="headerlink" href="#routestrategy" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literals <code>fastest</code>, <code>leastIntersections</code> and <code>random</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="routingaction">RoutingAction<a class="headerlink" href="#routingaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>RandomRouteAction</code> created in version 1.3 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="scenariodefinition">ScenarioDefinition<a class="headerlink" href="#scenariodefinition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>VariableDeclarations</code> created in version 1.2 is ignored.</li>
+<li>Property <code>MonitorDeclarations</code> created in version 1.3 is ignored.</li>
+</ul>
+<h4 id="shape">Shape<a class="headerlink" href="#shape" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>Clothoid</code> and <code>Nurbs</code> are <strong>not</strong> supported.</li>
+<li>Property <code>ClothoidSpline</code> created in version 1.3 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="speedaction">SpeedAction<a class="headerlink" href="#speedaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Specifying <code>time</code> or <code>distance</code> for <code>SpeedActionDynamics.dynamicsDimension</code> is <strong>not</strong> supported.</li>
+<li>Simulator may lead to an undefined behavior if <code>time</code> or <code>distance</code> is specified.</li>
+<li>Specifying <code>cubic</code> for <code>SpeedActionDynamics.dynamicsShape</code> is <strong>not</strong> supported.</li>
+<li>Simulator may lead to an undefined behavior if <code>cubic</code> is specified.</li>
+</ul>
+<h4 id="speedcondition">SpeedCondition<a class="headerlink" href="#speedcondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>direction</code> is ignored.</li>
+<li>The simulator behaves as if <code>direction</code> is not given.</li>
+</ul>
+<h4 id="stochasticdistributiontype">StochasticDistributionType<a class="headerlink" href="#stochasticdistributiontype" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>LogNormalDistribution</code> created in version 1.3 is <strong>not</strong> supported.</li>
+</ul>
+<h4 id="storyboardelementstatecondition">StoryboardElementStateCondition<a class="headerlink" href="#storyboardelementstatecondition" title="Permanent link">#</a></h4>
+<ul>
+<li><a href="https://releases.asam.net/OpenSCENARIO/1.0.0/ASAM_OpenSCENARIO_BS-1-2_User-Guide_V1-0-0.html#:~:text=A%20name%20prefix%20,new%20name%20reference.">name prefix</a> in OpenSCENARIO User Guide 3.1.2. is <strong>not</strong> supported.</li>
+<li>The interpreter uses lexical scope instead. See <a href="#Scoping">Scoping</a> for more details.</li>
+</ul>
+<h4 id="sun">Sun<a class="headerlink" href="#sun" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>intensity</code> deprecated in version 1.2 is still supported.</li>
+</ul>
+<h4 id="teleportaction">TeleportAction<a class="headerlink" href="#teleportaction" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>Position</code> of types <code>RoadPosition</code>, <code>RelativeRoadPosition</code>, <code>RelativeLanePosition</code>, <code>RoutePosition</code>, <code>GeoPosition</code>, and <code>TrajectoryPosition</code> are <strong>not</strong> supported.</li>
+</ul>
+<h4 id="timeheadwaycondition">TimeHeadwayCondition<a class="headerlink" href="#timeheadwaycondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Properties <code>coordinateSystem</code> and <code>relativeDistanceType</code> created in version 1.1 is ignored.</li>
+<li>Property <code>alongRoute</code> deprecated in version 1.1 is ignored.</li>
+<li>Property <code>freespace</code> is ignored.</li>
+<li>The simulator behaves as if <code>freespace</code> is <code>false</code>.</li>
+</ul>
+<h4 id="timetocollisioncondition">TimeToCollisionCondition<a class="headerlink" href="#timetocollisioncondition" title="Permanent link">#</a></h4>
+<ul>
+<li>Since <code>TimeToCollisionCondition</code> is implemented using <code>DistanceCondition</code>,
+  <code>RelativeDistanceCondition</code>, <code>SpeedCondition</code>, and <code>RelativeSpeedCondition</code>,
+  if a combination of properties that is not supported by those Conditions is
+  given to <code>TimeToCollisionCondition</code>, an error will be thrown.</li>
+</ul>
+<h4 id="transitiondynamics">TransitionDynamics<a class="headerlink" href="#transitiondynamics" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>followingMode</code> created in version 1.2 is ignored.</li>
+</ul>
+<h4 id="triggeringentitiesrule">TriggeringEntitiesRule<a class="headerlink" href="#triggeringentitiesrule" title="Permanent link">#</a></h4>
+<ul>
+<li>Enumeration literal <code>none</code> is added as TIER IV extension.</li>
+</ul>
+<h4 id="vehicle">Vehicle<a class="headerlink" href="#vehicle" title="Permanent link">#</a></h4>
+<ul>
+<li>Property <code>role</code> created in version 1.1 is ignored.</li>
+<li>The simulator does not take into account <code>role</code>.</li>
+<li>Property <code>mass</code> is ignored.</li>
+<li>The simulator behaves as if <code>mass</code> is not given.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 10, 2025 08:35:04 UTC">December 10, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 TIER IV, Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tier4/scenario_simulator_v2/issues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.4c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4H312c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5H480c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6 2.2 1.3 4.2 2.9 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tier4/scenario_simulator_v2/pulls" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M305.8 2.1C314.4 5.9 320 14.5 320 24v40h16c70.7 0 128 57.3 128 128v166.7c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V192c0-35.3-28.7-64-64-64h-16v40c0 9.5-5.6 18.1-14.2 21.9s-18.8 2.3-25.8-4.1l-80-72c-5.1-4.6-7.9-11-7.9-17.8s2.9-13.3 7.9-17.8l80-72c7-6.3 17.2-7.9 25.8-4.1zM104 80a24 24 0 1 0-48 0 24 24 0 1 0 48 0zm8 73.3v205.4c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80S0 476.2 0 432c0-32.8 19.7-61 48-73.3V153.3C19.7 141 0 112.8 0 80 0 35.8 35.8 0 80 0s80 35.8 80 80c0 32.8-19.7 61-48 73.3zM104 432a24 24 0 1 0-48 0 24 24 0 1 0 48 0zm328 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
