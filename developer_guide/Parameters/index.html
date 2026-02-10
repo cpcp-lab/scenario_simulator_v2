@@ -1,0 +1,3401 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../OpenSCENARIOSupport/">
+      
+      
+        <link rel="next" href="../SimpleSensorSimulator/">
+      
+      
+      <link rel="icon" href="../../image/icon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Parameters - Scenario testing framework for Autoware</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+      <link rel="stylesheet" href="../../stylesheet/tierivcolor.css">
+    
+      <link rel="stylesheet" href="../../stylesheet/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#parameters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Scenario testing framework for Autoware
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Parameters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tier4/scenario_simulator.auto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
+
+    </a>
+    Scenario testing framework for Autoware
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tier4/scenario_simulator.auto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Release Note
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Release Note
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/tier4/scenario_simulator_v2/releases" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Since version 1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../release/ReleaseNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prior to version 1.0.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/QuickStart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/BuildInstructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/RunWithDocker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run on Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/ScenarioTips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scenario Writing Tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scenario Editor
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Scenario Editor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scenario Test Runner
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Scenario Test Runner
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scenario Format Conversion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to use realtime factor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tips about writing scenarios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Random Test Runner
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Random Test Runner
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/Usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/random_test_runner/Design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AutowareAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoware API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BehaviorPlugin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Behavior Plugin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to contribute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ContextGammaPlanner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Context Gamma Planner (Experimental)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Communication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Communication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ConfiguringLocalizationTopics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Localization Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ConfiguringPerceptionTopics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring Perception Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DistanceCalculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance Calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lane Pose Calculation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            Lane Pose Calculation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timing of lane pose calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/Spawn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when spawning entity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when updating frame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Process of lane pose calculation when getting longitudinal distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual Override Simulation with FollowTrajectoryAction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NPCBehavior/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NPC Behavior
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenSCENARIOSupport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenSCENARIO Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perceptionobject_recognitiondetectionobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      /perception/object_recognition/detection/objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/perception/object_recognition/detection/objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      seed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override_legacy_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      override_legacy_configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      delay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    <span class="md-ellipsis">
+      range
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#occlusionless" class="md-nav__link">
+    <span class="md-ellipsis">
+      occlusionless
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisemodelversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.model.version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev1positionstandard_deviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v1.position.standard_deviation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev1missing_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v1.missing_probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2ellipse_y_radii" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.ellipse_y_radii
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancemeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancemeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancestandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancestandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawmeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawmeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawstandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawstandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipspeed_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.speed_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_fliprate" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiverateellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.rate.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveratevalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.rate.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_name-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt; (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entities-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiestypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiessubtypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.subtypes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiesnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_name-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt; (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameellipse_y_radii" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.ellipse_y_radii
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxymeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxymeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxystandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxystandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyaw-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawmeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawmeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawstandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawstandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyaw_flip-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw_flip (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positive-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiverateellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.rate.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveratevalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.rate.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namenoise_application_entities-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.noise_application_entities (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perceptionobject_recognitionground_truthobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      /perception/object_recognition/ground_truth/objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/perception/object_recognition/ground_truth/objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override_legacy_configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      override_legacy_configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      delay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimpleSensorSimulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple sensor simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulationResultFormat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulation Result Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SystemArchitecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TIERIVScenarioFormatVersion2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TIER IV Scenario Format version 2.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TrafficSimulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Traffic simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VehicleDynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vehicle Dynamics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ZeroMQ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Communication with simulator and interpreter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perceptionobject_recognitiondetectionobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      /perception/object_recognition/detection/objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/perception/object_recognition/detection/objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      seed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override_legacy_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      override_legacy_configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      delay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    <span class="md-ellipsis">
+      range
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#occlusionless" class="md-nav__link">
+    <span class="md-ellipsis">
+      occlusionless
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisemodelversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.model.version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev1positionstandard_deviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v1.position.standard_deviation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev1missing_probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v1.missing_probability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2ellipse_y_radii" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.ellipse_y_radii
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distanceautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancemeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancemeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancestandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2distancestandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.distance.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawmeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawmeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawstandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yawstandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_flipspeed_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.speed_threshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2yaw_fliprate" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.yaw_flip.rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiverateellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.rate.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev2true_positiveratevalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v2.true_positive.rate.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_name-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt; (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entities-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiestypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiessubtypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.subtypes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev3config_namenoise_application_entitiesnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v3.&lt;config_name&gt;.noise_application_entities.names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_name-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt; (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameellipse_y_radii" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.ellipse_y_radii
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxymeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxymeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxystandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxystandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namepositionxyautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyaw-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawmeanellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.mean.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawmeanvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.mean.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawstandard_deviationellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.standard_deviation.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawstandard_deviationvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.standard_deviation.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyawautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nameyaw_flip-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.yaw_flip (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positive-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiverateellipse_normalized_x_radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.rate.ellipse_normalized_x_radius
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveratevalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.rate.values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientamplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.amplitude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientdecay" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.decay
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_nametrue_positiveautocorrelation_coefficientoffset" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noisev4config_namenoise_application_entities-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      noise.v4.&lt;config_name&gt;.noise_application_entities (namespace)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perceptionobject_recognitionground_truthobjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      /perception/object_recognition/ground_truth/objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/perception/object_recognition/ground_truth/objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#override_legacy_configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      override_legacy_configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      delay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">#</a></h1>
+<p>This section describes how to configure the topics that <code>scenario_simulator_v2</code>
+publishes to Autoware.</p>
+<!-- cspell: ignore mathtt -->
+<!-- cspell: ignore occlusionless -->
+
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">#</a></h2>
+<p>The topics that <code>scenario_simulator_v2</code> publishes to Autoware are configurable
+from the ROS 2 parameter file given to the launch argument
+<code>parameter_file_path</code> of scenario_test_runner. The default value of
+<code>parameter_file_path</code> is the path to <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/test_runner/scenario_test_runner/config/parameters.yaml">a sample parameter
+file</a>.</p>
+<p>All parameters that can be specified and their default values are shown in the
+sample parameter file. In practice, it is not necessary to specify all
+parameters except for some that are mandatory. In that case, the simulator will
+behave as if similar default values had been specified.</p>
+<p>There are currently two ways to configure some topics: an old way and a new way
+described on this page. The new way is backward compatible and is the
+recommended way. If you want to know how to use the old way, <a href="https://tier4.github.io/scenario_simulator_v2-docs/developer_guide/ConfiguringPerceptionTopics/">see this
+page</a>.</p>
+<h2 id="perceptionobject_recognitiondetectionobjects">/perception/object_recognition/detection/objects<a class="headerlink" href="#perceptionobject_recognitiondetectionobjects" title="Permanent link">#</a></h2>
+<h3 id="version"><code>version</code><a class="headerlink" href="#version" title="Permanent link">#</a></h3>
+<p>An <code>int</code> type value in YYYYMMDD format, mandatory.
+Suffix of <code>scenario_test_runner</code> launch argument <code>architecture_type</code>, used to
+maintain backward compatibility of the simulator when changing the Autoware
+interface.</p>
+<h3 id="seed"><code>seed</code><a class="headerlink" href="#seed" title="Permanent link">#</a></h3>
+<p>A positive <code>int</code> type value, default <code>0</code>.
+The seed value for the random number generator. If <code>0</code> is specified, a random
+seed value will be generated for each run.</p>
+<h3 id="override_legacy_configuration"><code>override_legacy_configuration</code><a class="headerlink" href="#override_legacy_configuration" title="Permanent link">#</a></h3>
+<p>A <code>boolean</code> type value, default <code>false</code>.
+Some of the parameters described below can be configured in either the old or
+new way. This parameter is used to determine which value to use. That is, as
+long as this parameter is <code>false</code>, some of the following parameters will be
+ignored and the values set by the old method will be used. If you want to
+configure the new way, set it to <code>true</code>. For backward compatibility, the
+default value of this parameter is <code>false</code>.</p>
+<h3 id="delay"><code>delay</code><a class="headerlink" href="#delay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>. The unit is seconds. It is an
+error if the value is negative.
+Delays the publication of the topic by the specified number of seconds. This
+parameter is used only if <code>override_legacy_configuration</code> is true. If it is
+false, the value of <code>detectedObjectPublishingDelay</code> in
+<code>ObjectController.Properties</code> in the scenario file is used.</p>
+<h3 id="range"><code>range</code><a class="headerlink" href="#range" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>300.0</code>. The unit is meters.
+The sensor detection range. This parameter is used only if
+<code>override_legacy_configuration</code> is true. If it is false, the value of
+<code>detectionSensorRange</code> in <code>ObjectController.Properties</code> in the scenario file is
+used.</p>
+<h3 id="occlusionless"><code>occlusionless</code><a class="headerlink" href="#occlusionless" title="Permanent link">#</a></h3>
+<p>A <code>boolean</code> type value, default <code>false</code>.
+The message is a simulated object recognition result based on a pointcloud.
+Pointclouds are usually sensed by LiDAR, and scenario_simulator_v2 assumes this
+and simulates it, including LiDAR occlusion. If this parameter is <code>true</code>,
+object recognition is simulated as if there is no occlusion. In other words, it
+produces recognition results as if objects behind the object are also visible
+(even though they are in shadow and invisible in normal LiDAR).  This parameter
+is used only if <code>override_legacy_configuration</code> is true. If it is false, the
+value of <code>isClairvoyant</code> in <code>ObjectController.Properties</code> in the scenario file
+is used.</p>
+<h3 id="noisemodelversion"><code>noise.model.version</code><a class="headerlink" href="#noisemodelversion" title="Permanent link">#</a></h3>
+<p>A positive <code>int</code> type value, default <code>1</code>. If a non-existent version is
+specified, it is an error.
+This parameter specifies the version of the noise model to be used. Currently,
+the following four noise models are implemented:
+- version: 1 - Simple noise model with position randomization
+- version: 2 - Elliptically approximated model of noise variation with distance
+  from the ego entity
+- version: 3 - An extension of the noise model from version 2 to allow different 
+  configurations to be applied to different groups of entities.
+- version: 4 - A noise model based on a unique coordinate system 
+  with the closest point of the bounding box as the origin.</p>
+<p>The parameters specific to the models are placed under <code>noise.v1.</code>, <code>noise.v2</code>,
+<code>noise.v3.</code>, and <code>noise.v4.</code>, respectively.</p>
+<h3 id="noisev1positionstandard_deviation"><code>noise.v1.position.standard_deviation</code><a class="headerlink" href="#noisev1positionstandard_deviation" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+Standard deviation used for randomization of the position of the vehicle in the
+message. This parameter is used only if the value of <code>noise.model.version</code> is
+<code>1</code>.</p>
+<h3 id="noisev1missing_probability"><code>noise.v1.missing_probability</code><a class="headerlink" href="#noisev1missing_probability" title="Permanent link">#</a></h3>
+<p>A <code>double</code> type value between <code>0.0</code> and <code>1.0</code>, default <code>0.0</code>.
+Based on the probability specified by the value of this parameter, random
+vehicle data is removed from the message. This parameter is used only if the
+value of <code>noise.model.version</code> is <code>1</code>.</p>
+<h3 id="noisev2ellipse_y_radii"><code>noise.v2.ellipse_y_radii</code><a class="headerlink" href="#noisev2ellipse_y_radii" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[10.0, 20.0, 40.0, 60.0, 80.0,
+120.0, 150.0, 180.0, 1000.0]</code>. Units are in meters. The size of the array is
+arbitrary, but must be the same size as the array described later.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distanceautocorrelation_coefficientamplitude"><code>noise.v2.distance.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev2distanceautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+distance noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as AR(1) model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in
+the model to calculate the position noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}</span><script type="math/tex">X_\mathrm{distance}</script></span>: as follows:
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t-1) -
+\mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t-1) -
+\mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t-1) -
+\mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t-1) -
+\mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</script></span></script></span>
+This parameter is used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distanceautocorrelation_coefficientdecay"><code>noise.v2.distance.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev2distanceautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+distance noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as AR(1) model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in
+the model to calculate the position noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}</span><script type="math/tex">X_\mathrm{distance}</script></span>: as follows:
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</script></span></script></span> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distanceautocorrelation_coefficientoffset"><code>noise.v2.distance.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev2distanceautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+distance noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as AR(1) model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in
+the model to calculate the position noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}</span><script type="math/tex">X_\mathrm{distance}</script></span>: as follows:
+<span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</span><script type="math/tex">X_\mathrm{distance}(t) = \mathtt{mean} + \phi * (X_\mathrm{distance}(t -
+\varDelta t) - \mathtt{mean}) + \mathcal{N}(0, 1 - \phi^2) *
+\mathtt{standard\_deviation}</script></span></script></span> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distancemeanellipse_normalized_x_radius"><code>noise.v2.distance.mean.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev2distancemeanellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The noise models the space as an elliptical model. This parameter is the ratio
+of the radius of the x-axis to the radius of the y-axis of that ellipse. The
+coordinate system is a right-handed local coordinate system, where the x-axis
+is the longitudinal direction of the ego entity and the y-axis is its lateral
+direction. The value of this parameter is used to calculate the distance <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+between the ego entity and the other vehicle using the following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></script></span> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distancemeanvalues"><code>noise.v2.distance.mean.values</code><a class="headerlink" href="#noisev2distancemeanvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+0.0, 0.0, 0.0]</code>.
+Each element of the array is a mean of normal distribution. The first element
+with a value greater than <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> is searched from <code>ellipse_y_radii</code> and the
+elements with the same index are referenced from <code>values</code>. Therefore, the array
+size of this parameter must be the same as <code>ellipse_y_radii</code>. Otherwise, it is
+an error. This parameter is used only if the value of <code>noise.model.version</code> is
+<code>2</code>.</p>
+<h3 id="noisev2distancestandard_deviationellipse_normalized_x_radius"><code>noise.v2.distance.standard_deviation.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev2distancestandard_deviationellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The noise models the space as an elliptical model. This parameter is the ratio
+of the radius of the x-axis to the radius of the y-axis of that ellipse. The
+coordinate system is a right-handed local coordinate system, where the x-axis
+is the longitudinal direction of the ego entity and the y-axis is its lateral
+direction. The value of this parameter is used to calculate the distance <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+between the ego entity and the other vehicle using the following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></script></span> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2distancestandard_deviationvalues"><code>noise.v2.distance.standard_deviation.values</code><a class="headerlink" href="#noisev2distancestandard_deviationvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+0.0, 0.0, 0.0]</code>.
+Each element of the array is a standard deviation of normal distribution. The
+first element with a value greater than <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> is searched from <code>ellipse_y_radii</code>
+and the elements with the same index are referenced from <code>values</code>. Therefore,
+the array size of this parameter must be the same as <code>ellipse_y_radii</code>.
+Otherwise, it is an error. This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawautocorrelation_coefficientamplitude"><code>noise.v2.yaw.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev2yawautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of yaw
+noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the following
+equation: <script type="math/tex; mode=display"> \phi(\varDelta t) = \mathtt{amplitude} * \exp(-\mathtt{decay} *
+\varDelta t) + \mathtt{offset}</script> The noise models the time series as AR(1)
+model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in the model to calculate
+the yaw noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{yaw}</span><script type="math/tex">X_\mathrm{yaw}</script></span>: as follows: <script type="math/tex; mode=display"> X_\mathrm{yaw}(t) =
+\mathtt{mean} + \phi * (X_\mathrm{yaw}(t - \varDelta t) - \mathtt{mean}) +
+\mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</script> This parameter is
+used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawautocorrelation_coefficientdecay"><code>noise.v2.yaw.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev2yawautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of yaw
+noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the following
+equation: <script type="math/tex; mode=display"> \phi(\varDelta t) = \mathtt{amplitude} * \exp(-\mathtt{decay} *
+\varDelta t) + \mathtt{offset}</script> The noise models the time series as AR(1)
+model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in the model to calculate
+the yaw noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{yaw}</span><script type="math/tex">X_\mathrm{yaw}</script></span>: as follows: <script type="math/tex; mode=display"> X_\mathrm{yaw}(t) =
+\mathtt{mean} + \phi * (X_\mathrm{yaw}(t - \varDelta t) - \mathtt{mean}) +
+\mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</script> This parameter is
+used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawautocorrelation_coefficientoffset"><code>noise.v2.yaw.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev2yawautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of yaw
+noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the following
+equation: <script type="math/tex; mode=display"> \phi(\varDelta t) = \mathtt{amplitude} * \exp(-\mathtt{decay} *
+\varDelta t) + \mathtt{offset}</script> The noise models the time series as AR(1)
+model. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used in the model to calculate
+the yaw noise <span class="arithmatex"><span class="MathJax_Preview">X_\mathrm{yaw}</span><script type="math/tex">X_\mathrm{yaw}</script></span>: as follows: <script type="math/tex; mode=display"> X_\mathrm{yaw}(t) =
+\mathtt{mean} + \phi * (X_\mathrm{yaw}(t - \varDelta t) - \mathtt{mean}) +
+\mathcal{N}(0, 1 - \phi^2) * \mathtt{standard\_deviation}</script> This parameter is
+used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawmeanellipse_normalized_x_radius"><code>noise.v2.yaw.mean.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev2yawmeanellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The noise models the space as an elliptical model. This parameter is the ratio
+of the radius of the x-axis to the radius of the y-axis of that ellipse. The
+coordinate system is a right-handed local coordinate system, where the x-axis
+is the longitudinal direction of the ego entity and the y-axis is its lateral
+direction. The value of this parameter is used to calculate the distance <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+between the ego entity and the other vehicle using the following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></script></span> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawmeanvalues"><code>noise.v2.yaw.mean.values</code><a class="headerlink" href="#noisev2yawmeanvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+0.0, 0.0, 0.0]</code>.
+Each element of the array is a mean of normal distribution. The first element
+with a value greater than <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> is searched from <code>ellipse_y_radii</code> and the
+elements with the same index are referenced from <code>values</code>. Therefore, the array
+size of this parameter must be the same as <code>ellipse_y_radii</code>. Otherwise, it is
+an error. This parameter is used only if the value of <code>noise.model.version</code> is
+<code>2</code>.</p>
+<h3 id="noisev2yawstandard_deviationellipse_normalized_x_radius"><code>noise.v2.yaw.standard_deviation.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev2yawstandard_deviationellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The noise models the space as an elliptical model. This parameter is the ratio
+of the radius of the x-axis to the radius of the y-axis of that ellipse. The
+coordinate system is a right-handed local coordinate system, where the x-axis
+is the longitudinal direction of the ego entity and the y-axis is its lateral
+direction. The value of this parameter is used to calculate the distance <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+between the ego entity and the other vehicle using the following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></script></span>. This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yawstandard_deviationvalues"><code>noise.v2.yaw.standard_deviation.values</code><a class="headerlink" href="#noisev2yawstandard_deviationvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+0.0, 0.0, 0.0]</code>.
+Each element of the array is a standard deviation of normal distribution. The
+first element with a value greater than <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span> is searched from <code>ellipse_y_radii</code>
+and the elements with the same index are referenced from <code>values</code>. Therefore,
+the array size of this parameter must be the same as <code>ellipse_y_radii</code>.
+Otherwise, it is an error. This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yaw_flipautocorrelation_coefficientamplitude"><code>noise.v2.yaw_flip.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev2yaw_flipautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+yaw-flip noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the yaw-flip noise with following transition matrix:
+<script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix} =
+\begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yaw_flipautocorrelation_coefficientdecay"><code>noise.v2.yaw_flip.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev2yaw_flipautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+yaw-flip noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the yaw-flip noise with following transition matrix:
+<script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix} =
+\begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script>  This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yaw_flipautocorrelation_coefficientoffset"><code>noise.v2.yaw_flip.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev2yaw_flipautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+yaw-flip noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the yaw-flip noise with following transition matrix:
+<script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix} =
+\begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yaw_flipspeed_threshold"><code>noise.v2.yaw_flip.speed_threshold</code><a class="headerlink" href="#noisev2yaw_flipspeed_threshold" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.1</code>.
+When the absolute speed of one other vehicle is less than the value of this
+parameter, it is determined whether yaw-flip occurs or not based on the <code>rate</code>
+described below. This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2yaw_fliprate"><code>noise.v2.yaw_flip.rate</code><a class="headerlink" href="#noisev2yaw_fliprate" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+Vehicles whose absolute speed is below the aforementioned <code>speed_threshold</code>
+will have yaw-flip noise applied with the probability of the value of this
+parameter. This parameter is used only if the value of <code>noise.model.version</code> is
+<code>2</code>.</p>
+<h3 id="noisev2true_positiveautocorrelation_coefficientamplitude"><code>noise.v2.true_positive.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev2true_positiveautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+random-mask noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the random-mask noise with following transition
+matrix: <script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix}
+= \begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2true_positiveautocorrelation_coefficientdecay"><code>noise.v2.true_positive.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev2true_positiveautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+random-mask noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the random-mask noise with following transition
+matrix: <script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix}
+= \begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2true_positiveautocorrelation_coefficientoffset"><code>noise.v2.true_positive.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev2true_positiveautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of
+random-mask noise. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is calculated by the
+following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</span><script type="math/tex">\phi(\varDelta t) = \mathtt{amplitude} *
+\exp(-\mathtt{decay} * \varDelta t) + \mathtt{offset}</script></span></script></span> The noise models the
+time series as Markov process. The autocorrelation coefficient <span class="arithmatex"><span class="MathJax_Preview">\phi</span><script type="math/tex">\phi</script></span> is used
+in the model to calculate the random-mask noise with following transition
+matrix: <script type="math/tex; mode=display"> \begin{bmatrix} p_{0,0} & p_{0,1} \\ p_{1,0} & p_{1,1} \end{bmatrix}
+= \begin{bmatrix} \pi_0 + \phi \pi_1 && \pi_1 (1 - \phi) \\ \pi_0 (1 - \phi) &&
+\pi_1 - \phi \pi_0 \end{bmatrix}</script> This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2true_positiverateellipse_normalized_x_radius"><code>noise.v2.true_positive.rate.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev2true_positiverateellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The noise models the space as an elliptical model. This parameter is the ratio
+of the radius of the x-axis to the radius of the y-axis of that ellipse. The
+coordinate system is a right-handed local coordinate system, where the x-axis
+is the longitudinal direction of the ego entity and the y-axis is its lateral
+direction. The value of this parameter is used to calculate the distance <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+between the ego entity and the other vehicle using the following equation: <span class="arithmatex"><span class="MathJax_Preview"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></span><script type="math/tex"><span class="arithmatex"><span class="MathJax_Preview">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</span><script type="math/tex">d
+= \sqrt[2]{(\varDelta x / \mathtt{ellipse\_normalized\_x\_radius})^2 +
+\varDelta y^2}</script></span></script></span>. This parameter is used only if the value of
+<code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev2true_positiveratevalues"><code>noise.v2.true_positive.rate.values</code><a class="headerlink" href="#noisev2true_positiveratevalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+1.0, 1.0, 1.0]</code>.
+Each element of this array is the probability that the value will be output
+correctly (true positive rate). The first element with a value greater than <span class="arithmatex"><span class="MathJax_Preview">d</span><script type="math/tex">d</script></span>
+is searched from <code>ellipse_y_radii</code> and the elements with the same index are
+referenced from <code>values</code>. Therefore, the array size of this parameter must be
+the same as <code>ellipse_y_radii</code>. Otherwise, it is an error. This parameter is
+used only if the value of <code>noise.model.version</code> is <code>2</code>.</p>
+<h3 id="noisev3config_name-namespace"><code>noise.v3.&lt;config_name&gt;</code> (namespace)<a class="headerlink" href="#noisev3config_name-namespace" title="Permanent link">#</a></h3>
+<p>The v3 noise model allows you to define multiple named noise configurations.
+<code>&lt;config_name&gt;</code> is a user-defined noise configuration identifier.
+<code>&lt;config_name&gt;</code> acts as a namespace under <code>noise.v3</code>, and contains noise parameters
+that are same as <code>noise.v2</code>, as well as parameters for specifying the entities
+that will be subject to the noise.</p>
+<h3 id="noisev3config_namenoise_application_entities-namespace"><code>noise.v3.&lt;config_name&gt;.noise_application_entities</code> (namespace)<a class="headerlink" href="#noisev3config_namenoise_application_entities-namespace" title="Permanent link">#</a></h3>
+<p><code>noise_application_entities</code> is a namespace that contains three property-filtering parameters, types, subtypes, and names.
+These filters are combined with an AND condition and applied to all entities present in the scenario to create a set of entities.
+Noise is then applied to this set of entities using noise parameters set to the same v3-child-namespace.
+However, the behavior is undefined if there are entities that belong to entity sets with multiple v3-child-namespaces.</p>
+<h3 id="noisev3config_namenoise_application_entitiestypes"><code>noise.v3.&lt;config_name&gt;.noise_application_entities.types</code><a class="headerlink" href="#noisev3config_namenoise_application_entitiestypes" title="Permanent link">#</a></h3>
+<p>Array of <code>string</code> type value, mandatory.
+This parameter specifies which entity types this noise configuration should be applied to.
+See <a href="https://github.com/tier4/scenario_simulator_v2/blob/284f34b11f701e917bf8b4bf018fab3e792dc7db/simulation/traffic_simulator_msgs/msg/EntityType.msg">traffic_simulator_msgs/EntityType.msg</a> to confirm valid entity types.
+Supports wildcard expressions <code>?</code> and <code>*</code> within each string.
+The array is evaluated as an entity filter that represents a condition to OR the entity sets that match each string.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>3</code>.</p>
+<h3 id="noisev3config_namenoise_application_entitiessubtypes"><code>noise.v3.&lt;config_name&gt;.noise_application_entities.subtypes</code><a class="headerlink" href="#noisev3config_namenoise_application_entitiessubtypes" title="Permanent link">#</a></h3>
+<p>Array of <code>string</code> type value, mandatory.
+This parameter specifies which entity types this noise configuration should be applied to.
+See <a href="https://github.com/tier4/scenario_simulator_v2/blob/284f34b11f701e917bf8b4bf018fab3e792dc7db/simulation/traffic_simulator_msgs/msg/EntitySubtype.msg">traffic_simulator_msgs/EntitySubtype.msg</a> to confirm valid entity types.
+Supports wildcard expressions <code>?</code> and <code>*</code> within each string.
+The array is evaluated as an entity filter that represents a condition to OR the entity sets that match each string.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>3</code>.</p>
+<h3 id="noisev3config_namenoise_application_entitiesnames"><code>noise.v3.&lt;config_name&gt;.noise_application_entities.names</code><a class="headerlink" href="#noisev3config_namenoise_application_entitiesnames" title="Permanent link">#</a></h3>
+<p>Array of <code>string</code> type value, mandatory.
+This parameter specifies which entity types this noise configuration should be applied to.
+Supports wildcard expressions <code>?</code> and <code>*</code> within each string.
+The array is evaluated as an entity filter that represents a condition to OR the entity sets that match each string.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>3</code>.</p>
+<h3 id="noisev4config_name-namespace"><code>noise.v4.&lt;config_name&gt;</code> (namespace)<a class="headerlink" href="#noisev4config_name-namespace" title="Permanent link">#</a></h3>
+<p>The v4 noise model extends v3 with enhanced position and rotation noise capabilities. 
+<code>&lt;config_name&gt;</code> is a user-defined noise configuration identifier that acts as a namespace under <code>noise.v4</code>, 
+same as in <code>noise.v3</code>.</p>
+<p>The noise v4 model uses a dynamic local coordinate system for each entity, 
+which differs from the elliptical coordinate system used in v2/v3.</p>
+<ul>
+<li><strong>Origin</strong>: the closest point on the entity's bounding box from the base-link of the ego vehicle</li>
+<li><strong>Y-axis (radial direction)</strong>: From the ego vehicle base-link to the origin</li>
+<li><strong>X-axis (tangential direction)</strong>: Perpendicular to the Y-axis in a right-handed coordinate system</li>
+</ul>
+<p><img alt="noise v4 coordinate system" src="../images/parameters/noise_v4.png" /></p>
+<h3 id="noisev4config_nameellipse_y_radii"><code>noise.v4.&lt;config_name&gt;.ellipse_y_radii</code><a class="headerlink" href="#noisev4config_nameellipse_y_radii" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[10.0, 20.0, 40.0, 60.0, 80.0, 120.0, 150.0, 180.0, 1000.0]</code>. Units are in meters.
+See <a href="#noisev2ellipse_y_radii"><code>ellipse_y_radii</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxymeanellipse_normalized_x_radius"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev4config_namepositionxymeanellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>1.0</code>.
+See <a href="#noisev2distancemeanellipse_normalized_x_radius"><code>ellipse_normalized_x_radius</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxymeanvalues"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.mean.values</code><a class="headerlink" href="#noisev4config_namepositionxymeanvalues" title="Permanent link">#</a></h3>
+<p>Array of double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</code>.
+See <a href="#noisev2distancemeanvalues"><code>values</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxystandard_deviationellipse_normalized_x_radius"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev4config_namepositionxystandard_deviationellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>1.0</code>.
+See <a href="#noisev2distancestandarddeviationellipse_normalized_x_radius"><code>ellipse_normalized_x_radius</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxystandard_deviationvalues"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.standard_deviation.values</code><a class="headerlink" href="#noisev4config_namepositionxystandard_deviationvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</code>.
+See <a href="#noisev2distancestandarddeviationvalues"><code>values</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxyautocorrelation_coefficientamplitude"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev4config_namepositionxyautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of X/Y-axis position noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxyautocorrelation_coefficientdecay"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev4config_namepositionxyautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of X/Y-axis position noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namepositionxyautocorrelation_coefficientoffset"><code>noise.v4.&lt;config_name&gt;.position.&lt;x/y&gt;.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev4config_namepositionxyautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of X/Y-axis position noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyaw-namespace"><code>noise.v4.&lt;config_name&gt;.yaw</code> (namespace)<a class="headerlink" href="#noisev4config_nameyaw-namespace" title="Permanent link">#</a></h3>
+<p>The rotation yaw noise in noise v4 model applies angular noise around the closest point on the entity's bounding box 
+to the ego vehicle (the origin of noise coordinate), rather than around the entity's base-link.</p>
+<h3 id="noisev4config_nameyawmeanellipse_normalized_x_radius"><code>noise.v4.&lt;config_name&gt;.yaw.mean.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev4config_nameyawmeanellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>1.0</code>.
+See <a href="#noisev2yawmeanellipse_normalized_x_radius"><code>ellipse_normalized_x_radius</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawmeanvalues"><code>noise.v4.&lt;config_name&gt;.yaw.mean.values</code><a class="headerlink" href="#noisev4config_nameyawmeanvalues" title="Permanent link">#</a></h3>
+<p>Array of double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</code>.
+See <a href="#noisev2yawmeanvalues"><code>values</code> documentation of noise v2</a> for detailed explanation.
+The unit is radians. This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawstandard_deviationellipse_normalized_x_radius"><code>noise.v4.&lt;config_name&gt;.yaw.standard_deviation.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev4config_nameyawstandard_deviationellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>1.0</code>.
+See <a href="#noisev2yawstandarddeviationellipse_normalized_x_radius"><code>ellipse_normalized_x_radius</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawstandard_deviationvalues"><code>noise.v4.&lt;config_name&gt;.yaw.standard_deviation.values</code><a class="headerlink" href="#noisev4config_nameyawstandard_deviationvalues" title="Permanent link">#</a></h3>
+<p>Array of positive double type values, default <code>[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</code>.
+See <a href="#noisev2yawstandarddeviationvalues"><code>values</code> documentation of noise v2</a> for detailed explanation.
+The unit is radians. This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawautocorrelation_coefficientamplitude"><code>noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev4config_nameyawautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of rotation noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawautocorrelation_coefficientdecay"><code>noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev4config_nameyawautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of rotation noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyawautocorrelation_coefficientoffset"><code>noise.v4.&lt;config_name&gt;.yaw.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev4config_nameyawautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of rotation noise. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nameyaw_flip-namespace"><code>noise.v4.&lt;config_name&gt;.yaw_flip</code> (namespace)<a class="headerlink" href="#noisev4config_nameyaw_flip-namespace" title="Permanent link">#</a></h3>
+<p>The yaw-flip noise in noise v4 model is basically same to one in noise v2.
+See <a href="#noisev2yaw_flipautocorrelation_coefficientamplitude"><code>yaw_flip</code> documentation of noise v2</a> for detailed explanation.
+Like noise v2, noise v4 also has the parameters below in this namespace.</p>
+<ul>
+<li><code>noise.v4.&lt;config_name&gt;.yaw_flip.autocorrelation_coefficient.amplitude</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.yaw_flip.autocorrelation_coefficient.decay</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.yaw_flip.autocorrelation_coefficient.offset</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.yaw_flip.rate</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.yaw_flip.speed_threshold</code></li>
+</ul>
+<h3 id="noisev4config_nametrue_positive-namespace"><code>noise.v4.&lt;config_name&gt;.true_positive</code> (namespace)<a class="headerlink" href="#noisev4config_nametrue_positive-namespace" title="Permanent link">#</a></h3>
+<p>The true positive parameters in noise v4 model control the detection probability of entities based on distance from the ego vehicle.
+Like v2/v3, v4 uses elliptical coordinate system to determine the detection rate based on the distance from the ego vehicle.</p>
+<h3 id="noisev4config_nametrue_positiverateellipse_normalized_x_radius"><code>noise.v4.&lt;config_name&gt;.true_positive.rate.ellipse_normalized_x_radius</code><a class="headerlink" href="#noisev4config_nametrue_positiverateellipse_normalized_x_radius" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>1.0</code>.
+See <a href="#noisev2true_positiverateellipse_normalized_x_radius"><code>ellipse_normalized_x_radius</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nametrue_positiveratevalues"><code>noise.v4.&lt;config_name&gt;.true_positive.rate.values</code><a class="headerlink" href="#noisev4config_nametrue_positiveratevalues" title="Permanent link">#</a></h3>
+<p>Array of double type values between <code>0.0</code> and <code>1.0</code>, default <code>[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]</code>.
+See <a href="#noisev2true_positiveratevalues"><code>values</code> documentation of noise v2</a> for detailed explanation.
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nametrue_positiveautocorrelation_coefficientamplitude"><code>noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.amplitude</code><a class="headerlink" href="#noisev4config_nametrue_positiveautocorrelation_coefficientamplitude" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of true positive noise. 
+The noise models the time series as Markov process. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nametrue_positiveautocorrelation_coefficientdecay"><code>noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.decay</code><a class="headerlink" href="#noisev4config_nametrue_positiveautocorrelation_coefficientdecay" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of true positive noise. 
+The noise models the time series as Markov process. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_nametrue_positiveautocorrelation_coefficientoffset"><code>noise.v4.&lt;config_name&gt;.true_positive.autocorrelation_coefficient.offset</code><a class="headerlink" href="#noisev4config_nametrue_positiveautocorrelation_coefficientoffset" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>.
+The parameter of the autocorrelation coefficient used in the generation of true positive noise. 
+The noise models the time series as Markov process. 
+This parameter is used only if the value of <code>noise.model.version</code> is <code>4</code>.</p>
+<h3 id="noisev4config_namenoise_application_entities-namespace"><code>noise.v4.&lt;config_name&gt;.noise_application_entities</code> (namespace)<a class="headerlink" href="#noisev4config_namenoise_application_entities-namespace" title="Permanent link">#</a></h3>
+<p>Entity filtering parameters with the same structure as <code>noise.v3</code>. 
+See <a href="#noisev3config_namenoise_application_entities-namespace"><code>noise.v3.&lt;config_name&gt;.noise_application_entities</code></a> for detailed explanation.
+Like noise v3, noise v4 also has the parameters below in this namespace.</p>
+<ul>
+<li><code>noise.v4.&lt;config_name&gt;.noise_application_entities.types</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.noise_application_entities.subtypes</code></li>
+<li><code>noise.v4.&lt;config_name&gt;.noise_application_entities.names</code></li>
+</ul>
+<h2 id="perceptionobject_recognitionground_truthobjects">/perception/object_recognition/ground_truth/objects<a class="headerlink" href="#perceptionobject_recognitionground_truthobjects" title="Permanent link">#</a></h2>
+<h3 id="version_1"><code>version</code><a class="headerlink" href="#version_1" title="Permanent link">#</a></h3>
+<p>An <code>int</code> type value in YYYYMMDD format, mandatory.
+Suffix of <code>scenario_test_runner</code> launch argument <code>architecture_type</code>, used to
+maintain backward compatibility of the simulator when changing the Autoware
+interface.</p>
+<h3 id="override_legacy_configuration_1"><code>override_legacy_configuration</code><a class="headerlink" href="#override_legacy_configuration_1" title="Permanent link">#</a></h3>
+<p>A <code>boolean</code> type value, default <code>false</code>.
+Some of the parameters described below can be configured in either the old or
+new way. This parameter is used to determine which value to use. That is, as
+long as this parameter is <code>false</code>, some of the following parameters will be
+ignored and the values set by the old method will be used. If you want to
+configure the new way, set it to <code>true</code>. For backward compatibility, the
+default value of this parameter is <code>false</code>.</p>
+<h3 id="delay_1"><code>delay</code><a class="headerlink" href="#delay_1" title="Permanent link">#</a></h3>
+<p>A positive <code>double</code> type value, default <code>0.0</code>. The unit is seconds. It is an
+error if the value is negative.
+Delays the publication of the topic by the specified number of seconds. This
+parameter is used only if <code>override_legacy_configuration</code> is true. If it is
+false, the value of <code>detectedObjectGroundTruthPublishingDelay</code> in
+<code>ObjectController.Properties</code> in the scenario file is used.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 10, 2025 08:35:04 UTC">December 10, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 TIER IV, Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tier4/scenario_simulator_v2/issues" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.4c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4H312c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5H480c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6 2.2 1.3 4.2 2.9 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tier4/scenario_simulator_v2/pulls" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M305.8 2.1C314.4 5.9 320 14.5 320 24v40h16c70.7 0 128 57.3 128 128v166.7c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V192c0-35.3-28.7-64-64-64h-16v40c0 9.5-5.6 18.1-14.2 21.9s-18.8 2.3-25.8-4.1l-80-72c-5.1-4.6-7.9-11-7.9-17.8s2.9-13.3 7.9-17.8l80-72c7-6.3 17.2-7.9 25.8-4.1zM104 80a24 24 0 1 0-48 0 24 24 0 1 0 48 0zm8 73.3v205.4c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80S0 476.2 0 432c0-32.8 19.7-61 48-73.3V153.3C19.7 141 0 112.8 0 80 0 35.8 35.8 0 80 0s80 35.8 80 80c0 32.8-19.7 61-48 73.3zM104 432a24 24 0 1 0-48 0 24 24 0 1 0 48 0zm328 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
