@@ -1,0 +1,14 @@
+digraph "common/math/geometry/src/solver" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_92912c8b0b343218b463aa304c8f319b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_92912c8b0b343218b463aa304c8f319b.html"]
+  dir_537f9d50d9acf6bfed0ce36f7a737436 [shape=box, label="solver", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_537f9d50d9acf6bfed0ce36f7a737436.html"];
+  }
+  dir_2094f8a64168b91e1b9694be04370ad8 [shape=box label="scenario_simulator_exception" fillcolor="white" style="filled" color="red" URL="dir_2094f8a64168b91e1b9694be04370ad8.html"];
+  dir_4a254c9ebcf0a09723328a9d0c332a0e [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_4a254c9ebcf0a09723328a9d0c332a0e.html"];
+  dir_537f9d50d9acf6bfed0ce36f7a737436->dir_2094f8a64168b91e1b9694be04370ad8 [headlabel="1", labeldistance=1.5 headhref="dir_000035_000053.html"];
+  dir_537f9d50d9acf6bfed0ce36f7a737436->dir_4a254c9ebcf0a09723328a9d0c332a0e [headlabel="1", labeldistance=1.5 headhref="dir_000035_000007.html"];
+  dir_4a254c9ebcf0a09723328a9d0c332a0e->dir_2094f8a64168b91e1b9694be04370ad8 [headlabel="3", labeldistance=1.5 headhref="dir_000007_000053.html"];
+}
