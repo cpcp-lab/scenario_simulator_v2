@@ -9,20 +9,22 @@
       
       
       
+        <link rel="prev" href="../BuildInstructions/">
       
-        <link rel="next" href="release/ReleaseNotes/">
+      
+        <link rel="next" href="../ScenarioTips/">
       
       
-      <link rel="icon" href="image/icon.png">
+      <link rel="icon" href="../../image/icon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
     
     
       
-        <title>Scenario testing framework for Autoware</title>
+        <title>Run on Docker - Scenario testing framework for Autoware</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
       
       
 
@@ -43,13 +45,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="stylesheet/tierivcolor.css">
+      <link rel="stylesheet" href="../../stylesheet/tierivcolor.css">
     
-      <link rel="stylesheet" href="stylesheet/extra.css">
+      <link rel="stylesheet" href="../../stylesheet/extra.css">
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scenario-simulator-v2" class="md-skip">
+        <a href="#run-with-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +86,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -104,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Run on Docker
             
           </span>
         </div>
@@ -191,7 +193,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8l-2.08-6Z"/></svg>
@@ -218,30 +220,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Home
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -250,53 +232,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      What can we do with this framework
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why this framework is v2?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to contribute
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -364,7 +299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release/ReleaseNotes/" class="md-nav__link">
+      <a href="../../release/ReleaseNotes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -389,17 +324,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -413,7 +350,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -427,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/QuickStart/" class="md-nav__link">
+      <a href="../QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -448,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/BuildInstructions/" class="md-nav__link">
+      <a href="../BuildInstructions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -466,10 +403,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="user_guide/RunWithDocker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Run on Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -478,6 +435,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install dependencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-sample-scenario-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run sample scenario with Docker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-your-custom-scenario-with-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run your custom scenario with Docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run your custom scenario with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -490,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/ScenarioTips/" class="md-nav__link">
+      <a href="../ScenarioTips/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+      <a href="../scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+      <a href="../scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -631,7 +650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+      <a href="../scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -652,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+      <a href="../scenario_test_runner/RealtimeFactor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -673,7 +692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+      <a href="../scenario_test_runner/Tips/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -737,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+      <a href="../random_test_runner/QuickStart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -758,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Usage/" class="md-nav__link">
+      <a href="../random_test_runner/Usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -779,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Design/" class="md-nav__link">
+      <a href="../random_test_runner/Design/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -850,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/About/" class="md-nav__link">
+      <a href="../../developer_guide/About/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -871,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/AutowareAPI/" class="md-nav__link">
+      <a href="../../developer_guide/AutowareAPI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -892,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/BehaviorPlugin/" class="md-nav__link">
+      <a href="../../developer_guide/BehaviorPlugin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -913,7 +932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/CONTRIBUTING/" class="md-nav__link">
+      <a href="../../developer_guide/CONTRIBUTING/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ContextGammaPlanner/" class="md-nav__link">
+      <a href="../../developer_guide/ContextGammaPlanner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -955,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Communication/" class="md-nav__link">
+      <a href="../../developer_guide/Communication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -976,7 +995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
+      <a href="../../developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -997,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
+      <a href="../../developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/DistanceCalculation/" class="md-nav__link">
+      <a href="../../developer_guide/DistanceCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1074,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+      <a href="../../developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1095,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
+      <a href="../../developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1116,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+      <a href="../../developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1137,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+      <a href="../../developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1166,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+      <a href="../../developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1187,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/NPCBehavior/" class="md-nav__link">
+      <a href="../../developer_guide/NPCBehavior/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1208,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
+      <a href="../../developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1229,7 +1248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Parameters/" class="md-nav__link">
+      <a href="../../developer_guide/Parameters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1250,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimpleSensorSimulator/" class="md-nav__link">
+      <a href="../../developer_guide/SimpleSensorSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1271,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimulationResultFormat/" class="md-nav__link">
+      <a href="../../developer_guide/SimulationResultFormat/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1292,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SystemArchitecture/" class="md-nav__link">
+      <a href="../../developer_guide/SystemArchitecture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1313,7 +1332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
+      <a href="../../developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1334,7 +1353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TrafficSimulator/" class="md-nav__link">
+      <a href="../../developer_guide/TrafficSimulator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1355,7 +1374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/VehicleDynamics/" class="md-nav__link">
+      <a href="../../developer_guide/VehicleDynamics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1376,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ZeroMQ/" class="md-nav__link">
+      <a href="../../developer_guide/ZeroMQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,29 +1443,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
+  <a href="#install-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      What can we do with this framework
+      Install dependencies
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
+  <a href="#run-sample-scenario-with-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Why this framework is v2?
+      Run sample scenario with Docker
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
+  <a href="#run-your-custom-scenario-with-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      How to contribute
+      Run your custom scenario with Docker
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Run your custom scenario with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1468,24 +1502,205 @@
   
 
 
-<h1 id="scenario-simulator-v2">Scenario simulator v2<a class="headerlink" href="#scenario-simulator-v2" title="Permanent link">#</a></h1>
-<p><a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml"><img alt="Documentation" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml"><img alt="BuildAndRun" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml"><img alt="SpellCheck" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml/badge.svg" /></a></p>
-<p>Scenario simulator v2 is a scenario testing framework for Autoware.</p>
-<p><img alt="Scenario Testing Framework" src="image/what_is_scenario_testing_framework.png" title="what is scenario testing framework" /></p>
-<p>It enables Autoware developers to write a scenario at once and run in various kinds of simulator.</p>
-<h2 id="what-can-we-do-with-this-framework">What can we do with this framework<a class="headerlink" href="#what-can-we-do-with-this-framework" title="Permanent link">#</a></h2>
-<p>Currently, various kinds of simulators and scenario formats are developed all over the world.
-We need an open-source framework for integrating those testing tools with Autoware easily and quickly.
-So, we are developing this package.
-<font color="#065479E"><strong>This package is designed to easily accommodate multiple simulators and scenario description formats.</strong></font></p>
-<p>This package is licensed under the Apache License, Version 2.0.
-See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LICENSE">LICENSE</a>.</p>
-<h2 id="why-this-framework-is-v2">Why this framework is v2?<a class="headerlink" href="#why-this-framework-is-v2" title="Permanent link">#</a></h2>
-<p>This package re-designs the <a href="https://github.com/tier4/scenario_runner.iv.universe">scenario runner</a> developed by <a href="https://tier4.jp/en/">TIER IV, Inc.</a>, so we named this framework as "scenario_simulator_v2"</p>
-<h2 id="how-to-contribute">How to contribute<a class="headerlink" href="#how-to-contribute" title="Permanent link">#</a></h2>
-<p>Please refer to the <a href="developer_guide/CONTRIBUTING/">contributor guidelines</a>.</p>
+<h1 id="run-with-docker">Run with docker<a class="headerlink" href="#run-with-docker" title="Permanent link">#</a></h1>
+<p>You can use this scenario_simulator_v2 with docker.<br/>
+We automatically build docker images by using GitHub Actions and push them into Docker Hub.</p>
+<p>If you want to run scenario_simulator_v2 with docker, please follow the instructions below.</p>
+<p>Currently, macOS and Windows are not supported.</p>
+<h2 id="install-dependencies">Install dependencies<a class="headerlink" href="#install-dependencies" title="Permanent link">#</a></h2>
+<details>
+<summary>Install Docker</summary>
+
+Please follow the instructions below.
+
+<iframe
+    src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fdocs.docker.com%2Fengine%2Finstall%2F"
+    title="Install Docker Engine"
+    class="embed-card embed-webcard"
+    scrolling="no"
+    frameborder="0"
+    style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;">
+</iframe>
+
+If you finished installing docker, please execute the commands below in order to check docker is working well.
+
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</code></pre></div>
+
+You can see the output like below if you have succeeded to install docker.
+
+<div class="highlight"><pre><span></span><code>Unable<span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>image<span class="w"> </span><span class="s1">&#39;hello-world:latest&#39;</span><span class="w"> </span>locally
+latest:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/hello-world
+2db29710123e:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+Digest:<span class="w"> </span>sha256:80f31da1ac7b312ba29d65080fddf797dd76acfb870e677f390d5acba9741b17
+Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>hello-world:latest
+
+Hello<span class="w"> </span>from<span class="w"> </span>Docker!
+This<span class="w"> </span>message<span class="w"> </span>shows<span class="w"> </span>that<span class="w"> </span>your<span class="w"> </span>installation<span class="w"> </span>appears<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>working<span class="w"> </span>correctly.
+
+To<span class="w"> </span>generate<span class="w"> </span>this<span class="w"> </span>message,<span class="w"> </span>Docker<span class="w"> </span>took<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>steps:
+<span class="w"> </span><span class="m">1</span>.<span class="w"> </span>The<span class="w"> </span>Docker<span class="w"> </span>client<span class="w"> </span>contacted<span class="w"> </span>the<span class="w"> </span>Docker<span class="w"> </span>daemon.
+<span class="w"> </span><span class="m">2</span>.<span class="w"> </span>The<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w"> </span>pulled<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;hello-world&quot;</span><span class="w"> </span>image<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>Docker<span class="w"> </span>Hub.
+<span class="w">    </span><span class="o">(</span>amd64<span class="o">)</span>
+<span class="w"> </span><span class="m">3</span>.<span class="w"> </span>The<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w"> </span>created<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>container<span class="w"> </span>from<span class="w"> </span>that<span class="w"> </span>image<span class="w"> </span>which<span class="w"> </span>runs<span class="w"> </span>the
+<span class="w">    </span>executable<span class="w"> </span>that<span class="w"> </span>produces<span class="w"> </span>the<span class="w"> </span>output<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>currently<span class="w"> </span>reading.
+<span class="w"> </span><span class="m">4</span>.<span class="w"> </span>The<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w"> </span>streamed<span class="w"> </span>that<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Docker<span class="w"> </span>client,<span class="w"> </span>which<span class="w"> </span>sent<span class="w"> </span>it
+<span class="w">    </span>to<span class="w"> </span>your<span class="w"> </span>terminal.
+
+To<span class="w"> </span>try<span class="w"> </span>something<span class="w"> </span>more<span class="w"> </span>ambitious,<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>run<span class="w"> </span>an<span class="w"> </span>Ubuntu<span class="w"> </span>container<span class="w"> </span>with:
+<span class="w"> </span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu<span class="w"> </span>bash
+
+For<span class="w"> </span>more<span class="w"> </span>examples<span class="w"> </span>and<span class="w"> </span>ideas,<span class="w"> </span>visit:
+<span class="w"> </span>https://docs.docker.com/get-started/
+</code></pre></div>
+
+</details>
+
+<details>
+<summary>Install nvidia-docker2 (optional)</summary>
+
+If you have NVIDIA GPU(s) in your machine, you have to install nvidia-driver and nvidia-docker2.  <br/>
+In order to install nvidia-docker2 on Ubuntu, please execute the commands below.
+
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/nvidia-container-runtime/gpgkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
+curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/nvidia-container-runtime/ubuntu20.04/nvidia-container-runtime.list<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nvidia-container-runtime.list
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nvidia-docker2
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker.service
+</code></pre></div>
+
+If you finished installing docker and nvidia-docker2, please execute the commands below.
+
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>--rm<span class="w"> </span>nvidia/cuda:11.4.0-base<span class="w"> </span>nvidia-smi
+</code></pre></div>
+
+You can see the outputs like below.
+
+<div class="highlight"><pre><span></span><code>Thu<span class="w"> </span>Jun<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">05</span>:52:32<span class="w"> </span><span class="m">2022</span><span class="w">       </span>
++-----------------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>NVIDIA-SMI<span class="w"> </span><span class="m">470</span>.129.06<span class="w">   </span>Driver<span class="w"> </span>Version:<span class="w"> </span><span class="m">470</span>.129.06<span class="w">   </span>CUDA<span class="w"> </span>Version:<span class="w"> </span><span class="m">11</span>.4<span class="w">     </span><span class="p">|</span>
+<span class="p">|</span>-------------------------------+----------------------+----------------------+
+<span class="p">|</span><span class="w"> </span>GPU<span class="w">  </span>Name<span class="w">        </span>Persistence-M<span class="p">|</span><span class="w"> </span>Bus-Id<span class="w">        </span>Disp.A<span class="w"> </span><span class="p">|</span><span class="w"> </span>Volatile<span class="w"> </span>Uncorr.<span class="w"> </span>ECC<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Fan<span class="w">  </span>Temp<span class="w">  </span>Perf<span class="w">  </span>Pwr:Usage/Cap<span class="p">|</span><span class="w">         </span>Memory-Usage<span class="w"> </span><span class="p">|</span><span class="w"> </span>GPU-Util<span class="w">  </span>Compute<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                               </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">               </span>MIG<span class="w"> </span>M.<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="o">===============================</span>+<span class="o">======================</span>+<span class="o">======================</span><span class="p">|</span>
+<span class="p">|</span><span class="w">   </span><span class="m">0</span><span class="w">  </span>NVIDIA<span class="w"> </span>GeForce<span class="w"> </span>...<span class="w">  </span>Off<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">00000000</span>:01:00.0<span class="w">  </span>On<span class="w"> </span><span class="p">|</span><span class="w">                  </span>N/A<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span><span class="m">41</span>%<span class="w">   </span>39C<span class="w">    </span>P8<span class="w">    </span>25W<span class="w"> </span>/<span class="w"> </span>250W<span class="w"> </span><span class="p">|</span><span class="w">   </span>1236MiB<span class="w"> </span>/<span class="w"> </span>10985MiB<span class="w"> </span><span class="p">|</span><span class="w">      </span><span class="m">3</span>%<span class="w">      </span>Default<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                               </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">                  </span>N/A<span class="w"> </span><span class="p">|</span>
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+<span class="p">|</span><span class="w"> </span>Processes:<span class="w">                                                                  </span><span class="p">|</span>
+<span class="p">|</span><span class="w">  </span>GPU<span class="w">   </span>GI<span class="w">   </span>CI<span class="w">        </span>PID<span class="w">   </span>Type<span class="w">   </span>Process<span class="w"> </span>name<span class="w">                  </span>GPU<span class="w"> </span>Memory<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>ID<span class="w">   </span>ID<span class="w">                                                   </span>Usage<span class="w">      </span><span class="p">|</span>
+<span class="p">|</span><span class="o">=============================================================================</span><span class="p">|</span>
++-----------------------------------------------------------------------------+
+</code></pre></div>
+</details>
+
+<details>
+<summary>Install Rocker</summary>
+<iframe
+  class="hatenablogcard"
+  style="width:100%;height:155px;max-width:450px;"
+  title="rocker"
+  src="https://hatenablog-parts.com/embed?url=https://github.com/osrf/rocker"
+  width="300" height="150" frameborder="0" scrolling="no">
+</iframe>
+
+rocker is a docker support tool for ROS.
+It enables us to run rviz inside docker very easily.
+You can install rocker via pip3.
+
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>git+https://github.com/osrf/rocker.git
+</code></pre></div>
+
+After install rocker, please check rocker works correctly.<br/>
+If your machine has GPU(s), please execute the commands below.
+
+<div class="highlight"><pre><span></span><code>rocker<span class="w"> </span>--nvidia<span class="w"> </span>--x11<span class="w"> </span>osrf/ros:humble-desktop<span class="w"> </span>rviz2
+</code></pre></div>
+
+You can see rviz working on docker.
+![Running rviz inside rocker](../image/rviz_with_rocker.png "running rviz inside rocker.")
+
+If your machine has no GPU, please execute the commands below.
+
+<div class="highlight"><pre><span></span><code>rocker<span class="w"> </span>--x11<span class="w"> </span>osrf/ros:humble-desktop<span class="w"> </span>rviz2
+</code></pre></div>
+
+You can see the same result with NVIDIA GPU.
+</details>
+
+<h2 id="run-sample-scenario-with-docker">Run sample scenario with Docker<a class="headerlink" href="#run-sample-scenario-with-docker" title="Permanent link">#</a></h2>
+<p>You can run the sample scenarios easily by using our pre-built docker image.</p>
+<details>
+<summary>Optional : Build docker image locally</summary>
+If you want to build a docker image in your local machine, please execute the commands below in your terminal.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>path/to/scenario_simulator_v2
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>scenario_simulator_v2<span class="w"> </span>.<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">ROS_DISTRO</span><span class="o">=</span>humble
+</code></pre></div>
+Please replace the docker image name (e.g. "ghcr.io/tier4/scenario_simulator_v2:humble" ) with "scenario_simulator_v2" <br/>
+to use your built docker image in the launching commands. 
+
+</details>
+
+<p>If your local machine has NVIDIA GPU(s), you can launch scenario_simulator_v2 with test scenarios
+    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/tier4/scenario_simulator_v2:humble
+rocker<span class="w"> </span>--nvidia<span class="w"> </span>--x11<span class="w"> </span>ghcr.io/tier4/scenario_simulator_v2:humble<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>cpp_mock_scenarios<span class="w"> </span>mock_test.launch.py<span class="w"> </span>scenario:<span class="o">=</span>crashing_npc<span class="w"> </span>scenario:<span class="o">=</span>traffic_simulation_demo<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>timeout:<span class="o">=</span><span class="m">60</span>.0
+</code></pre></div></p>
+<p>If your local machine does NOT have NVIDIA GPU(s), you can launch scenario_simulator_v2 with test scenarios
+    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/tier4/scenario_simulator_v2:humble
+rocker<span class="w"> </span>--x11<span class="w"> </span>ghcr.io/tier4/scenario_simulator_v2:humble<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>cpp_mock_scenarios<span class="w"> </span>mock_test.launch.py<span class="w"> </span>scenario:<span class="o">=</span>crashing_npc<span class="w"> </span>scenario:<span class="o">=</span>traffic_simulation_demo<span class="w"> </span>launch_rviz:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>timeout:<span class="o">=</span><span class="m">60</span>.0
+</code></pre></div></p>
+<p><video
+  class="c-video__embed"
+  src="https://user-images.githubusercontent.com/10348912/115502051-44ab8500-a2af-11eb-9244-4a1d0f2a2b2a.mp4"
+  width="100%"
+  loop
+  autoplay
+  muted
+  playsinline>
+</video>
+</p>
+<h2 id="run-your-custom-scenario-with-docker">Run your custom scenario with Docker<a class="headerlink" href="#run-your-custom-scenario-with-docker" title="Permanent link">#</a></h2>
+<h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">#</a></h3>
+<p>Please check <code>isEgo</code> value is set to <code>false</code> before running this script.<br/>
+For example, like below.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ObjectController</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Controller</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
+<span class="w">    </span><span class="nt">Properties</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">Property</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> name</span><span class="p">:</span><span class="w"> </span><span class="nv">isEgo</span><span class="p p-Indicator">,</span><span class="nt"> value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;false&#39;</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>Replace <code>$PWD/path/to/your/scenario.yaml</code> in two places with your custom scenario, <br/>
+and execute the command below</p>
+<div class="highlight"><pre><span></span><code>rocker --x11 --oyr-mount $PWD/path/to/your/scenario.yaml \
+    -- ghcr.io/tier4/scenario_simulator_v2:humble \
+    ros2 launch scenario_test_runner scenario_test_runner.launch.py \
+    scenario:=$PWD/path/to/your/scenario.yaml launch_rviz:=True
+</code></pre></div>
+<p>Please also refer to the sample we prepared.
+<div class="highlight"><pre><span></span><code>wget https://gist.github.com/hakuturu583/5e6a651df9abdf25dca7071ff5ea8ac3/archive/1448057aeebc34cbfc04598b965440fcf7ecb636.zip
+unzip 1448057aeebc34cbfc04598b965440fcf7ecb636.zip
+mv 5e6a651df9abdf25dca7071ff5ea8ac3-1448057aeebc34cbfc04598b965440fcf7ecb636 scenarios
+sudo pip3 install git+https://github.com/sloretz/off-your-rocker.git
+docker pull ghcr.io/tier4/scenario_simulator_v2:humble
+rocker --x11 --oyr-mount $PWD/scenarios/UC-001-0001-Kashiwa.yaml -- ghcr.io/tier4/scenario_simulator_v2:humble ros2 launch scenario_test_runner scenario_test_runner.launch.py scenario:=$PWD/scenarios/UC-001-0001-Kashiwa.yaml launch_rviz:=True
+</code></pre></div>
+Our sample should run like the video below.</p>
+<p><video
+class="c-video__embed"
+src="https://user-images.githubusercontent.com/10348912/126959705-040368bc-7d56-4b81-b456-876da58f763f.mp4"
+width="100%"
+loop
+autoplay
+muted
+playsinline>
+</video>
+</p>
 
 
 
@@ -1583,10 +1798,10 @@ See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LIC
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
       
         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
