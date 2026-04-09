@@ -72,7 +72,6 @@ class Logger(Node):
         self.p_msg = None
         self.c_msg = None
         self.m_msg = None
-        self.m_msg_prev = None
 
         # Setting a trigger service.
         self.srv = self.create_service(TriggerLogging, 'trigger_logger', self.trigger_cb)
@@ -95,7 +94,8 @@ class Logger(Node):
             #MarkerArray, 
             Float32MultiArrayStamped,
             #'/control/trajectory_follower/controller_node_exe/debug/markers', 
-            '/control/trajectory_follower/controller_node_exe/debug/ld_outputs', 
+            #'/control/trajectory_follower/controller_node_exe/debug/ld_outputs', 
+            '/control/trajectory_follower/controller_node_exe/debug/wp_outputs', 
             self.marker_log_cb, log_qos)
 
         self.timer = self.create_timer(0.1, self.timer_cb)
@@ -224,7 +224,7 @@ class Logger(Node):
 
     mlc_count = 0
 
-    def log_m_msg(self, msg, msg_prev):
+    def log_m_msg(self, msg):
         #self.mlc_count += 1
         #tgt = msg.markers[0]
         #t = Time.from_msg(tgt.header.stamp)
@@ -243,28 +243,24 @@ class Logger(Node):
         t = Time.from_msg(msg.stamp)
         dt = datetime.fromtimestamp(t.nanoseconds * 1e-9)
         ts = dt.strftime('%Y-%m-%d %H:%M:%S.%f')
-        posX1 = msg_prev.data[7]
-        posY1 = msg_prev.data[8]
-        posYaw1 = msg_prev.data[9]
-        tgtX1 = msg_prev.data[10]
-        tgtY1 = msg_prev.data[11]
-        posX2 = msg.data[7]
-        posY2 = msg.data[8]
-        posYaw2 = msg.data[9]
-        csv.writer(self.mlf).writerow([ts, posX1, posY1, posYaw1, tgtX1, tgtY1, posX2, posY2, posYaw2])
+        posX = msg.data[0]
+        posY = msg.data[1]
+        posYaw = msg.data[2]
+        wpX = msg.data[3]
+        wpY = msg.data[4]
+        wpV = msg.data[5]
+        csv.writer(self.mlf).writerow([ts, posX, posY, posYaw, wpX, wpY, wpV])
 
     def marker_log_cb(self, msg):
         if not self.mlf or self.mlf.closed:
             return 
-        if self.m_msg == msg:
-            return
-        self.m_msg_prev = self.m_msg
         self.m_msg = msg
+        self.log_m_msg(msg)
 
     #
 
     def timer_cb(self):
-        if self.v_msg is None or self.p_msg is None or self.m_msg is None or self.m_msg_prev is None:
+        if self.v_msg is None or self.p_msg is None or self.m_msg is None:
             return
 
         # Vehicle
@@ -279,10 +275,9 @@ class Logger(Node):
         #self.log_c_msg(self.c_msg)
         #self.c_msg = None
 
-        # Markers
-        self.log_m_msg(self.m_msg, self.m_msg_prev)
-        self.m_msg_prev = self.m_msg
-        self.m_msg = None
+        ## Markers
+        #self.log_m_msg(self.m_msg)
+        #self.m_msg = None
 
 #
 
