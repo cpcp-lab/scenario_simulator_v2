@@ -1,0 +1,11 @@
+digraph "simulation/behavior_tree_plugin/src/pedestrian/follow_trajectory_sequence" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9f6cf1e9f55f17fa382d583f61dfddb6 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="pedestrian" fontname="Helvetica", fontsize="10", URL="dir_9f6cf1e9f55f17fa382d583f61dfddb6.html"]
+  dir_47c7af641c334095d86cb1b5c3ba2557 [shape=box, label="follow_trajectory_sequence", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_47c7af641c334095d86cb1b5c3ba2557.html"];
+  }
+  dir_830611c709c1ae004e770aca355fbf69 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_830611c709c1ae004e770aca355fbf69.html"];
+  dir_47c7af641c334095d86cb1b5c3ba2557->dir_830611c709c1ae004e770aca355fbf69 [headlabel="1", labeldistance=1.5 headhref="dir_000133_000121.html"];
+}
