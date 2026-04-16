@@ -15,7 +15,6 @@ log
 external/*
 !external/concealer
 !external/embree_vendor
-!external/zmqpp_vendor
 
 # local install directory
 install/*
