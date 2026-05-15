@@ -1,0 +1,12 @@
+digraph "openscenario_interpreter::syntax::Orientation"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="openscenario_interpreter\l::syntax::Orientation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" type" ,fontname="Helvetica"];
+  Node2 [label="openscenario_interpreter\l::syntax::ReferenceContext",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1ReferenceContext.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" h\np\nr" ,fontname="Helvetica"];
+  Node3 [label="openscenario_interpreter\l::syntax::Double",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1Double.html",tooltip=" "];
+}
