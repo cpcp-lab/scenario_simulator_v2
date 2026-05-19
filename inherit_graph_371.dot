@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="traffic_simulator::\lroute_option::v1::RouteOption",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtraffic__simulator_1_1route__option_1_1v1_1_1RouteOption.html",tooltip=" "];
+}
