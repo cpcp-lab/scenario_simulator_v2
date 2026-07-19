@@ -184,7 +184,8 @@ class Logger(Node):
         wpX = msg.data[3]
         wpY = msg.data[4]
         wpV = msg.data[5]
-        csv.writer(self.files['m_msg']).writerow([ts, posX, posY, posYaw, wpX, wpY, wpV])
+        vel = msg.data[6]
+        csv.writer(self.files['m_msg']).writerow([ts, posX, posY, posYaw, vel, wpX, wpY, wpV])
 
     #
 
