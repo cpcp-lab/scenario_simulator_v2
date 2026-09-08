@@ -1,0 +1,11 @@
+digraph "openscenario_interpreter::syntax::AdditionalAxle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="openscenario_interpreter\l::syntax::AdditionalAxle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="openscenario_interpreter\l::syntax::Axle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1Axle.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" max_steering\nposition_x\nposition_z\ntrack_width\nwheel_diameter" ,fontname="Helvetica"];
+  Node3 [label="openscenario_interpreter\l::syntax::Double",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1Double.html",tooltip=" "];
+}
