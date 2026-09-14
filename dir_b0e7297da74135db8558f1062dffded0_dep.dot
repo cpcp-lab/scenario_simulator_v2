@@ -1,0 +1,14 @@
+digraph "simulation/simple_sensor_simulator/include/simple_sensor_simulator/sensor_simulation/lidar" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_18b62852215b94887244b301982b6f21 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="sensor_simulation" fontname="Helvetica", fontsize="10", URL="dir_18b62852215b94887244b301982b6f21.html"]
+  dir_7e1aa8eb9ea61bc9f78fe73be949006c [shape=box label="primitives" URL="dir_7e1aa8eb9ea61bc9f78fe73be949006c.html"];
+  dir_b0e7297da74135db8558f1062dffded0 [shape=box, label="lidar", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b0e7297da74135db8558f1062dffded0.html"];
+  }
+  dir_bdd9a5d540de89e9fe90efdfc6973a4f [shape=box label="common" fillcolor="white" style="filled" color="red" URL="dir_bdd9a5d540de89e9fe90efdfc6973a4f.html"];
+  dir_b0e7297da74135db8558f1062dffded0->dir_7e1aa8eb9ea61bc9f78fe73be949006c [headlabel="2", labeldistance=1.5 headhref="dir_000146_000148.html"];
+  dir_b0e7297da74135db8558f1062dffded0->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="2", labeldistance=1.5 headhref="dir_000146_000000.html"];
+  dir_7e1aa8eb9ea61bc9f78fe73be949006c->dir_bdd9a5d540de89e9fe90efdfc6973a4f [headlabel="1", labeldistance=1.5 headhref="dir_000148_000000.html"];
+}
