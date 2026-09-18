@@ -1,0 +1,9 @@
+digraph "simulation/behavior_tree_plugin/include/behavior_tree_plugin/vehicle/follow_trajectory_sequence" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_94a16763392bf3f36c3f605bd965daae {
+    graph [ bgcolor="#ddddee", pencolor="black", label="vehicle" fontname="Helvetica", fontsize="10", URL="dir_94a16763392bf3f36c3f605bd965daae.html"]
+  dir_aa67e603ad71ffc2de77b9817faa1025 [shape=box, label="follow_trajectory_sequence", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_aa67e603ad71ffc2de77b9817faa1025.html"];
+  }
+}
