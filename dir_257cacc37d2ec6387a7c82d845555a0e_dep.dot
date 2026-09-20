@@ -1,0 +1,11 @@
+digraph "common/math/geometry/include/geometry/intersection" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d437d64d4281002d89b579a4df2e60ef {
+    graph [ bgcolor="#ddddee", pencolor="black", label="geometry" fontname="Helvetica", fontsize="10", URL="dir_d437d64d4281002d89b579a4df2e60ef.html"]
+  dir_8393c51857bb6970cb5c71f652056435 [shape=box label="polygon" URL="dir_8393c51857bb6970cb5c71f652056435.html"];
+  dir_257cacc37d2ec6387a7c82d845555a0e [shape=box, label="intersection", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_257cacc37d2ec6387a7c82d845555a0e.html"];
+  }
+  dir_257cacc37d2ec6387a7c82d845555a0e->dir_8393c51857bb6970cb5c71f652056435 [headlabel="2", labeldistance=1.5 headhref="dir_000020_000021.html"];
+}
