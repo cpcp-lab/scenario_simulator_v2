@@ -1,0 +1,11 @@
+digraph "common/status_monitor/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_7bd69b72c09e294c3f773eccd42a995a {
+    graph [ bgcolor="#ddddee", pencolor="black", label="status_monitor" fontname="Helvetica", fontsize="10", URL="dir_7bd69b72c09e294c3f773eccd42a995a.html"]
+  dir_0d23b34f6aa778cb5038a287ec375459 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_0d23b34f6aa778cb5038a287ec375459.html"];
+  dir_66b3fa4a35ab535947ffcb43179ca01c [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_66b3fa4a35ab535947ffcb43179ca01c.html"];
+  }
+  dir_66b3fa4a35ab535947ffcb43179ca01c->dir_0d23b34f6aa778cb5038a287ec375459 [headlabel="1", labeldistance=1.5 headhref="dir_000069_000067.html"];
+}
