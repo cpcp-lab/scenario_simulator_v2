@@ -1,0 +1,18 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node707 [label="std::unordered_map",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node707 -> Node0 [dir="back",color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="common::junit::SimpleTest\lSuite",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structcommon_1_1junit_1_1SimpleTestSuite.html",tooltip=" "];
+  Node707 -> Node709 [dir="back",color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node709 [label="common::junit::SimpleTest\lSuites",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structcommon_1_1junit_1_1SimpleTestSuites.html",tooltip=" "];
+  Node707 -> Node710 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node710 [label="openscenario_interpreter\l::syntax::CatalogLocation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classopenscenario__interpreter_1_1syntax_1_1CatalogLocation.html",tooltip=" "];
+  Node707 -> Node711 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node711 [label="openscenario_interpreter\l::syntax::CatalogLocations",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1CatalogLocations.html",tooltip=" "];
+  Node707 -> Node712 [dir="back",color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node712 [label="openscenario_interpreter\l::syntax::Entities",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1Entities.html",tooltip=" "];
+}
