@@ -9,23 +9,25 @@
       
       
       
+        <link rel="prev" href="../QuickStart/">
       
-        <link rel="next" href="release/ReleaseNotes/">
+      
+        <link rel="next" href="../Design/">
       
       
         
       
       
-      <link rel="icon" href="image/icon.png">
+      <link rel="icon" href="../../../image/icon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Scenario testing framework for Autoware</title>
+        <title>Usage - Scenario testing framework for Autoware</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
       
       
 
@@ -46,13 +48,13 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="stylesheet/tierivcolor.css">
+      <link rel="stylesheet" href="../../../stylesheet/tierivcolor.css">
     
-      <link rel="stylesheet" href="stylesheet/extra.css">
+      <link rel="stylesheet" href="../../../stylesheet/extra.css">
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@8.0.0/dist/mermaid.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scenario-simulator-v2" class="md-skip">
+        <a href="#features" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../../.." title="Scenario testing framework for Autoware" class="md-header__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8z"/></svg>
@@ -106,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Usage
             
           </span>
         </div>
@@ -196,7 +198,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
+    <a href="../../.." title="Scenario testing framework for Autoware" class="md-nav__button md-logo" aria-label="Scenario testing framework for Autoware" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m5 11 1.5-4.5h11L19 11m-1.5 5a1.5 1.5 0 0 1-1.5-1.5 1.5 1.5 0 0 1 1.5-1.5 1.5 1.5 0 0 1 1.5 1.5 1.5 1.5 0 0 1-1.5 1.5m-11 0A1.5 1.5 0 0 1 5 14.5 1.5 1.5 0 0 1 6.5 13 1.5 1.5 0 0 1 8 14.5 1.5 1.5 0 0 1 6.5 16M18.92 6c-.2-.58-.76-1-1.42-1h-11c-.66 0-1.22.42-1.42 1L3 12v8a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-8z"/></svg>
@@ -223,37 +225,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -269,59 +244,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What can we do with this framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why this framework is v2?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to contribute
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -408,7 +330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="release/ReleaseNotes/" class="md-nav__link">
+      <a href="../../../release/ReleaseNotes/" class="md-nav__link">
         
   
   
@@ -440,18 +362,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -472,7 +396,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -490,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/QuickStart/" class="md-nav__link">
+      <a href="../../QuickStart/" class="md-nav__link">
         
   
   
@@ -518,7 +442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/BuildInstructions/" class="md-nav__link">
+      <a href="../../BuildInstructions/" class="md-nav__link">
         
   
   
@@ -546,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/RunWithDocker/" class="md-nav__link">
+      <a href="../../RunWithDocker/" class="md-nav__link">
         
   
   
@@ -574,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/ScenarioTips/" class="md-nav__link">
+      <a href="../../ScenarioTips/" class="md-nav__link">
         
   
   
@@ -649,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
+      <a href="../../scenario_editor/ScenarioEditorUserGuide/" class="md-nav__link">
         
   
   
@@ -732,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
+      <a href="../../scenario_test_runner/ScenarioTestRunner/" class="md-nav__link">
         
   
   
@@ -760,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
+      <a href="../../scenario_test_runner/ScenarioFormatConversion/" class="md-nav__link">
         
   
   
@@ -788,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/RealtimeFactor/" class="md-nav__link">
+      <a href="../../scenario_test_runner/RealtimeFactor/" class="md-nav__link">
         
   
   
@@ -816,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/scenario_test_runner/Tips/" class="md-nav__link">
+      <a href="../../scenario_test_runner/Tips/" class="md-nav__link">
         
   
   
@@ -849,18 +773,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
         
           
           <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
@@ -881,7 +807,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -899,7 +825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/QuickStart/" class="md-nav__link">
+      <a href="../QuickStart/" class="md-nav__link">
         
   
   
@@ -924,10 +850,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Usage/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -943,6 +878,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -955,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user_guide/random_test_runner/Design/" class="md-nav__link">
+      <a href="../Design/" class="md-nav__link">
         
   
   
@@ -1045,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/About/" class="md-nav__link">
+      <a href="../../../developer_guide/About/" class="md-nav__link">
         
   
   
@@ -1073,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/AutowareAPI/" class="md-nav__link">
+      <a href="../../../developer_guide/AutowareAPI/" class="md-nav__link">
         
   
   
@@ -1101,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/BehaviorPlugin/" class="md-nav__link">
+      <a href="../../../developer_guide/BehaviorPlugin/" class="md-nav__link">
         
   
   
@@ -1129,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/CONTRIBUTING/" class="md-nav__link">
+      <a href="../../../developer_guide/CONTRIBUTING/" class="md-nav__link">
         
   
   
@@ -1157,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ContextGammaPlanner/" class="md-nav__link">
+      <a href="../../../developer_guide/ContextGammaPlanner/" class="md-nav__link">
         
   
   
@@ -1185,7 +1121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Communication/" class="md-nav__link">
+      <a href="../../../developer_guide/Communication/" class="md-nav__link">
         
   
   
@@ -1213,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
+      <a href="../../../developer_guide/ConfiguringLocalizationTopics/" class="md-nav__link">
         
   
   
@@ -1241,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
+      <a href="../../../developer_guide/ConfiguringPerceptionTopics/" class="md-nav__link">
         
   
   
@@ -1269,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/DistanceCalculation/" class="md-nav__link">
+      <a href="../../../developer_guide/DistanceCalculation/" class="md-nav__link">
         
   
   
@@ -1344,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/LanePoseCalculation/" class="md-nav__link">
         
   
   
@@ -1372,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/Spawn/" class="md-nav__link">
         
   
   
@@ -1400,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/UpdateFrame/" class="md-nav__link">
         
   
   
@@ -1428,7 +1364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
+      <a href="../../../developer_guide/lane_pose_calculation/GetLongitudinalDistance/" class="md-nav__link">
         
   
   
@@ -1464,7 +1400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
+      <a href="../../../developer_guide/ManualOverrideWithFollowTrajectoryAction/" class="md-nav__link">
         
   
   
@@ -1492,7 +1428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/NPCBehavior/" class="md-nav__link">
+      <a href="../../../developer_guide/NPCBehavior/" class="md-nav__link">
         
   
   
@@ -1520,7 +1456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
+      <a href="../../../developer_guide/OpenSCENARIOSupport/" class="md-nav__link">
         
   
   
@@ -1548,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/Parameters/" class="md-nav__link">
+      <a href="../../../developer_guide/Parameters/" class="md-nav__link">
         
   
   
@@ -1576,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimpleSensorSimulator/" class="md-nav__link">
+      <a href="../../../developer_guide/SimpleSensorSimulator/" class="md-nav__link">
         
   
   
@@ -1604,7 +1540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SimulationResultFormat/" class="md-nav__link">
+      <a href="../../../developer_guide/SimulationResultFormat/" class="md-nav__link">
         
   
   
@@ -1632,7 +1568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/SystemArchitecture/" class="md-nav__link">
+      <a href="../../../developer_guide/SystemArchitecture/" class="md-nav__link">
         
   
   
@@ -1660,7 +1596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
+      <a href="../../../developer_guide/TIERIVScenarioFormatVersion2/" class="md-nav__link">
         
   
   
@@ -1688,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/TrafficSimulator/" class="md-nav__link">
+      <a href="../../../developer_guide/TrafficSimulator/" class="md-nav__link">
         
   
   
@@ -1716,7 +1652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/VehicleDynamics/" class="md-nav__link">
+      <a href="../../../developer_guide/VehicleDynamics/" class="md-nav__link">
         
   
   
@@ -1744,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="developer_guide/ZeroMQ/" class="md-nav__link">
+      <a href="../../../developer_guide/ZeroMQ/" class="md-nav__link">
         
   
   
@@ -1792,47 +1728,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-can-we-do-with-this-framework" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What can we do with this framework
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-framework-is-v2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why this framework is v2?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to contribute
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1851,24 +1746,371 @@
   
 
 
-<h1 id="scenario-simulator-v2">Scenario simulator v2<a class="headerlink" href="#scenario-simulator-v2" title="Permanent link">#</a></h1>
-<p><a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml"><img alt="Documentation" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/Documentation.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml"><img alt="BuildAndRun" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/BuildAndRun.yaml/badge.svg" /></a>
-<a href="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml"><img alt="SpellCheck" src="https://github.com/tier4/scenario_simulator_v2/actions/workflows/SpellCheck.yaml/badge.svg" /></a></p>
-<p>Scenario simulator v2 is a scenario testing framework for Autoware.</p>
-<p><img alt="Scenario Testing Framework" src="image/what_is_scenario_testing_framework.png" title="what is scenario testing framework" /></p>
-<p>It enables Autoware developers to write a scenario at once and run in various kinds of simulator.</p>
-<h2 id="what-can-we-do-with-this-framework">What can we do with this framework<a class="headerlink" href="#what-can-we-do-with-this-framework" title="Permanent link">#</a></h2>
-<p>Currently, various kinds of simulators and scenario formats are developed all over the world.
-We need an open-source framework for integrating those testing tools with Autoware easily and quickly.
-So, we are developing this package.
-<strong>This package is designed to easily accommodate multiple simulators and scenario description formats.</strong></p>
-<p>This package is licensed under the Apache License, Version 2.0.
-See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LICENSE">LICENSE</a>.</p>
-<h2 id="why-this-framework-is-v2">Why this framework is v2?<a class="headerlink" href="#why-this-framework-is-v2" title="Permanent link">#</a></h2>
-<p>This package re-designs the <a href="https://github.com/tier4/scenario_runner.iv.universe">scenario runner</a> developed by <a href="https://tier4.jp/en/">TIER IV, Inc.</a>, so we named this framework as "scenario_simulator_v2"</p>
-<h2 id="how-to-contribute">How to contribute<a class="headerlink" href="#how-to-contribute" title="Permanent link">#</a></h2>
-<p>Please refer to the <a href="developer_guide/CONTRIBUTING/">contributor guidelines</a>.</p>
+<h1 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h1>
+<ul>
+<li>
+<p>Full and partial randomization of the Ego goal position for multiple test cases.</p>
+</li>
+<li>
+<p>NPCs customization:</p>
+<ul>
+<li>number of NPCs</li>
+<li>distance from the Ego</li>
+<li>velocities of NPC vehicles in the simulation.</li>
+</ul>
+</li>
+<li>
+<p>Simulation related errors reporting:</p>
+<ul>
+<li>Ego being found stuck in one place for too long.</li>
+<li>Ego failing to reach the goal in a specified time.</li>
+<li>Collision between Ego and NPC.</li>
+</ul>
+</li>
+<li>
+<p>Ego vehicle capabilities:</p>
+<ul>
+<li>Goal following</li>
+<li>Lane changing</li>
+<li>Stopping precisely on a designated line</li>
+<li>Yield at intersections</li>
+</ul>
+</li>
+<li>
+<p>NPCs possible actions:</p>
+<ul>
+<li>Following the line.</li>
+<li>Following another entity.</li>
+</ul>
+</li>
+</ul>
+<h1 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">#</a></h1>
+<ul>
+<li>
+<p>Random test runner does not support traffic lights signalization.</p>
+</li>
+<li>
+<p>NPCs actions:</p>
+<ul>
+<li>NPCs are not stopping to avoid collision when they are not following the colliding entity (eg. on the intersections).</li>
+<li>NPCs are not able to yield at the intersection.</li>
+</ul>
+</li>
+</ul>
+<h1 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">#</a></h1>
+<p>There are two known issues which block random test runner from initializing the test if either initial position or goal pose exceeds the drivable area.</p>
+<ul>
+<li>If the initial position exceeds the drivable are:</li>
+</ul>
+<p>Autoware will be launched, but the ego vehicle will not move, waiting for Autoware to change its state to WaitingForEngage. After a timeout the test will terminate and the runner will continue with the next test.</p>
+<p>After the test suite is completed, the <code>AutowareError</code> connected with the failed test will be logged to the <code>result.junit.xml</code> with the message: <code>Simulator waited for the Autoware state to transition to WaitingForEngage, but time is up. The current Autoware state is EMERGENCY.</code></p>
+<ul>
+<li>If the generated goal pose exceeds the drivable ares:</li>
+</ul>
+<p>The test will be immediately stopped after launching the Autoware and similarly as in the first case the error will be logged and the runner will continue with the next test.</p>
+<p>After the test suite is completed, the <code>scenario_simulator_error</code> connected with the failed test will be logged to the <code>result.junit.xml</code> with the message: <code>Requested the service "/api/routing/set_route_points" 1 times, but was not successful.</code></p>
+<h1 id="launch-arguments">Launch arguments<a class="headerlink" href="#launch-arguments" title="Permanent link">#</a></h1>
+<p>This section describes arguments of the random test runner. All of them can be specified via command line, otherwise default value specified in the launch file is used.</p>
+<p>Parameters listed in <a href="#node-parameters">Node parameters</a> section can be also specified in a yaml file which should be located in <code>&lt;random_test_runner_directory&gt;/param/</code>.</p>
+<p>Parameters have the following source precedence priorities:</p>
+<ol>
+<li><code>*.yaml</code> file (applicable only for <a href="#node-parameters">Node parameters</a>)</li>
+<li>Command line</li>
+<li>Default values</li>
+</ol>
+<h2 id="general-arguments">General arguments<a class="headerlink" href="#general-arguments" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_parameters_filename</code></td>
+<td><code>""</code></td>
+<td>Yaml filename within <code>random_test_runner/param</code> directory containing test parameters. Only <a href="#node-parameters">Node parameters</a> can be specified in this file.</td>
+</tr>
+<tr>
+<td><code>simulator_type</code></td>
+<td><code>"simple_sensor_simulator"</code></td>
+<td>Backend simulator. Currently supported value is <code>simple_sensor_simulator</code>. It's also accepted by the node but should be supplied as direct launch argument.</td>
+</tr>
+<tr>
+<td><code>simulator_host</code></td>
+<td><code>"localhost"</code></td>
+<td>Simulation host. It can be either IP address or the host name that is resolvable in the environment (you can add a host by appending <code>"&lt;SIMULATOR_IP&gt; &lt;SIMULATOR_NAME&gt;"</code> line to the <code>/etc/hosts</code> file).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="autoware-related-arguments">Autoware related arguments<a class="headerlink" href="#autoware-related-arguments" title="Permanent link">#</a></h2>
+<p>Launch also accepts Autoware parameters that control Autoware related behavior. It can set which Autoware architecture is in use, which vehicle
+and sensor model is used in the simulation</p>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>architecture_type</code></td>
+<td><code>"awf/universe/20240605"</code></td>
+<td>Autoware architecture type. Currently supported values are: <code>awf/universe/20230906</code>, <code>awf/universe/20240605</code> and <code>awf/universe/20250130</code>.</td>
+</tr>
+<tr>
+<td><code>sensor_model</code></td>
+<td><code>"sample_sensor_kit"</code></td>
+<td>Ego sensor model.</td>
+</tr>
+<tr>
+<td><code>vehicle_model</code></td>
+<td><code>"sample_vehicle"</code></td>
+<td>Ego vehicle model.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="node-parameters">Node parameters<a class="headerlink" href="#node-parameters" title="Permanent link">#</a></h2>
+<p>Random testing supports several parameters to control test execution. They can be supplied either directly from command
+line or via <code>*.yaml</code> file inside <code>&lt;random_test_runner_directory&gt;/param/</code>. Example of the yaml file specifying parameters can be found <a href="#example-parameters-yaml-file">here</a>.</p>
+<h3 id="parameters-reference">Parameters reference<a class="headerlink" href="#parameters-reference" title="Permanent link">#</a></h3>
+<p>Random test runner parameters are split into three categories:</p>
+<ol>
+<li><a href="#test-control-parameters">Test control parameters</a></li>
+<li><a href="#test-suite-parameters">Test suite parameters</a></li>
+<li><a href="#test-case-parameters">Test case parameters</a></li>
+</ol>
+<h3 id="test-control-parameters">Test control parameters<a class="headerlink" href="#test-control-parameters" title="Permanent link">#</a></h3>
+<p>High level parameters not directly related to the test itself</p>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input_dir</code></td>
+<td><code>""</code></td>
+<td>Directory containing the result.yaml file to be replayed. If not empty, tests will be replayed from result.yaml.</td>
+</tr>
+<tr>
+<td><code>output_dir</code></td>
+<td><code>"/tmp"</code></td>
+<td>Directory in which result.yaml and result.junit.xml files will be placed after the test suite is executed.</td>
+</tr>
+<tr>
+<td><code>test_count</code></td>
+<td><code>5</code></td>
+<td>Number of test cases to be performed in the test suite.</td>
+</tr>
+<tr>
+<td><code>test_timeout</code></td>
+<td><code>60.0</code></td>
+<td>Timeout of each random test.</td>
+</tr>
+<tr>
+<td><code>simulator_type</code></td>
+<td><code>"simple_sensor_simulator"</code></td>
+<td>Backend simulator. Currently supported value is <code>simple_sensor_simulator</code>. It should be set only via launch argument.</td>
+</tr>
+<tr>
+<td><code>initialize_duration</code></td>
+<td><code>35</code></td>
+<td>How long test runner will wait for Autoware to initialize.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-suite-parameters">Test suite parameters<a class="headerlink" href="#test-suite-parameters" title="Permanent link">#</a></h3>
+<p>Core test parameters. It sets map name, ego goal information and npc spawning parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_name</code></td>
+<td><code>"random_test"</code></td>
+<td>Test name. Used for descriptive purposes only.</td>
+</tr>
+<tr>
+<td><code>map_name</code></td>
+<td><code>"kashiwanoha_map"</code></td>
+<td>Name of the package containing map information. For more information please see <a href="./#map-package">map package</a>.</td>
+</tr>
+<tr>
+<td><code>ego_goal_lanelet_id</code></td>
+<td><code>-1</code></td>
+<td>Goal lanelet's id. If <code>-1</code>, goal will be chosen randomly.</td>
+</tr>
+<tr>
+<td><code>ego_goal_s</code></td>
+<td><code>0.0</code></td>
+<td>Goal lanelet's translation along the lanelet in meters. For more detailed description please see <a href="./#lanelets-positioning">lanelets positioning</a>. If <code>ego_goal_lanelet_id</code> equals <code>-1</code>, s will be chosen randomly.</td>
+</tr>
+<tr>
+<td><code>ego_goal_partial_randomization</code></td>
+<td><code>False</code></td>
+<td>If <code>true</code>, goal will be randomized within distance set in <code>ego_goal_partial_randomization_distance</code> value. For more detailed description please see <a href="./#lanelets-positioning">lanelets positioning</a>. If <code>ego_goal_lanelet_id</code> is set to <code>-1</code>, this value is ignored.</td>
+</tr>
+<tr>
+<td><code>ego_goal_partial_randomization_distance</code></td>
+<td><code>25.0</code></td>
+<td>Distance in meters from goal set by <code>ego_goal_lanelet_id</code> and <code>ego_goal_s</code>, within which goal pose will be randomized if <code>ego_goal_partial_randomization</code> is set to true.</td>
+</tr>
+<tr>
+<td><code>npc_count</code></td>
+<td><code>10</code></td>
+<td>Number of npcs which will be generated.</td>
+</tr>
+<tr>
+<td><code>npc_min_speed</code></td>
+<td><code>0.5</code></td>
+<td>Minimum speed of generated npcs</td>
+</tr>
+<tr>
+<td><code>npc_max_speed</code></td>
+<td><code>3.0</code></td>
+<td>Maximum speed of generated npcs</td>
+</tr>
+<tr>
+<td><code>npc_min_spawn_distance_from_ego</code></td>
+<td><code>10.0</code></td>
+<td>Minimum distance of generated npcs from ego</td>
+</tr>
+<tr>
+<td><code>npc_max_spawn_distance_from_ego</code></td>
+<td><code>100.0</code></td>
+<td>Maximum distance of generated npcs from ego</td>
+</tr>
+</tbody>
+</table>
+<h4 id="map-package">Map package<a class="headerlink" href="#map-package" title="Permanent link">#</a></h4>
+<p>Package containing map information. This package needs to be built in the Autoware workspace. Package example can be found <a href="https://github.com/tier4/AWSIM/releases/download/v1.2.0/shinjuku_map.zip">here</a>.</p>
+<p>The structure of the package needs to be as follows:</p>
+<ul>
+<li>The root package directory, which contains:<ul>
+<li><code>package.xml</code> file</li>
+<li><code>CMakeList.txt</code> file</li>
+<li>map directory, which contains:<ul>
+<li><code>.osm</code> file</li>
+<li><code>.pcd</code> file</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="lanelets-positioning">Lanelets positioning<a class="headerlink" href="#lanelets-positioning" title="Permanent link">#</a></h4>
+<p>Lanelet position used to represent the ego goal includes two coordinate:</p>
+<ul>
+<li>the ID of the lanelet on which the target is located,</li>
+<li>the translation along the lanelet.</li>
+</ul>
+<p>On the example below two connected lanelets with IDs 101 and 100 are presented. The translation s is the distance between lanelet's beginning and the vehicle's rear axle position.</p>
+<p><img alt="Lanelets positioning" src="../img/lanelet.jpg" /></p>
+<h3 id="test-case-parameters">Test case parameters<a class="headerlink" href="#test-case-parameters" title="Permanent link">#</a></h3>
+<p>Test case parameters. Currently, only randomization seed.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter name</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seed</code></td>
+<td><code>-1</code></td>
+<td>Randomization seed. If <code>-1</code>, seed will be generated for each test</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-parameters-yaml-file">Example parameters yaml file<a class="headerlink" href="#example-parameters-yaml-file" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">/**</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># control parameters</span>
+<span class="w">    </span><span class="s">&quot;output_dir&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/tmp&quot;</span>
+<span class="w">    </span><span class="s">&quot;input_dir&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+
+<span class="w">    </span><span class="c1"># test suite parameters</span>
+<span class="w">    </span><span class="s">&quot;test_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;random_test&quot;</span>
+<span class="w">    </span><span class="s">&quot;map_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;kashiwanoha_map&quot;</span>
+<span class="w">    </span><span class="s">&quot;ego_goal_lanelet_id&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">34600</span><span class="w"> </span><span class="c1"># -1 means full goal randomization</span>
+<span class="w">    </span><span class="s">&quot;ego_goal_s&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0</span>
+</code></pre></div>
+<h1 id="results">Results<a class="headerlink" href="#results" title="Permanent link">#</a></h1>
+<p>After the test suite execution two files can be found in the specified output folder.</p>
+<h2 id="result-yaml-file">Result yaml file<a class="headerlink" href="#result-yaml-file" title="Permanent link">#</a></h2>
+<p>Stores parameters used to generate the test suite. This file might be used to rerun the tests as described in <a href="../QuickStart/#how-to-replay">Replay</a>.</p>
+<h3 id="example-resultyaml">Example <code>result.yaml</code><a class="headerlink" href="#example-resultyaml" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">random_test</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">video_test</span>
+<span class="w">  </span><span class="nt">map_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kashiwanoha_map</span>
+<span class="w">  </span><span class="nt">ego_goal_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.000000000000000000</span>
+<span class="w">  </span><span class="nt">ego_goal_lanelet_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1</span>
+<span class="w">  </span><span class="nt">ego_goal_partial_randomization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">ego_goal_partial_randomization_distance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">  </span><span class="nt">npc_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">npc_min_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.500000000000000000</span>
+<span class="w">  </span><span class="nt">npc_max_speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.000000000000000000</span>
+<span class="w">  </span><span class="nt">npc_min_spawn_distance_from_ego</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.000000000000000000</span>
+<span class="w">  </span><span class="nt">npc_max_spawn_distance_from_ego</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50.000000000000000000</span>
+<span class="w">  </span><span class="nt">test_cases</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1281242544</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3644198185</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2673087374</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1312244741</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">seed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2518911638</span>
+</code></pre></div>
+<h2 id="result-junit-file">Result JUnit file<a class="headerlink" href="#result-junit-file" title="Permanent link">#</a></h2>
+<p>The file contains information about errors which occurred during test cases which were executed by the random test runner.</p>
+<p>If the execution of the test finished with an error the stored information contains type of the error and the message describing the error.</p>
+<p>There are 3 types of error reported, related directly to the simulation, which are:</p>
+<ol>
+<li><code>Stand still error</code> - reported when ego is found stuck in one place for too long.</li>
+<li><code>Timeout error</code> - reported when ego fails to reach the goal in a specified time.</li>
+<li><code>Collision error</code> - reported when collision between ego and npc appears,</li>
+<li>Exceptions caught during the runtime which includes:<ul>
+<li><code>AutowareError</code>,</li>
+<li><code>scenario_simulator_exception</code>,</li>
+<li><code>std::runtime_error</code>.</li>
+</ul>
+</li>
+</ol>
+<p>If any other error occurs during the random test runner execution, it will be stored along with the information that the <code>Unknown Error</code> has occurred.</p>
+<h3 id="example-resultjunitxml">Example <code>result.junit.xml</code><a class="headerlink" href="#example-resultjunitxml" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;testsuites</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">errors=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;testsuite</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;random_test&quot;</span><span class="w"> </span><span class="na">failures=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">errors=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">tests=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;4&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;stand still&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;Ego seems to be stuck&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">    </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;collision&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;npc2 and ego collided at 6.249999999999986s&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;stand still&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;Ego seems to be stuck&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">    </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;collision&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;npc1 and ego collided at 17.25000000000011s&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;timeout&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;Ego failed to reach goal within timeout&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">    </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;stand still&quot;</span><span class="w"> </span><span class="na">message=</span><span class="s">&quot;Ego seems to be stuck&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/testcase&gt;</span>
+<span class="w">    </span><span class="nt">&lt;testcase</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/testsuite&gt;</span>
+<span class="nt">&lt;/testsuites&gt;</span>
+</code></pre></div>
 
 
 
@@ -1970,10 +2212,10 @@ See also <a href="https://github.com/tier4/scenario_simulator_v2/blob/master/LIC
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
