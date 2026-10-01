@@ -1,0 +1,13 @@
+digraph "simulation/traffic_simulator/test/src/traffic_lights/helper.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="simulation/traffic\l_simulator/test/src\l/traffic_lights/helper.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="simulation/traffic\l_simulator/test/src\l/traffic_lights/test\l_traffic_lights.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test__traffic__lights_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="simulation/traffic\l_simulator/test/src\l/traffic_lights/test\l_traffic_lights_internal\l_common.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test__traffic__lights__internal__common_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="simulation/traffic\l_simulator/test/src\l/traffic_lights/test\l_traffic_lights_internal\l_v2i.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$test__traffic__lights__internal__v2i_8cpp.html",tooltip=" "];
+}
