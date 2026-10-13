@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node713 [label="std::unordered_map\l\< std::string, boost\l::accumulators::accumulator\l_set\< std::int64_t, boost\l::accumulators::stats\< boost\l::accumulators::tag::min, boost\l::accumulators::tag::max, boost\l::accumulators::tag::mean, boost\l::accumulators::tag::variance, boost\l::accumulators::tag::count \>\> \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node713 -> Node0 [dir="back",color="firebrick4",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="openscenario_interpreter\l::utility::ExecutionTimer\l\< Clock, Accumulators \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classopenscenario__interpreter_1_1utility_1_1ExecutionTimer.html",tooltip=" "];
+}
