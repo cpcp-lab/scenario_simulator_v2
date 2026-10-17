@@ -1,0 +1,12 @@
+digraph "simulation/traffic_simulator/include/traffic_simulator/helper" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a1f2d8220e61e65a4d5040b23c80eedf {
+    graph [ bgcolor="#ddddee", pencolor="black", label="traffic_simulator" fontname="Helvetica", fontsize="10", URL="dir_a1f2d8220e61e65a4d5040b23c80eedf.html"]
+  dir_dbe0b0a3bcf45efe2a2d2264c7292ecc [shape=box label="data_type" URL="dir_dbe0b0a3bcf45efe2a2d2264c7292ecc.html"];
+  dir_d6e2cd4174361c7172bf562752cc6ebe [shape=box, label="helper", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_d6e2cd4174361c7172bf562752cc6ebe.html"];
+  }
+  dir_d6e2cd4174361c7172bf562752cc6ebe->dir_dbe0b0a3bcf45efe2a2d2264c7292ecc [headlabel="1", labeldistance=1.5 headhref="dir_000176_000173.html"];
+  dir_dbe0b0a3bcf45efe2a2d2264c7292ecc->dir_d6e2cd4174361c7172bf562752cc6ebe [headlabel="1", labeldistance=1.5 headhref="dir_000173_000176.html"];
+}
