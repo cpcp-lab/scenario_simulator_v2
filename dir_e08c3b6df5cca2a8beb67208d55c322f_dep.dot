@@ -1,0 +1,11 @@
+digraph "external/concealer/test" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_1eb5b59626e9f9fdde5e19e173cfd491 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="concealer" fontname="Helvetica", fontsize="10", URL="dir_1eb5b59626e9f9fdde5e19e173cfd491.html"]
+  dir_863d68b38732dd91a03a41c8c173db4f [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_863d68b38732dd91a03a41c8c173db4f.html"];
+  dir_e08c3b6df5cca2a8beb67208d55c322f [shape=box, label="test", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e08c3b6df5cca2a8beb67208d55c322f.html"];
+  }
+  dir_e08c3b6df5cca2a8beb67208d55c322f->dir_863d68b38732dd91a03a41c8c173db4f [headlabel="1", labeldistance=1.5 headhref="dir_000076_000072.html"];
+}

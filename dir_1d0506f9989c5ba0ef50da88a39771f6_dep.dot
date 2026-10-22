@@ -1,0 +1,11 @@
+digraph "common/math/geometry/src/vector3" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_92912c8b0b343218b463aa304c8f319b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_92912c8b0b343218b463aa304c8f319b.html"]
+  dir_1d0506f9989c5ba0ef50da88a39771f6 [shape=box, label="vector3", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_1d0506f9989c5ba0ef50da88a39771f6.html"];
+  }
+  dir_4a254c9ebcf0a09723328a9d0c332a0e [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_4a254c9ebcf0a09723328a9d0c332a0e.html"];
+  dir_1d0506f9989c5ba0ef50da88a39771f6->dir_4a254c9ebcf0a09723328a9d0c332a0e [headlabel="1", labeldistance=1.5 headhref="dir_000037_000007.html"];
+}
