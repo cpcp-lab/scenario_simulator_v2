@@ -1,0 +1,11 @@
+digraph "common::scenario_simulator_exception::SemanticError"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="common::scenario_simulator\l_exception::SemanticError",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Although there were no syntactic errors in the description of the scenario, differences in meaning an..."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="common::scenario_simulator\l_exception::Error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structcommon_1_1scenario__simulator__exception_1_1Error.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="std::runtime_error",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}
