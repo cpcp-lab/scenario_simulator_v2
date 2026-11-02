@@ -1,0 +1,23 @@
+digraph "common/math/geometry/include/geometry/quaternion/get_rotation.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="common/math/geometry\l/include/geometry/quaternion\l/get_rotation.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="common/math/geometry\l/src/transform.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$transform_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="simulation/behavior\l_tree_plugin/src/action\l_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$action__node_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="simulation/do_nothing\l_plugin/src/plugin.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$plugin_8cpp.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="simulation/simple_sensor\l_simulator/src/vehicle\l_simulation/ego_entity_simulation.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ego__entity__simulation_8cpp.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="simulation/traffic\l_simulator/src/behavior\l/follow_trajectory.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$follow__trajectory_8cpp.html",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="simulation/traffic\l_simulator/src/data\l_type/lanelet_pose.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lanelet__pose_8cpp.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="simulation/traffic\l_simulator/src/hdmap\l_utils/hdmap_utils.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hdmap__utils_8cpp.html",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="simulation/traffic\l_simulator/src/lanelet\l_wrapper/pose.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$lanelet__wrapper_2pose_8cpp.html",tooltip=" "];
+}
