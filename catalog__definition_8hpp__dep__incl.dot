@@ -1,0 +1,11 @@
+digraph "openscenario/openscenario_interpreter/include/openscenario_interpreter/syntax/catalog_definition.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="openscenario/openscenario\l_interpreter/include/openscenario\l_interpreter/syntax/catalog_definition.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="openscenario/openscenario\l_interpreter/src/syntax\l/catalog_definition.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$catalog__definition_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="openscenario/openscenario\l_interpreter/src/syntax\l/open_scenario_category.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$open__scenario__category_8cpp.html",tooltip=" "];
+}
