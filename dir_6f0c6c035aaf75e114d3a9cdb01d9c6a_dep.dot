@@ -1,0 +1,11 @@
+digraph "simulation/behavior_tree_plugin/include/behavior_tree_plugin/transition_events" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_3b6bc577b1de8cec5db14186503032d1 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="behavior_tree_plugin" fontname="Helvetica", fontsize="10", URL="dir_3b6bc577b1de8cec5db14186503032d1.html"]
+  dir_6f0c6c035aaf75e114d3a9cdb01d9c6a [shape=box, label="transition_events", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_6f0c6c035aaf75e114d3a9cdb01d9c6a.html"];
+  }
+  dir_5229c5c80e1beeb41e5cbea006789ee7 [shape=box label="traffic_simulator" fillcolor="white" style="filled" color="red" URL="dir_5229c5c80e1beeb41e5cbea006789ee7.html"];
+  dir_6f0c6c035aaf75e114d3a9cdb01d9c6a->dir_5229c5c80e1beeb41e5cbea006789ee7 [headlabel="1", labeldistance=1.5 headhref="dir_000128_000015.html"];
+}
