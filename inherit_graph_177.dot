@@ -1,8 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node0 [label="openscenario_interpreter\l::RuleResultDeduction\<\l std::valarray\< T \>, U \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structopenscenario__interpreter_1_1syntax_1_1RuleResultDeduction_3_01std_1_1valarray_3_01T_01_4_00_01U_01_4.html",tooltip=" "];
-}
