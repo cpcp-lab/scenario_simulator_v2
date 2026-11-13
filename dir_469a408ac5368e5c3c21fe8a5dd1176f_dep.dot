@@ -1,0 +1,11 @@
+digraph "common/math/geometry/test/src/quaternion" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_7f360f68de487811e09c85598b78f2a2 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_7f360f68de487811e09c85598b78f2a2.html"]
+  dir_469a408ac5368e5c3c21fe8a5dd1176f [shape=box, label="quaternion", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_469a408ac5368e5c3c21fe8a5dd1176f.html"];
+  }
+  dir_4a254c9ebcf0a09723328a9d0c332a0e [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_4a254c9ebcf0a09723328a9d0c332a0e.html"];
+  dir_469a408ac5368e5c3c21fe8a5dd1176f->dir_4a254c9ebcf0a09723328a9d0c332a0e [headlabel="3", labeldistance=1.5 headhref="dir_000048_000007.html"];
+}
